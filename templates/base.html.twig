@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %} {% endblock %} | JEAN Christophe décorateur d'intérieur </title> 
+    <link href="css/stylsheet.css" rel="stylesheet">
+    <link href="css/header.css" rel="stylsheet">
+    <link href="css/stylesheet-acceuil.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https : //fonts.googleapis.com/css2?family= Montserrat & display=swap" rel="stylesheet" >
+</head>
+    <body>
+        <header>
+            <nav class="en-tête">
+                <img class="logoen-tête" src="assets\images\logo\JC PEINTURE.png" alt="logo JC noir, blanc et jaune">
+                
+                <ul class="menu-deroulant">
+                    <li>
+                        <img src="assets\images\logo\icons8-téléphone-50.png" alt="logo téléphone beige">
+                        <a href="https://www.pagesjaunes.fr/pros/62308612">07.60.95.92.47</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=home">Accueil</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=services">Nos services </a>
+                            <ul class="sous-menu">
+                                    <li>
+                                        <a href="">Peinture d'intérieur neuf</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="">Peinture d'intérieur en rénovation</a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="">Pose de lames clipsées PVC</a>
+                                    </li>
+                            </ul>
+                    </li>
+                    <li>
+                        <a href="index.php?route=realisations">Réalisations</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="index.php?route=devis">Demande de devis</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        {% block main %}
+        {% endblock %}
+
+        <footer>
+                <!-- <a href="a-propos.html"> lien qui renvoie vers le haut de la page d'acceuil? -->
+                <img src="logo/JC PEINRURE.png" alt="logo Christophe">
+                    <p>
+                        Pour nous contacter c'est par ici :
+                    </p>
+                <div>
+                    <img src="logo/icons-instagram.svg" alt="logo bulle instagram beige">
+                    <a target="_blank" href="https://www.instagram.com/">Instagram</a>
+
+                    <img src="logo/icons-facebook.svg" alt="logo bulle beige facebook">
+                    <a target="_blank" href="https://www.facebook.com/" >Facebook</a>
+        
+                    <img src="logo/mail-50.png" alt="logo mail beaige">
+                    <a target="_blank" href=""> N'hésiter pas à nous contacter par mail!</a>
+                    
+                    <img src="logo/téléphone-50.png" alt="logo téléphone beige">
+                    <a target="_blank" href="https://www.pagesjaunes.fr/pros/62308612">07.60.95.92.47 Pour plus d'information</a>
+                </div>
+        </footer>
+
+        {% block javascript %}
+        {% endblock %}
+    </body>
+</html>

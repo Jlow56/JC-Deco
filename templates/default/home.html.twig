@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Accueil
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<main id="content" class="home">
+		<ul>
+			{% for home in homes %}
+				{% if home.title1 is not empty and home.title2 is not empty and home.title3 is empty and home.content is not empty %}
+					<li>
+						<h1>{{ home.title1 }}</h2>
+						<h2>{{ home.title2 }}</h3>
+						<p>{{ home.content }}</p>
+						{% for media in home.medias %}
+							<img class="img-content" src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}">
+						{% endfor %}
+					</li>
+
+
+					{% elseif home.title1 is empty and home.title2 is empty and home.title3 is empty and home.content is not empty %}
+						<li>
+							<p>{{ home.content }}</p>
+							{% for media in home.medias %}
+								<img class="img-content" src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}">
+							{% endfor %}
+						</li>
+
+					{% elseif  home.title1 is empty and home.title2 is empty and home.title3 is not empty and home.content is not empty %}
+						<li>
+							<h3>{{ home.title3 }}</h3>
+							<p>{{ home.content }}</p>
+						</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+				<a href="index.php?route=contact" class="cta">
+					UN PROJET ? ÉCRIVEZ-MOI !
+				</a>	
+	</main>
+{% endblock %}
+
+{% block javascript %}{% endblock %}

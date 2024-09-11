@@ -1,0 +1,154 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Devis
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<h2>Faite votre demande de devis en ligne Gratuitement</h2>
+	<form class="devisForm" action="index.php?route=submit_form_devis" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="csrf-token" id=" csrf-token" value="{{ sessionToken }}"/>
+		<fieldset>
+			<legend>Vos coordonnées</legend>
+			<fieldset>
+				<label for="last_name">Nom :</label>
+				<input type="text " id="last_name" name="last_name" required>
+			</fieldset>
+
+			<fieldset>
+				<label for="first_name">Prénom :</label>
+				<input type="text" id="first_name" name="first_name" obligatoire>
+			</fieldset>
+
+			<fieldset>
+				<label for="adresse">Adresse :</label>
+				<input type="text" id="adresse" name="adresse" obligatoire>
+				<label for="ville">Ville :</label>
+				<input type="text" id="city" name="city" required><br>
+				<label for="adresse">Code Postal :</label>
+				<input type="number" id="code postal" name="code postal" obligatoire>
+			</fieldset>
+
+			<fieldset>
+				<label pour="téléphone">Téléphone :</label>
+				<input type="tel" id="téléphone" name="téléphone" obligatoire>
+			</fieldset>
+
+			<fieldset>
+				<label for="email">E-mail :</label>
+				<input type="email" id="email" name="email" requis>
+			</fieldset>
+		</fieldset>
+
+		<fieldset>
+			<legend>Commençont par défnir votre projet</legend>
+			<fieldset>
+				<label>Votre projet concerne des travaux de :</label><br>
+				<label><input type="checkbox" id="rénovation" name="services_type[]" value="Rénovation">Rénovation</label><br>
+				<label><input type="checkbox" id="nouveau " name="services_type[]" value="Du neuf">Du neuf (chantier en construction)</label>
+				<label><input type="checkbox" id="both" name="services_type []" value="Les deux">Les deux</label>
+			</fieldset>
+
+			<fieldset>
+				<label>Que souhaitez vous :</label><br>
+				<label><input type="checkbox" id="decorative" name="services[]" value="Peinture décorative">Peinture décorative</label><br>
+				<label><input type="checkbox" id="basique" name="services[]" value="Peinture intérieur">Peinture intérieur (basique)</label><br>
+				<label><input type="checkbox" id="pvc" name="services[]" value="Pose de lames clipsée">Pose de lames clipsée (pvc)</label>
+			</fieldset>
+
+			<fieldset>
+				<label>Type de surface :</label><br>
+				<label><input type="checkbox" id="wall" name="painting_surface_type[]" value="Murs">Murs</label><br>
+				<label><input type="checkbox" id="ceiling" name="painting_surface_type[]" value="Plafonds">Plafonds</label><br>
+				<label><input type="checkbox" id="floor" name="painting_surface_type[]" value="Sols">Sols (pvc)</label><br>
+				<label>Autre :</label><input type="text" id="painting_surface_type_other" name="painting_surface_type_other">
+			</fieldset>
+		</fieldset>
+
+		<fieldset>
+			<legend>Peinture</legend>
+			<fieldset>
+				<label>Que vous souhaitiez :</label><br>
+				<label><input type="checkbox" id="color" name="color[]" value="De la couleur">De la couleur</label><br>
+				<label><input type="checkbox" id="white" name="color[]" value="Du blanc">Du blanc</label><br>
+				<label><input type="checkbox" id="dontknow" name="color[]" value="Je ne sais pas">Je ne sais pas</label>
+			</fieldset>
+
+			<fieldset>
+				<label>Avez-vous une idée des couleurs que vous voulez appliquer ? (facultatif)</label><br>
+				<input type="text" id="whatColor" name="what_color">
+			</fieldset>
+
+			<fieldset>
+				<label>Savez-vous combien de surface il ya t'il à peindre? (cela peut être le nombre de maturités, la surface à couvrir en m2, le nombre de pièce(s)?) (facultatif)</label><br>
+				<input type="text" id="numberOfSurface" name="numberOfSurface">
+			</fieldset>
+
+			<fieldset>
+				<label>Quel est l'état des surfaces :</label><br>
+				<label><input type="checkbox" id="veryGood" name="status[]" value="Très bon">Très bon</label><br>
+				<label><input type="checkbox" id="good" name="status[]" value="Bon">Bon (quelques défaut pas trop visible)</label><br>
+				<label><input type="checkbox" id="mdium" name="status[]" value="Moyen">Moyen (défauts visibles)</label><br>
+				<label><input type="checkbox" id="bad" name="status[]" value="Mauvais">Mauvais (beaucoup de défauts)</label><br>
+				<label><input type="checkbox" id="veryBad" name="status[]" value="Très mauvais">Très mauvais (présences de moisissure, humidité, trous, besoins de reboucher, colmater)</label><br>
+				<label><input type="checkbox" id="idk" name="status[]" value="Je ne sais pas">Je ne sais pas</label>
+			</fieldset>
+		</fieldset>
+
+		<fieldset>
+			<legend>Pose de lames clipsées</legend>
+			<fieldset>
+				<label>Quelle est la matière de la surface sur laquelle vous souhaitez poser du PVC ?</label><br>
+				<label><input type="checkbox" id="concrete" name="surface_material[]" value="Béton">Béton</label><br>
+				<label><input type="checkbox" id="floorTiles" name="surface_material[]" value="Carrelage">Carrelage
+				</label><br>
+				<label><input type="checkbox" id="pvc2" name="surface_material[] " valeur="Pvc">Pvc</label><br>
+				<label>Autre :</label>
+				<input type="texte" id="matériau_de_surface_autre" name="matériau_de_surface_autre">
+			</fieldset>
+
+			<fieldset>
+				<label>Quel est le type de surface :</label>
+				<label><input type="checkbox" id="wall_pvc" name="pvc_surface_type[]" value="Mûre">Mûres</label><br>
+				<label>
+					<entrée type="checkbox" id="floor_pvc" name="pvc_surface_type[]" value="Sol">Sol's</label>
+				</fieldset>
+			</fieldset>
+			
+            <fieldset>
+				<legend>
+					Pour finir
+				</legend>
+				<fieldset>
+					<label>Quand souhaitons vous que les travaux soient finis ?(Nous ferons de notre mieux afin de répondre à vos délais):</label><br>
+					<label><input type="checkbox" id="earlier" name="date[]" value="Le plus tôt possible">Le plus tôt possible</label><br>
+					<label><input type="checkbox" id="week" name="date[]" value="Dans une semaine à deux semaines">Dans une semaine à deux semaines</label><br>
+					<label><input type="checkbox" id="month" name="date[]" value="Dans un mois">Dans un mois</label><br>
+					<label><input type="checkbox" id="fewmonth" name="date[]" value="Dans 3 à 6 mois">Dans 3 à 6 mois</label><br>
+					<label><input type="checkbox" id="year" name="date[] " value="l'Année prochaine">l'Année prochaine</label><br>
+					<label>Autre (sélectionnez une date):
+					</label><input type="date" id=" autre_date" name="selected_date">
+				</fieldset>
+				
+                <fieldset>
+					<fieldset>
+						<legend>Avez-vous des photos ou plans que vous souhaiteriez nous faire parvenir ?</legend>
+						<input type="file" id="photos" name="photos" accept=".png, .jpeg, .jpg, .pdf, .doc, .docx">
+					</fieldset>
+				</fieldset>
+				
+                <fieldset>
+					<label>Information supplémentaire (facultatif) (type de bâtiment, les travaux sont-ils facilement accessibles ? ...):
+					</label><br>
+					<label>Autre :
+					</label><input type="text" id="additional" name="additional">
+				</fieldset>
+			</fieldset>
+			<input type="submit" class="sbmit_devis" value="Envoyer">
+        </fieldset>
+	</form>
+{% endblock %}
+
+
+ 

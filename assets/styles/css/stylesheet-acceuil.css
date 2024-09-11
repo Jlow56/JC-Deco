@@ -1,0 +1,78 @@
+.accueil-introduction {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  align-items: stretch;
+  margin: auto;
+}
+
+.accueil-introduction,
+h1, 
+h2 {
+  margin-bottom: 15px;
+  text-align: center
+}
+
+.accueil-introduction,
+p {
+  margin-bottom: 30px;
+}
+
+.accueil-introduction 
+div {
+  padding-right: 80px;
+}
+
+  
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+  color: rgb(108, 58, 7);
+}
+  
+.form-nom-email {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+  
+.form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+input,
+textarea { 
+  padding: 15px; 
+  border-radius: 3px;
+  border: none;
+}
+  
+label {
+  margin-bottom: 10px;
+}
+  
+input[type='submit'] {
+  width: 200px;
+  margin: auto;
+  margin-top: 30px;
+  font-size: 90%;
+  }
+
+.cta {
+  display: inline-block;
+  background: linear-gradient(rgb(119, 61, 20), #563b09cf);
+  color: white;
+  border-radius: 50px;
+  padding: 20px 30px;
+  }
+
+.cta:hover {
+  background: linear-gradient(#ae7326, #7d3d18);
+  text-decoration: none;
+}
+  
