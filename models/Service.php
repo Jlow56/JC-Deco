@@ -3,7 +3,7 @@
 class Service
 {
     private ? int $id = null;
-    private array $media = [];
+    private array $medias = [];
 
 
     public function __construct(private string $title1, private string $title2, private string $title3, private string $content)
@@ -90,15 +90,15 @@ class Service
     /**
     * @return string
     */
-    public function getMedia(): array
+    public function getMedias(): array
     {
-        return $this->media;
+        return $this->medias;
     }
     /**
-     * @param string $media
+     * @param string $medias
      */
-    public function setMedia(array $media): void
+    public function setMedia(array $medias): void
     {
-        $this->media = $media;
+        $this->medias = $medias;
     }
 }

@@ -1,8 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    service
-    {{ parent() }}
+	service
+	{{ parent() }}
 {% endblock %}
 
 {% block main %}
@@ -14,7 +14,7 @@
 					{% set contains_li = service.content|replace({'<li>':'', '</li>':''}) != service.content %}
 					{% if contains_ul and contains_li %}
 						<p>{{ service.content|raw }}</p>
-					{% endif %}
+				{% endif %}
 
 					{% if service.title1 is not empty and service.title2 is not empty and service.title3 is empty %}
 						<li>

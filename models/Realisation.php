@@ -2,7 +2,7 @@
 
 class Realisation
 {
-    private ? int $id = null;
+    private ?int $id = null;
     private array $media = [];
 
 
@@ -26,7 +26,7 @@ class Realisation
         $this->id = $id;
     }
 
-      /**
+    /**
      * @return string
      */
     public function getTitle1(): string
@@ -86,18 +86,18 @@ class Realisation
     {
         $this->content = $content;
     }
-    
+
     /**
-    * @return string
-    */
-    public function getMedia(): array
+     * @return string
+     */
+    public function getmedia(): array
     {
         return $this->media;
     }
     /**
      * @param string $media
      */
-    public function setMedia(array $media): void
+    public function setmedia(array $media): void
     {
         $this->media = $media;
     }

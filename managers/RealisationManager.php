@@ -13,12 +13,12 @@ class RealisationManager extends AbstractManager
         foreach ($result as $item){
             $medias = $mm->findByRealisation($item["id"]);
             $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"]);
+            
             $realisation->setId($item["id"]);
             $realisation->setMedia($medias ?? []); // Utilise un tableau vide si $medias est null
 
             $realisations[] = $realisation;
         }
-
         return $realisations;
     }
 }

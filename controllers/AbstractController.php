@@ -1,12 +1,11 @@
 <?php
-abstract class AbstractController
+  abstract class AbstractController
 {
     private \Twig\Environment $twig;
     public function __construct()
     {
         $loader = new \Twig\Loader\FilesystemLoader('templates');
-        $twig = new \Twig\Environment($loader,
-        [
+        $twig = new \Twig\Environment($loader,[
             'debug' => true,
         ]);
 
