@@ -7,8 +7,6 @@ class ServiceController extends AbstractController
         $services = $sm->findAll();
         
         $this->render('services/services.html.twig',
-        [
-            "services" => $services
-        ]);
+        ["services" => $services]);
     }
 }

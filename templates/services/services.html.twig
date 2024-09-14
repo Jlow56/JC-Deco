@@ -7,7 +7,6 @@
 
 {% block main %}
 	<main id="content" class="services">
-		<ul>
 			{% for service in services %}
 				{% if service.content is not empty %}
 					{% set contains_ul = service.content|replace({'<ul>':'', '</ul>':''}) != service.content %}
@@ -15,44 +14,56 @@
 					{% if contains_ul and contains_li %}
 						<p>{{ service.content|raw }}</p>
 				{% endif %}
-
 					{% if service.title1 is not empty and service.title2 is not empty and service.title3 is empty %}
-						<li>
-							<h1>{{ service.title1 }}</h1>
-							<h2>{{ service.title2 }}</h2>
-							<p>{{ service.content }}</p>
-						</li>
+						<ul>
+							<li>
+								<h2>{{ service.title1 }}</h2>
+								<h3>{{ service.title2 }}</h3>
+								<p>{{ service.content }}</p>
+							</li>
+						</ul>
 
 					{% elseif service.title1 is empty and service.title2 is not empty and service.title3 is empty %}
-						<li>
-							<h2>{{ service.title2 }}</h2>
-							{% for media in service.medias %}
-								<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
-							{% endfor %}
-							<p>{{ service.content }}</p>
-						</li>
+						<ul>
+							<li>
+								<h2>{{ service.title2 }}</h2>
+								{% for media in service.medias %}
+									<figure>
+										<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
+									</figure>
+								{% endfor %}
+								<p>{{ service.content }}</p>
+							</li>
+						</ul>
 
 					{% elseif service.title1 is empty and service.title2 is empty and service.title3 is not empty %}
-						<li>
-							<h3>{{ service.title3 }}</h3>
-							{% for media in service.medias %}
-								<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
-							{% endfor %}
-							<p>{{ service.content }}</p>
-						</li>
+						<ul>
+							<li>
+								<h3>{{ service.title3 }}</h3>
+								{% for media in service.medias %}
+									<figure>
+										<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
+									</figure>
+								{% endfor %}
+								<p>{{ service.content }}</p>
+							</li>
+						</ul>
 
 					{% elseif service.title1 is empty and service.title2 is not empty and service.title3 is not empty %}
-						<li>
-							<h2>{{ service.title2 }}</h2>
-							<h3>{{ service.title3 }}</h3>
-							{% for media in service.medias %}
-								<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
-							{% endfor %}
-							<p>{{ service.content }}</p>
-						</li>
+						<ul>
+							<li>
+								<h2>{{ service.title2 }}</h2>
+								<h3>{{ service.title3 }}</h3>
+								{% for media in service.medias %}
+									<figure>
+										<img class="img-content" src="{{ 'assets/img/Services/' ~ media.url }}" alt="{{ media.alt }}">
+									</figure>
+								{% endfor %}
+								<p>{{ service.content }}</p>
+							</li>
+						</ul>
 					{% endif %}
 				{% endif %}
 			{% endfor %}
-		</ul>
 	</main>
 {% endblock %}

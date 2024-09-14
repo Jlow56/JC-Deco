@@ -10,7 +10,8 @@ class RealisationManager extends AbstractManager
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $realisations = [];
 
-        foreach ($result as $item){
+        foreach ($result as $item)
+        {
             $medias = $mm->findByRealisation($item["id"]);
             $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"]);
             
@@ -19,6 +20,6 @@ class RealisationManager extends AbstractManager
 
             $realisations[] = $realisation;
         }
-        return $realisations;
+        return $realisations; 
     }
 }

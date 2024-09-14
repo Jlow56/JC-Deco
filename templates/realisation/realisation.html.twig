@@ -8,43 +8,86 @@
 {% block main %}
     <main id="content" class="realisations">
         {% for realisation in realisations %}
-            <div class="realisation-item">
-                {% if realisation.title1 is not empty and realisation.title2 is empty and realisation.title3 is empty and realisation.content is not empty %}
-                    <h2>{{ realisation.title1 }}</h1>
-                    <p>{{ realisation.content }}</p>
-                
-                {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is not empty and realisation.content is not empty %}
-                    <h3>{{ realisation.title2 }}</h3>
-                    <h4>{{ realisation.title3 }}</h4>
-                    <p>{{ realisation.content }}</p>
-                
-                {% elseif realisation.title1 is empty and realisation.title2 is empty and realisation.title3 is not empty and realisation.content is not empty %}
-                    <h3>{{ realisation.title3 }}</h3>
-                    <p>{{ realisation.content }}</p>
-                
-                {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is not empty and realisation.content is not empty %}
-                    <h3>{{ realisation.title2 }}</h3>
-                    <h4>{{ realisation.title3 }}</h4>
-                    <p>{{ realisation.content }}</p>
-                    {% for media in realisation.medias %}
-                        <div class="container">
-                            <div class="slider_befor"><img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}"></div>
-                            <div class="silder_sparator"></div>
-                            <div class="slider_after"><img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}"></div>
-                            <input class="slider_range" type="range" min="0" max="100" value="50">
-                        </div>
-                    {% endfor %}
-                
-                {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is empty and realisation.content is not empty %}
-                    <h3>{{ realisation.title2 }}</h3>
-                    <p>{{ realisation.content }}</p>
-                    {% for media in realisation.medias %}
-                        <div class="gallery">
-                            <img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}">
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
+            {% if realisation.content is not empty %}
+                <ul>
+                    <section>
+                        {% if realisation.title1 is not empty and realisation.title2 is empty and realisation.title3 is empty and realisation.content is not empty %}
+                        
+                            <li>
+                                <h2>{{ realisation.title1 }}</h2>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                        
+                        {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is not empty and realisation.content is not empty %}
+                            <li>
+                                <h3>{{ realisation.title2 }}</h3>
+                                <h4>{{ realisation.title3 }}</h4>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                            
+                        {% elseif realisation.title1 is empty and realisation.title2 is empty and realisation.title3 is not empty and realisation.content is not empty %}
+                            <li>
+                                <h4>{{ realisation.title3 }}</h4>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                    </section>    
+                    
+                    <section>
+                        {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is not empty and realisation.content is not empty %}
+                            <li>
+                                <h3>{{ realisation.title2 }}</h3>
+                                <h4>{{ realisation.title3 }}</h4>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                            {% for media in realisation.medias %}
+                                <div class="container">
+                                    <div class="slider_befor">
+                                        <figure>
+                                            <img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}">
+                                        </figure>
+                                    </div>
+                                    <div class="silder_sparator"></div>
+                                    <div class="slider_after">
+                                        <figure>
+                                            <img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}">
+                                        </figure>
+                                    </div>
+                                    <input class="slider_range" type="range" min="0" max="100" value="50">
+                                </div>
+                            {% endfor %}
+                        
+                        {% elseif realisation.title1 is empty and realisation.title2 is empty and realisation.title3 is not empty and realisation.content is not empty %}
+                            <li>
+                                <h3>{{ realisation.title3 }}</h3>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                            {% for media in realisation.medias %}
+                                <div class="gallery">
+                                    <figure>
+                                        <img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}">
+                                    </figure>
+                                </div>
+                            {% endfor %}
+                    </section>
+                    
+                    <section>
+                        {% elseif realisation.title1 is empty and realisation.title2 is not empty and realisation.title3 is empty and realisation.content is not empty %}
+                            <li>
+                                <h3>{{ realisation.title2 }}</h3>
+                                <p>{{ realisation.content }}</p>
+                            </li>
+                            {% for media in realisation.medias %}
+                                <div class="gallery">
+                                    <figure>
+                                        <img class="img-content" src="{{ 'assets/img/realisations/' ~ media.url }}" alt="{{ media.alt }}">
+                                    </figure>
+                                </div>
+                            {% endfor %}
+                    </section>
+                        {% endif %}
+                    </div>
+                </ul>
+            {% endif %}
         {% endfor %}
     </main>
 {% endblock %}
