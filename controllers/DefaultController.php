@@ -1,10 +1,11 @@
 <?php
 class DefaultController extends AbstractController
 {
-    public function home()
+    public function home() : void
     {
         $hm = new HomeManager();
         $homes = $hm->findAll();
+        
         $this->render('default/home.html.twig',
         ["homes" => $homes,]);
     }

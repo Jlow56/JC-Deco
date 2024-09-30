@@ -6,7 +6,9 @@
     {
         $loader = new \Twig\Loader\FilesystemLoader('templates');
         $twig = new \Twig\Environment($loader,[
-            'debug' => true,
+            'debug' => true, 
+            //  L'option est un répertoire de cache de compilation, où Twig met en cache les modèles compilés pour éviter la phase d'analyse des requêtes suivantes.
+            // 'cache' => 'compilation_cache',
         ]);
 
         $twig->addExtension(new \Twig\Extension\DebugExtension());

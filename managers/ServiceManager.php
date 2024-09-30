@@ -14,10 +14,10 @@ class ServiceManager extends AbstractManager
         {
             $medias = $mm->findByService($item["id"]);
             $service = new Service($item["title1"], $item["title2"], $item["title3"], $item["content"]);
-            
+
             $service->setId($item["id"]);
-            $service->setMedia($medias ?? []); // Utilise un tableau vide si $medias est null
-            
+            $service->setMedia($medias ?? []);
+
             $services[] = $service;
         }
         return $services;

@@ -6,7 +6,7 @@ class Service
     private array $medias = [];
 
 
-    public function __construct(private string $title1, private string $title2, private string $title3, private string $content)
+    public function __construct(private string $title1, private string $title2, private  string $title3, private string $content)
     {
 
     }

@@ -9,11 +9,11 @@ class MediaManager extends AbstractManager
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $medias = [];
 
-        if ($result) 
+        if (!empty($result)) 
         {
             foreach ($result as $item)
             {
-                $media = new Media($item["url"], $item["alt"], $item["title"], $item["visible"]);
+                $media = new Media($item["url"], $item["alt"],$item["visible"]);
                 $media->setId($item["id"]);
                 $medias[] = $media;
             }
@@ -29,11 +29,11 @@ class MediaManager extends AbstractManager
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $medias = [];
 
-        if($result)
+        if (!empty($result))
         {
             foreach ($result as $item)
             {
-                $media = new Media($item["url"], $item["alt"], $item["title"], $item["visible"]);
+                $media = new Media($item["url"], $item["alt"],$item["visible"]);
                 $media->setId($item["id"]);
                 $medias[] = $media;
             }
@@ -53,7 +53,7 @@ class MediaManager extends AbstractManager
         {
             foreach ($result as $item)
             {
-                $media = new Media($item["url"], $item["alt"], $item["title"], $item["visible"]);
+                $media = new Media($item["url"], $item["alt"],$item["visible"]);
                 $media->setId($item["id"]);
                 $medias[] = $media;
             }

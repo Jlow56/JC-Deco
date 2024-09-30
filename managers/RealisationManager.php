@@ -16,10 +16,11 @@ class RealisationManager extends AbstractManager
             $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"]);
             
             $realisation->setId($item["id"]);
-            $realisation->setMedia($medias ?? []); // Utilise un tableau vide si $medias est null
-
+            $realisation->setMedia($medias ?? []);
+            
             $realisations[] = $realisation;
         }
+        var_dump($medias);
         return $realisations; 
     }
 }

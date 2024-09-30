@@ -4,7 +4,7 @@ class Media
 {
     private ? int $id = null;
 
-    public function __construct(private string $url, private string $alt, private string $title, private bool $visible)
+    public function __construct(private string $url, private string $alt, private bool $visible)
     {
 
     }
@@ -52,21 +52,6 @@ class Media
     public function setAlt(string $alt): void
     {
         $this->alt = $alt;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title): void
-    {
-        $this->title = $title;
     }
 
     /**
