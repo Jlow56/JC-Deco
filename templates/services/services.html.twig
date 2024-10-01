@@ -20,7 +20,7 @@
                 <article>
                     <h3>{{ service.title2 }}</h3>
                     {% for media in service.medias %}
-                        <div class="media-gallery">
+                        <div class="media">
                             <figure>
                                 <img class="img-content" src="{{ 'assets/img/Service/' ~ media.url }}" alt="{{ media.alt }}">
                             </figure>
@@ -39,7 +39,7 @@
                 <article>
                     <h3>{{ service.title2 }}</h3>
                     {% for media in service.medias %}
-                        <div class="media-gallery">
+                        <div class="media">
                             <figure>
                                 <img class="img-content" src="{{ 'assets/img/Service/' ~ media.url }}" alt="{{ media.alt }}">
                             </figure>
@@ -54,4 +54,4 @@
 </main>
 {% endblock %}
 
-{% block javascript %}{% endblock %}
+{% block javascript %} {% endblock %}
