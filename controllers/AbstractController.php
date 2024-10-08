@@ -1,5 +1,12 @@
 <?php
-  abstract class AbstractController
+
+require 'vendor/autoload.php';
+
+// PHPMailer classes for sending emailsc
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+abstract class AbstractController
 {
     private \Twig\Environment $twig;
     public function __construct()

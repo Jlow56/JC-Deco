@@ -1,0 +1,461 @@
+/************************************************************/
+/*                                                          */
+/*                      RESET CSS                           */
+/*     src : https://meyerweb.com/eric/tools/css/reset /    */
+/*                                                          */
+/************************************************************/
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video
+{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section
+{
+	display: block;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img, video {
+  max-width: 100%;
+}
+
+
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                                                  */
+/*                    GENERAL                       */
+/*                                                  */
+/****************************************************/
+body {
+  width : 100%;
+  height : 100%;
+  margin : 0;
+  font-weight:100;
+  line-height: 1.6;
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.8rem;
+  background-color:beige;
+  color: #0a0a0a
+}
+
+main {
+  margin: auto;
+}
+
+section, article {
+  padding: 2.5rem;
+}
+
+a {
+  color: #0a0a0a;
+  text-decoration: none;
+  cursor: pointer;
+}
+  
+h1  {
+  color: #0a0a0a;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 4rem;
+}
+  
+h2 {
+  color:rgba(163, 99, 22, 0.669);
+}
+
+h3,h4 {
+  color: #92652a;
+}
+  
+h1,h2 {
+  text-align: center;
+  font-size: 2.2rem;
+}
+
+h3.h3_center
+{
+  text-align: center;
+}
+
+p,li {
+  font-size: 1.6rem;
+  color: #0a0a0a;
+  padding: 2rem;
+}
+  
+ul,li {
+  list-style: none;
+}
+
+figure > img {
+  border-radius: 30px;
+}
+
+.media-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/****************************************************/                                          
+/*                Formulaires                        /*                                                  
+/****************************************************/
+
+
+
+
+
+
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                                                  */
+/*             base.html.twig                       */
+/*                                                  */
+/****************************************************/
+
+/****************************************************/
+/*                    header                        */
+/****************************************************/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #DEAD6D;
+  height: 12.5rem !important;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #bf9000;
+  opacity: 0.90;
+  padding: 0 2rem;
+}
+
+.header_logo {
+  height: 12.5rem !important;
+  width: 12.5rem !important;
+  position: fixed;
+  left: 0;
+}
+
+ul.menu {
+  display: flex;
+  justify-content: flex-end; /* Place le menu à droite */
+  gap: 2rem;
+  margin-right: 2rem;
+}
+
+li.menu_item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+li.menu_item a {
+  color: #0a0a0a;
+  text-decoration: none;
+  font-size: 1.8rem;
+  padding: 2rem;
+}
+
+li.menu_item a:hover {
+  background-color: blanc;
+  color: #0a0a0a;
+  padding: 2rem;
+}
+/****************************************************/
+/*               STYLES POUR LE SOUS-MENU           */
+/****************************************************/
+ul.sub_menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: nowrap; /* Empêche l'élément de se diviser en plusieurs lignes */
+  color: #0a0a0a;
+}
+
+li.menu_item:hover ul.sub_menu {
+  display: block;
+}
+
+.sub_menu li {
+  margin-bottom: 0.5rem;
+}
+
+ul.sub_menu li a {
+  font-size: 1.6rem;
+  color: #0a0a0a
+}
+
+ul.sub_menu li a:hover {
+  color: #bf9000;
+}
+/****************************************************/
+/*               RÉACTIVITÉ DU MENU (MOBILE)        */
+/****************************************************/
+@media (max-width: 768px) {
+  .burgerMenu {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #DEAD6D;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav_menu {
+    flex-direction: column;
+  }
+
+  .nav_menu_item {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .dropdown_menu {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+  }
+}
+/****************************************************/
+/*                    Footer                        */
+/****************************************************/
+footer {
+  background-color: #DEAD6D;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+footer section {
+  display: grid;
+  border-right: 1px solid #bf9000;
+  text-align: justify;
+  justify-content: space-around;
+}
+
+footer  a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+
+footer p {
+  font-size: 2rem;
+}
+
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                                                  */
+/*                    home.html.twig                */
+/*                                                  */
+/****************************************************/
+input,
+textarea { 
+  padding: 15px; 
+  border-radius: 3px;
+  border: none;
+}
+  
+label {
+  margin-bottom: 10px;
+}
+  
+input[type='submit'] {
+  width: 200px;
+  margin: auto;
+  margin-top: 30px;
+  font-size: 90%;
+  }
+
+.cta {
+  display: inline-block;
+  align-items: center;
+  background: linear-gradient(rgb(119, 61, 20), #563b09cf);
+  color: white;
+  border-radius: 50px;
+  padding: 1.5rem;
+  }
+
+.cta:hover {
+  background: linear-gradient(#ae7326, #7d3d18);
+  text-decoration: none;
+}
+/*******************************************************************************************************************************************/
+
+/****************************************************/
+/*                                                  */
+/*                   services.html.twig             */
+/*                                                  */
+/****************************************************/
+
+
+/*******************************************************************************************************************************************/
+
+/****************************************************/
+/*                                                  */
+/*                   realisations.html.twig         */
+/*                                                  */
+/****************************************************/
+.section-photos {
+    background: white;
+}
+
+.section-photos h2 {
+    color: #242424;
+    margin-bottom: 80px;
+}
+  
+.gird-papier-peint {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px 300px;
+    gap: 15px;
+}
+
+.gird-peinture {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 15px;
+}   
+  
+.gird-papier-peint img 
+.gird-peinture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lien-conteneur-photo {
+    position: relative;
+}
+  
+.photo-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+  
+.lien-conteneur-photo:hover .photo-hover {
+    display: flex;
+}
+
+/****************************************************/
+/*             SLIDER AVANT - APRES                 */
+/****************************************************/
+.slider_before, .slider_after {
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.slider_before img, .slider_after img {
+  width: 100%;
+}
+
+.silder_sparator {
+  width: 5px;
+  background-color: #ccc;
+  cursor: ew-resize;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                                                  */
+/*                devis.html.twig                   */
+/*                                                  */
+/****************************************************/
+
+ 
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: auto;
+  color: rgb(108, 58, 7);
+}
+  
+.form-nom-email {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+  
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                                                  */
+/*                contact.html.twig                 */
+/*                                                  */
+/****************************************************/

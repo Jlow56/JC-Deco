@@ -7,31 +7,30 @@
 
 {% block main %}
 	<main id="content" class="home">
-	
-	{% for home in homes %}
-        <h1>{{ home.title1 }}</h1>
+
+		{% for home in homes %}
+			<h1>{{ home.title1 }}</h1>
 			<article>
 				<h2>{{ home.title2 }}</h2>
 				<h3>{{ home.title3 }}</h3>
 				<p>{{ home.content }}</p>
 
 				{% if home.media is not empty %}
-					<div class="media-gallery">
+					<div class="media-center">
 						{% for media in home.media %}
 							<figure>
-								<img class="img-content" src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}">
+								<img src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}"  loading="lazy">
 							</figure>
 						{% endfor %}
 					</div>
 				{% endif %}
 			</article>
-	{% endfor %}
-		
-				<a href="index.php?route=contact" class="cta">
-					UN PROJET ? ÉCRIVEZ-MOI !
-				</a>	
+		{% endfor %}
+
+		<a href="index.php?route=contact" class="cta">
+			UN PROJET ? ÉCRIVEZ-MOI !
+		</a>
 	</main>
 {% endblock %}
 
 {% block javascript %}{% endblock %}
-

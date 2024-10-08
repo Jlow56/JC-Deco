@@ -1,30 +1,35 @@
-{% extends "base.html.twig" %}
+{% extends "admin/admin-base.html.twig" %}
 
 {% block title %}
 	Admin_connexion
 	{{ parent() }}
 {% endblock %}
 
-{% block body %}
-<h2>Se connecter</h2>
-
-	<form id="connexionForm" action="index.php?route=check-login" method="POST">
-		<fieldset>
-			<label for="email">Email</label>
-			<input type="email" id="email" name="email" placeholder="exemple@andré.com">
-			<p class="error" id="emailError"></p>
+{% block main %}
+ <main id="loginPage">
+	{% if session['error-message'] is defined %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session['error-message'] }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+	{% endif %}
 	
-			<label for="password">Mot de passe</label>
-			<input type="password" id="password" name="password" placeholder="Tapez votre mot de passe">
-			<p class="error" id="passwordError"></p>
-			<a href="#">Mot de Passe oublier?</a>
-		</fieldset>
+	<h2>Se connecter</h2>
+		<form id="connexionForm" action="index.php?route=check-login" method="POST">
+			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}">
+			<fieldset>
+				<label for="email">Email</label>
+				<input type="email" id="email" name="email" placeholder="exemple@andré.com">
+				<p class="error" id="emailError"></p>
+		
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" name="password" placeholder="Tapez votre mot de passe">
+				<p class="error" id="passwordError"></p>
+				<a href="#">Mot de Passe oublier?</a>
+			</fieldset>
 
-		<button type="submit" id="submitBtn" disabled>Connexion</button>
+			<button type="submit" id="submitBtn" disabled>Connexion</button>
 
-	</form>
-	</form>
-
-	<script type="module" src="assets/js/main.js"></script>
-
+		</form>
+</main>
 {% endblock %}

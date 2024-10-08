@@ -28,10 +28,10 @@
                             {# Slider avant-après #}
                             <div class="slider">
                                 <div class="slider_before">
-                                    <img src="{{ 'assets/img/Realisation/' ~ realisation.medias[0].url }}" alt="{{ realisation.medias[0].alt }}">
+                                    <img loading="lazy" src="{{ 'assets/img/Realisation/' ~ realisation.medias[0].url }}" alt="{{ realisation.medias[0].alt }}">
                                 </div>
                                 <div class="slider_after">
-                                    <img src="{{ 'assets/img/Realisation/' ~ realisation.medias[1].url }}" alt="{{ realisation.medias[1].alt }}">
+                                    <img loading="lazy" src="{{ 'assets/img/Realisation/' ~ realisation.medias[1].url }}" alt="{{ realisation.medias[1].alt }}">
                                 </div>
                                 <div class="slider_separator"></div>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="gallery">
                                 {% for media in realisation.medias %}
                                     <figure>
-                                        <img class="img-content" src="{{ 'assets/img/Realisation/' ~ media.url }}" alt="{{ media.alt }}">
+                                        <img loading="lazy" class="img-content" src="{{ 'assets/img/Realisation/' ~ media.url }}" alt="{{ media.alt }}">
                                     </figure>
                                 {% endfor %}
                             </div>

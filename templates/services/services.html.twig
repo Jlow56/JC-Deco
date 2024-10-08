@@ -18,11 +18,11 @@
 
             {% elseif service.title1 is empty and service.title2 is not empty and service.title3 is empty %}
                 <article>
-                    <h3>{{ service.title2 }}</h3>
+                    <h3 class="h3_center">{{ service.title2 }}</h3>
                     {% for media in service.medias %}
-                        <div class="media">
+                        <div class="media-center">
                             <figure>
-                                <img class="img-content" src="{{ 'assets/img/Service/' ~ media.url }}" alt="{{ media.alt }}">
+                                <img loading="lazy" class="img-content" src="{{ 'assets/img/Service/' ~ media.url }}" alt="{{ media.alt }}">
                             </figure>
                         </div>
                     {% endfor %}
@@ -37,9 +37,9 @@
 
             {% elseif service.title1 is empty and service.title2 is not empty and service.title3 is not empty %}
                 <article>
-                    <h3>{{ service.title2 }}</h3>
+                    <h3 class="h3_center">{{ service.title2 }}</h3>
                     {% for media in service.medias %}
-                        <div class="media">
+                        <div class="media-center">
                             <figure>
                                 <img class="img-content" src="{{ 'assets/img/Service/' ~ media.url }}" alt="{{ media.alt }}">
                             </figure>

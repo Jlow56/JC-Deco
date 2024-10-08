@@ -1,58 +1,50 @@
 <?php
 
-class AuthController extends AbstractController 
+class AuthController extends AbstractController
 {
-    public function __construct()
+    public function login(): void
     {
-
+        $this->render("admin/login.html.twig", []);
     }
 
-    public function login() : void
+    public function loginCheck(): void
     {
-       
-        $this->render('admin\login.html.twig',[
-            "login" => $login,
-        ]);
-    }
-    
-    public function checkLogin() : void
-    {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") 
-        {
-            if(isset($_POST["email"]) || !filter_var($getData['email'], FILTER_VALIDATE_EMAIL)&&  isset($_POST["password"]))
-            {
-                $am = new AdminManger();
-                $admin = $am->findOne($_POST["email"]);
+        if (isset($_POST["email"]) && isset($_POST["password"])) {
+            $tokenManager = new CSRFTokenManager();
 
-                if($admin->getId() !== null)
-                {
-                    if(password_verify($_POST["password"], $admin->getPassword()))
-                    {
-                        $password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-                        $_SESSION["admin"] = $admin;
-                        $this->render('admin\admin-page.html.twig');
+            if (isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"])) {
+                $um = new UserManager();
+                $user = $um->findByEmail($_POST["email"]);
+
+                if ($user !== null) {
+                    if (password_verify($_POST["password"], $user->getPassword())) {
+                        $_SESSION["user"] = $user->getId();
+
+                        unset($_SESSION["error-message"]);
+
+                        $this->redirect("admin");
+                    } else {
+                        $_SESSION["error-message"] = "Mot de passe erroné, veuillez réessayer.";
+                        $this->redirect("login");
                     }
-                    else
-                    {
-                        $this->render('admin\login.html.twig');
-                    }
+                } else {
+                    $_SESSION["error-message"] = "Informations erronées, veuillez réessayer.";
+                    $this->redirect("login");
                 }
-                else 
-                {
-                    $this->render('admin\login.html.twig');
-                }
+            } else {
+                $_SESSION["error-message"] = "Invalid CSRF token";
+                $this->redirect("login");
             }
-            else 
-            {
-                $this->render('admin\login.html.twig');
-            }
+        } else {
+            $_SESSION["error-message"] = "Informations manquantes, veuillez réessayer.";
+            $this->redirect("login");
         }
     }
-    
+
     public function logout() : void
     {
         session_destroy();
-        $this->render('admin\login.html.twig');
+
+        $this->redirect("login");
     }
 }
-
