@@ -6,33 +6,33 @@
 {% endblock %}
 
 {% block main %}
-<main>
-	<h2>Parlons de votre projet</h2>
-			<form method="get" action="#">
-				<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}" />
-				<fieldset>
-					<div class="form-nom-email">
-						<div class="form-column">
-							<label for="nom">Nom/Prénom</label>
-							<input type="text" name="nom" id="nom" required>
-						</div>
-						<div class="form-column">
-							<label for="email">Email</label>
-							<input type="email" name="email" id="email" required>
-						</div>
+	<main class="contact">
+		<h2>Parlons de votre projet</h2>
+		<form method="get" action="#">
+			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
+			<fieldset>
+				<div class="form-nom-email">
+					<div class="form-column">
+						<label for="nom">Nom/Prénom</label>
+						<input type="text" name="nom" id="nom" required aria-required="true">
 					</div>
+					<div class="form-column">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" required aria-required="true">
+					</div>
+				</div>
 
-					<label for="message">Votre message</label>
-					<textarea name="message" id="message" rows="10" required></textarea>
-					<input type="submit" value="ENVOYER" class="cta">
-				</form>
+				<label for="message">Votre message</label>
+				<textarea name="message" id="message" rows="10" required aria-required="true"></textarea>
+				<input type="submit" value="ENVOYER" class="cta">
+			</form>
 
-				<label for="contact_mode">Comment souhaitez-vous être recontacté(e) ?</label>
-				<select id="contact_mode" name="contact_mode" required="required">
-					<option value=""></option>
-					<option value="telephone">Téléphone</option>
-					<option value="email">Email</option>
-				</select>
-			</fieldset>
-</main>
+			<label for="contact_mode">Comment souhaitez-vous être recontacté(e) ?</label>
+			<select id="contact_mode" name="contact_mode" required aria-required="true">
+				<option value=""></option>
+				<option value="telephone">Téléphone</option>
+				<option value="email">Email</option>
+			</select>
+		</fieldset>
+	</main>
 {% endblock %}

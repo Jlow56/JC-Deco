@@ -1,15 +1,36 @@
 <?php
 
-class Devis
+class Estimate
 {
     private ?int $id = null;
 
-    public function __construct(private string $lastName, private string $firstName, private string $adresse, private string $city, private string $postcode, private string $phone, private string $email, private string $servicesType, private string $services, private string $paintingSurfaceType,
-        private ?string $paintingSurfaceTypeOther = null, private string $color, private ?string $whatColor = null, private ?string $numberOfSurface = null, private string $status, private string $surfaceMaterial, private ?string $surfaceMaterialOther = null, private string $pvcSurfaceType,
-        private string $date, private ?string $selectedDate = null, private ?string $photos = null, private ?string $additional = null, private string $createdAt) 
-        {
-            
-        }
+    public function __construct(
+        private string $lastName,
+        private string $firstName,
+        private string $adresse,
+        private string $city,
+        private string $postcode,
+        private string $phone,
+        private string $email,
+        private string $servicesType,
+        private string $services,
+        private string $paintingSurfaceType,
+        private ?string $paintingSurfaceTypeOther = null,
+        private string $color,
+        private ?string $whatColor = null,
+        private ?string $numberOfSurface = null,
+        private string $status,
+        private string $surfaceMaterial,
+        private ?string $surfaceMaterialOther = null,
+        private string $pvcSurfaceType,
+        private string $date,
+        private ?string $selectedDate = null,
+        private ?string $photos = null,
+        private ?string $additional = null,
+        private string $createdAt
+    ) {
+
+    }
 
     /**
      * @return int|null

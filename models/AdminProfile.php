@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 class AdminProfile
 {
-    private ? int $id = null;
-    
+    private ?int $id = null;
+
     public function __construct(private string $user_name, private string $email, private string $password, private DateTime $created_at)
     {
 
@@ -27,16 +27,31 @@ class AdminProfile
     /**
      * @return string
      */
-    public function getUser_name(): string
+    public function getuser_name(): string
     {
         return $this->user_name;
     }
     /**
      * @param string $user_name
      */
-    public function setUser_name(string $user_name): void
+    public function setuser_name(string $user_name): void
     {
         $this->user_name = $user_name;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void    
+    {
+        $this->email = $email;
     }
 
     /**

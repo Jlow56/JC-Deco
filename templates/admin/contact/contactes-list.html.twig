@@ -1,0 +1,42 @@
+{% extends "admin/base-admin.html.twig" %}
+
+{% block title %}
+    Messagerie
+    {{ parent() }}
+{% endblock %}
+
+
+    {% block main %}
+        <main id="admin_contact_page">
+            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+            <h2 class="contact">Messagerie</h2>
+
+            <table class="contact_table">
+                <thead>
+                <tr>
+                    <th scope="col">Message N°</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Edition</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%  for message in messages %}
+                    <tr>
+                        <td>{{ message.id }}</td>
+                        <td>{{ message.firstname }}</td>
+                        <td>{{ message.lastname }}</td>
+
+                        <td>
+                            <ul class="contact_edit_btns">
+                                <li><a href="index.php?route=show-message&id={{ message.id }}"><i class="fa-regular fa-eye"></i></a></li>
+                                <li><a href="index.php?route=delete-message&id={{ message.id }}"><i class="fa-solid fa-trash"></i></a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+        </main>
+    {% endblock %}

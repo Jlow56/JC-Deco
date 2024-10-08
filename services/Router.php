@@ -1,7 +1,7 @@
-<?php 
+<?php
 class Router
 {
-    public function handleRequest(array $get) : void
+    public function handleRequest(array $get): void
     {
         $dc = new DefaultController();
         $sc = new ServiceController();
@@ -11,40 +11,23 @@ class Router
         $ac = new AdminController();
 
 
-        if(!isset($get["route"]))
-        {
+        if (!isset($get["route"])) {
             $dc->home();
-        }
-        else if(isset($get["route"]) && $get["route"] ==="home")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "home") {
             $dc->home();
-        } 
-        else if(isset($get["route"]) && $get["route"] === "services")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "services") {
             $sc->services();
-        }
-        else if(isset($get["route"]) && $get["route"] === "realisations")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "realisations") {
             $rc->realisations();
-        }
-        else if(isset($get["route"]) && $get["route"] === "contact")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "contact") {
             $fc->contact();
-        }
-        else if(isset($get["route"]) && $get["route"] === "devis")
-        {
-            $fc->devis();
-        }
-        else if(isset($get["route"]) && $get["route"] === "login")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "estimate") {
+            $fc->estimate();
+        } else if (isset($get["route"]) && $get["route"] === "login") {
             $atc->login();
-        }
-        else if(isset($get["route"]) && $get["route"] === "dashboard")
-        {
+        } else if (isset($get["route"]) && $get["route"] === "dashboard") {
             $ac->dashboard();
-        }
-        else
-        {
+        } else {
             $dc->notFound();
         }
     }
