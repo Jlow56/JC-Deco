@@ -31,7 +31,7 @@ class AdminProfileManager extends AbstractManager
 
     public function findOne(int $id): ?AdminProfile
     {
-        $query = $this->db->prepare('SELECT * FROM users WHERE id=:id');
+        $query = $this->db->prepare('SELECT * FROM admin_profile WHERE id=:id');
 
         $parameters = 
         [
@@ -78,6 +78,17 @@ class AdminProfileManager extends AbstractManager
             "email" => $user->getEmail(),
             "password" => $user->getPassword(),
             "created_at" => $user->getCreated_at()->format('Y-m-d H:i:s')
+        ];
+        $query->execute($parameters);
+    }
+
+    public function delete(int $id): void
+    {
+        $query = $this->db->prepare('DELETE FROM admin_profile WHERE id=:id');
+
+        $parameters =
+        [
+            "id" => $id
         ];
         $query->execute($parameters);
     }

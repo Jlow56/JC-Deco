@@ -6,27 +6,36 @@
 
 {% block main %}
 	<main>
-		<h2>Bonjour
-			{{admin.user_name}}
-		</h2>
+			{# {% for admin in admins %}
+			<h2>Bonjour
+				{{admin.user_name}}
+			</h2>
+			{% endfor %} #}
+		<sectionb class="dashboard">
+			<div>
+				<div class="title">
+					<h3>tableau de bord</h3>
+				</div>
+				<div class="items">
+					<ul class="dashboard-item">
+						<li>
+							<a href="">DEVIS</a>
+						</li>
+						<li>
+							<a href="">	CONTACTS</a>
+						</li>
+						<li>
+							<a href="">Gèrer ma page Réalisations</a>
+						</li>
+						<li>
+							<a href="">Gèrer ma page Services</a>
+						</li>
+						<li>
+							<a href="">Déconnexion</a>
+						</li>
+					</ul>
+				</div>	
+			</div>
+		</section>
 	</main>
-	<sectionb class="dashboard">
-		<ul class="dashboard-item">
-			<li>
-				<a href="">Consulter les estimate</a>
-			</li>
-			<li>
-				<a href="">Voir les demandes de donctacts</a>
-			</li>
-			<li>
-				<a href="">Gèrer ma page Réalisations</a>
-			</li>
-			<li>
-				<a href="">Gèrer ma page Services</a>
-			</li>
-			<li>
-				<a href="">Déconnexion</a>
-			</li>
-		</ul>
-	</section>
 {% endblock %}

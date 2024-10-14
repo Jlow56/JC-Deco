@@ -13,8 +13,8 @@ class AuthController extends AbstractController
             $tokenManager = new CSRFTokenManager();
 
             if (isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"])) {
-                $um = new AdminProfileManager();
-                $user = $um->findByEmail($_POST["email"]);
+                $apm = new AdminProfileManager();
+                $user = $apm->findByEmail($_POST["email"]);
 
                 if ($user !== null) {
                     if (password_verify($_POST["password"], $user->getPassword())) {
