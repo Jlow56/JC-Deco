@@ -7,29 +7,41 @@
 
 {% block main %}
 	<main id="content" class="home">
-
 		{% for home in homes %}
-			<h1>{{ home.title1 }}</h1>
-			<article>
-				<h2>{{ home.title2 }}</h2>
-				<h3>{{ home.title3 }}</h3>
-				<p>{{ home.content }}</p>
+			{% if home.content is not empty %}
+				<article>
+					{% if home.title1 is not empty %}
+						<h1>{{ home.title1 }}</h1>
+					{% endif %}
+					
+					{% if home.title2 is not empty %}
+						<h2>{{ home.title2 }}</h2>
+					{% endif %}
+					
+					{% if home.title3 is not empty %}
+						<h3>{{ home.title3 }}</h3>
+					{% endif %}
 
-				{% if home.media is not empty %}
-					<div class="media-center">
-						{% for media in home.media %}
-							<figure>
-								<img src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}"  loading="lazy">
-							</figure>
-						{% endfor %}
-					</div>
-				{% endif %}
-			</article>
+					<p>{{ home.content }}</p>
+
+					{% if home.media is not empty %}
+						<div class="media-center">
+							{% for media in home.media %}
+								<figure>
+									<img class="border-radius" src="{{ 'assets/img/Accueil/' ~ media.url }}" alt="{{ media.alt }}" loading="lazy">
+								</figure>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</article>
+			{% endif %}
 		{% endfor %}
 
-		<a href="index.php?route=contact" class="cta">
-			UN PROJET ? ÉCRIVEZ-MOI !
-		</a>
+		<section class="section_cta">
+			<a href="index.php?route=contact" class="cta">
+				UN PROJET ? ÉCRIVEZ-NOUS
+			</a>
+		</section>
 	</main>
 {% endblock %}
 

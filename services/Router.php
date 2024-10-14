@@ -27,8 +27,11 @@ class Router
             $atc->login();
         } else if (isset($get["route"]) && $get["route"] === "dashboard") {
             $ac->dashboard();
+        } else if(isset($get["route"]) && $get["route"] === "legal") {
+                $dc->legalNotice();
         } else {
             $dc->notFound();
         }
+        
     }
 }

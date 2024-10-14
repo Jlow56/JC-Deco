@@ -5,49 +5,55 @@
 	{{ parent() }}
 {% endblock %}
 
-{% block main %}
-    <main id="content" class="realisations">
-        {% for realisation in realisations %}
-            {% if realisation.content is not empty %}
-                <section>
-                    {# Affichage des titres selon les conditions #}
-                    {% if realisation.title1 is not empty %}
-                        <h2>{{ realisation.title1 }}</h2>
-                    {% elseif realisation.title2 is not empty and realisation.title3 is empty %}
-                        <h3>{{ realisation.title2 }}</h3>
-                    {% elseif realisation.title3 is not empty %}
-                        <h4>{{ realisation.title3 }}</h4>
-                    {% endif %}
-                    <p>{{ realisation.content }}</p>
-                </section>
+{% block link %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bxslider@4.2.17/dist/jquery.bxslider.min.js"></script>
+{% endblock %}
 
-                {# Affichage des médias #}
-                {% if realisation.medias is not empty %}
-                    <section>
-                        {% if realisation.medias|length == 2 %}
-                            {# Slider avant-après #}
-                            <div class="slider">
-                                <div class="slider_before">
-                                    <img loading="lazy" src="{{ 'assets/img/Realisation/' ~ realisation.medias[0].url }}" alt="{{ realisation.medias[0].alt }}">
-                                </div>
-                                <div class="slider_after">
-                                    <img loading="lazy" src="{{ 'assets/img/Realisation/' ~ realisation.medias[1].url }}" alt="{{ realisation.medias[1].alt }}">
-                                </div>
-                                <div class="slider_separator"></div>
-                            </div>
-                        {% else %}
-                            {# Galerie d'images  #}
-                            <div class="gallery">
-                                {% for media in realisation.medias %}
-                                    <figure>
-                                        <img loading="lazy" class="img-content" src="{{ 'assets/img/Realisation/' ~ media.url }}" alt="{{ media.alt }}">
-                                    </figure>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </section>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-    </main>
+{% block main %}
+	<main id="content" class="realisations">
+		{% for realisation in realisations %}
+			{% if realisation.content is not empty %}
+				<article>
+					{% if realisation.title1 is not empty %}
+						<h2>{{ realisation.title1 }}</h2>
+					{% endif %}
+
+					{% if realisation.title2 is not empty %}
+						<h3>{{ realisation.title2 }}</h3>
+					{% endif %}
+
+					{% if realisation.title3 is not empty %}
+						<h4>{{ realisation.title3 }}</h4>
+					{% endif %}
+
+					{% if realisation.media|length == 2 %}
+						<section class="container center_slider">
+								<div class="image-container">
+									<img class="image-before slider-image" src="{{ 'assets/img/Realisation/' ~ realisation.media[0].url }}" alt="{{ realisation.media[0].alt }}">
+									<img class="image-after slider-image" src="{{ 'assets/img/Realisation/' ~ realisation.media[1].url }}" alt="{{ realisation.media[1].alt }}">
+								</div>
+								<input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider"/>
+								<div class="slider-line" aria-hidden="true"></div>
+								<div class="slider-button" aria-hidden="true">
+									<img src="assets/img/logo/icons8-slide-60.png" alt="slider icon" class="hand-img">
+								</div>
+							</div>
+						</section>
+
+					{% elseif realisation.media|length > 2 %}
+						<section class="center_slider">
+							<div class="bxslider">
+								{% for media in realisation.media %}
+									<img class="img-content" src="{{ 'assets/img/Realisation/' ~ media.url }}" alt="{{ media.alt }}">
+								{% endfor %}
+							</div>
+						</section>
+					{% endif %}
+					<p>{{ realisation.content }}</p>
+				</article>
+			{% endif %}
+		{% endfor %}
+	</main>
 {% endblock %}

@@ -15,4 +15,10 @@ class DefaultController extends AbstractController
         $this->render("default/404.html.twig", 
         ["title" => "404 : Page introuvable"]);
     }
+
+    public function legalNotice()
+    {
+        $this->render("default/legal-notice.html.twig", 
+        ["title" => "Mentions légales"]);
+    }
 }

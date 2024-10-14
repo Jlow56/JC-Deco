@@ -20,7 +20,6 @@ class RealisationManager extends AbstractManager
             
             $realisations[] = $realisation;
         }
-        dump($realisations);
         return $realisations; 
     }
 }
