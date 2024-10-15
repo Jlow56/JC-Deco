@@ -19,11 +19,10 @@ class AdminProfileManager extends AbstractManager
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($result)
-        {
+        if ($result) {
             $user = new AdminProfile($result["user_name"], $result["email"], $result["password"], $result["created_at"]);
             $user->setId($result["id"]);
-            
+
             return $user;
         }
         return null;
@@ -33,7 +32,7 @@ class AdminProfileManager extends AbstractManager
     {
         $query = $this->db->prepare('SELECT * FROM admin_profile WHERE id=:id');
 
-        $parameters = 
+        $parameters =
         [
             "id" => $id
         ];
@@ -41,8 +40,7 @@ class AdminProfileManager extends AbstractManager
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($result)
-        {
+        if ($result) {
             $user = new AdminProfile($result["user_name"], $result["email"], $result["password"], $result["created_at"]);
             $user->setId($result["id"]);
 
@@ -51,19 +49,19 @@ class AdminProfileManager extends AbstractManager
         return null;
     }
 
-    public function insert(AdminProfile $user): int
+    public function addAdmin(AdminProfile $user): int
     {
         $query = $this->db->prepare('INSERT INTO admin_profile (user_name, email, password, created_at) VALUES (:user_name, :email, :password, :created_at)');
 
         $parameters =
-        [
-            "user_name" => $user->getuser_name(),
-            "email" => $user->getEmail(),
-            "password" => $user->getPassword(),
-            "created_at" => $user->getCreated_at()->format('Y-m-d H:i:s')
-        ];
+            [
+                "user_name" => $user->getuser_name(),
+                "email" => $user->getEmail(),
+                "password" => $user->getPassword(),
+                "created_at" => $user->getCreated_at()->format('Y-m-d H:i:s')
+            ];
         $query->execute($parameters);
-        
+
         return (int) $this->db->lastInsertId();
     }
 
@@ -72,24 +70,25 @@ class AdminProfileManager extends AbstractManager
         $query = $this->db->prepare('UPDATE admin_profile SET user_name=:user_name, email=:email, password=:password, created_at=:created_at WHERE id=:id');
 
         $parameters =
-        [
-            "id" => $user->getId(),
-            "user_name" => $user->getuser_name(),
-            "email" => $user->getEmail(),
-            "password" => $user->getPassword(),
-            "created_at" => $user->getCreated_at()->format('Y-m-d H:i:s')
-        ];
+            [
+                "id" => $user->getId(),
+                "user_name" => $user->getuser_name(),
+                "email" => $user->getEmail(),
+                "password" => $user->getPassword(),
+                "created_at" => $user->getCreated_at()->format('Y-m-d H:i:s')
+            ];
         $query->execute($parameters);
     }
 
-    public function delete(int $id): void
+    public function deleteAdmin(int $id): void
     {
+
         $query = $this->db->prepare('DELETE FROM admin_profile WHERE id=:id');
 
         $parameters =
-        [
-            "id" => $id
-        ];
+            [
+                "id" => $id
+            ];
         $query->execute($parameters);
     }
 }

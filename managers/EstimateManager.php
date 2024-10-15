@@ -115,10 +115,8 @@ class EstimateManager extends AbstractManager
                 $result['created_at']
             );
             $estimate->setId($result["id"]);
-
             return $estimate;
         }
-
         return null;
     }
 

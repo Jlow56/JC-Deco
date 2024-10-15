@@ -1,0 +1,36 @@
+{% extends "admin/base-admin.html.twig" %}
+
+{% block title %}
+    Nouvelle réalisation
+    {{ parent() }}
+{% endblock %}
+
+{% block main %}
+
+    <main id="newReal_show">
+        <a class="backBtn" href="index.php?route=list-reals"><i class="fa-solid fa-arrow-left"></i></a>
+        <form class = "realAdminForm" action="index.php?route=check-real-creation" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}" />
+
+            <label for="title">Titre*</label>
+            <input type="text" id="title" name="title" required="required">
+
+            <label for="description">Description (2047 caractères max)*</label>
+            <textarea id="description" name="description" maxlength="2047" required="required"></textarea>
+
+            <label for="pictures">Ajouter des images* :</label>
+            <input type="file" name="picture1" id="picture" accept="photo/*"/><br />
+            <input type="file" name="picture2" id="picture" accept="photo/*"/><br />
+            <input type="file" name="picture3" id="picture" accept="photo/*"/><br />
+            <input type="file" name="picture4" id="picture" accept="photo/*"/><br />
+
+
+            <button type="submit" >Publier</button>
+            {%  if  message is defined %}
+                <p class="realFormOKMessage">{{ message }}</p>
+            {% endif %}
+
+        </form>
+        <a class="backBtn" href="index.php?route=list-reals"><i class="fa-solid fa-arrow-left"></i></a>
+    </main>
+{% endblock %}

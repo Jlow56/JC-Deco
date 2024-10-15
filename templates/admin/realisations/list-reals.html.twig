@@ -1,0 +1,43 @@
+{% extends "admin/base-admin.html.twig" %}
+
+{% block title %}
+    Réalisations
+    {{ parent() }}
+{% endblock %}
+
+
+    {% block main %}
+        <main id="admin_reals_page">
+            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+            <h2 class="reals">Réalisations</h2>
+            <p><a class="addBtn" href="index.php?route=create-real"><i class="fa-solid fa-circle-plus"></i>&nbsp;&nbsp;Ajouter une réalisation</a></p>
+
+            <table class="reals_table">
+                <thead>
+                <tr>
+                    <th scope="col">Réalisation N°</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Intitulé</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {%  for realisation in realisations %}
+                    <tr>
+                        <td>{{ realisation.id }}</td>
+                        <td>
+                            <ul class="real_edit_btns">
+                                <li><a class="edit_btns" href="index.php?route=show-real&id={{ realisation.id }}"><i class="fa-regular fa-eye"></i></a></li>
+                                <li><a class="edit_btns" href="index.php?route=delete-real&id={{ realisation.id }}"><i class="fa-solid fa-trash"></i></a></li>
+                            </ul>
+                        </td>
+                        <td>{{ realisation.title }}</td>
+                        <td>{{ realisation.description }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+        </main>
+    {% endblock %}

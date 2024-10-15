@@ -123,7 +123,11 @@ ul, li {
 
 img.border-radius {
   border-radius: 30px;
-} 
+}
+
+.active-box-shadow {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+}
 /***************************/
 /*        Formulaires      */
 /***************************/

@@ -22,7 +22,7 @@ class AuthController extends AbstractController
 
                         unset($_SESSION["error-message"]);
 
-                        $this->redirect("admin");
+                        $this->redirect("dashboard");
                     } else {
                         $_SESSION["error-message"] = "Mot de passe erroné, veuillez réessayer.";
                         $this->redirect("login");

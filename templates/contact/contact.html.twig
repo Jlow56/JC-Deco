@@ -8,7 +8,7 @@
 {% block main %}
 	<main class="contact">
 		<h2>Parlons de votre projet</h2>
-		<form method="get" action="#">
+		<form class="contact-form" action="index.php?route=contact-register" method="post" enctype="multipart/form-data" onsubmit="return ">
 			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
 			<fieldset>
 				<section class="form-nom-email">

@@ -92,7 +92,6 @@ class ContactManager extends AbstractManager
     public function deleteContact(int $id): void
     {
         $query = $this->db->prepare('DELETE FROM contact_form WHERE id=:id');
-        $query->bindParam(':id', $id, PDO::PARAM_INT);
-        $query->execute();
+        $query->execute(params:['id' => $id]);
     }
 }

@@ -6,7 +6,7 @@ class RealisationController extends AbstractController
         $rm = new RealisationManager();
         $realisations = $rm->findAll();
         
-        $this->render('realisation\realisation.html.twig',
+        $this->render('realisations\realisations.html.twig',
         ["realisations" => $realisations]);
     }
 }
