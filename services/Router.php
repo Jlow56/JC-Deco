@@ -111,6 +111,23 @@ class Router
         else if (isset($get["route"]) && $get["route"] === "delete-realisation") 
         {
             $ac->deleteRealisation($get["id"]);
+        }   
+        // Estimate
+        else if (isset($get["route"]) && $get["route"] === "estimates-list") 
+        {
+            $ac->estimatesList();
+        }
+        else if (isset($get["route"]) && $get["route"] === "show-estimate") 
+        {
+            $ac->showEstimate($get["id"]);
+        } 
+        else if (isset($get["route"]) && $get["route"] === "delete-estimate") 
+        {
+            $ac->deleteEstimate($get["id"]);
+        }
+        else if (isset($get["route"]) && $get["route"] === "update-estimate") 
+        {
+            $ac->updateEstimate($get["id"]);
         }
         // contacts
         else if (isset($get["route"]) && $get["route"] === "contacts-list") 
@@ -124,23 +141,6 @@ class Router
         else if (isset($get["route"]) && $get["route"] === "delete-message") 
         {
             $ac->deleteContact($get["id"]);
-        }
-        // Estimate
-        else if (isset($get["route"]) && $get["route"] === "estimates-list") 
-        {
-            $ac->estimatesList();
-        }
-        else if (isset($get["route"]) && $get["route"] === "admin-estimate") 
-        {
-            $ac->adminEstimate();
-        } 
-        else if (isset($get["route"]) && $get["route"] === "show-estimate") 
-        {
-            $ac->showEstimate($get["id"]);
-        } 
-        else if (isset($get["route"]) && $get["route"] === "delete-estimate") 
-        {
-            $ac->deleteEstimate($get["id"]);
         }
         
         // Default

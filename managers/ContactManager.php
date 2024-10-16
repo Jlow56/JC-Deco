@@ -58,7 +58,8 @@ class ContactManager extends AbstractManager
 
     public function createContact(Contact $contact): void
     {
-        $query = $this->db->prepare('INSERT INTO contact_form (first_name, last_name, phone_number, email, city, zip_code, message, created_at) VALUES (:first_name, :last_name, :phone_number, :email, :city, :zip_code, :message, :created_at)');
+        $query = $this->db->prepare('INSERT INTO contact_form (first_name, last_name, phone_number, email, city, zip_code,
+                message, created_at) VALUES (:first_name, :last_name, :phone_number, :email, :city, :zip_code, :message, :created_at)');
         $parameters = [
             'first_name' => $contact->getFirstName(),
             'last_name' => $contact->getLastName(),
@@ -75,7 +76,8 @@ class ContactManager extends AbstractManager
 
     public function updateContact(Contact $contact): void
     {
-        $query = $this->db->prepare('UPDATE contact_form SET first_name=:first_name, last_name=:last_name, phone_number=:phone_number, email=:email, city=:city, zip_code=:zip_code, message=:message WHERE id=:id');
+        $query = $this->db->prepare('UPDATE contact_form SET first_name=:first_name, last_name=:last_name, phone_number=:phone_number,
+                email=:email, city=:city, zip_code=:zip_code, message=:message WHERE id=:id');
         $parameters = [
             'first_name' => $contact->getFirstName(),
             'last_name' => $contact->getLastName(),

@@ -2,7 +2,7 @@
 
 class Media
 {
-    private ? int $id = null;
+    private ?int $id = null;
 
     public function __construct(private string $url, private string $alt, private bool $visible)
     {

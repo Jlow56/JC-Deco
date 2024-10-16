@@ -2,11 +2,11 @@
 
 class Service
 {
-    private ? int $id = null;
+    private ?int $id = null;
     private array $medias = [];
 
 
-    public function __construct(private string $title1, private string $title2, private  string $title3, private string $content)
+    public function __construct(private string $title1, private string $title2, private string $title3, private string $content, private int $visible)
     {
 
     }
@@ -26,7 +26,7 @@ class Service
         $this->id = $id;
     }
 
-      /**
+    /**
      * @return string
      */
     public function getTitle1(): string
@@ -86,10 +86,25 @@ class Service
     {
         $this->content = $content;
     }
-    
+
     /**
-    * @return string
-    */
+     * @return int
+     */
+    public function getVisible(): int
+    {
+        return $this->visible;
+    }
+    /**
+     * @param string $visible
+     */
+    public function isVisible(int $visible): void
+    {
+        $this->visible = $visible;
+    }
+
+    /**
+     * @return string
+     */
     public function getMedias(): array
     {
         return $this->medias;

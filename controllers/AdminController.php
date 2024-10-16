@@ -10,6 +10,7 @@ public function dashboard(): void
         }
         $this->render("admin/dashboard.html.twig", []);
     }
+/*************************************************************************************************************/
 
     public function estimatesList(): void
     {
@@ -33,6 +34,16 @@ public function dashboard(): void
         $this->render("admin/estimate/show-estimate.html.twig", ["estimate" => $estimate]);
     }
 
+    // public function updateEstimate(int $id): void
+    // {
+    //     if (!isset($_SESSION["user"])) {
+    //         $this->redirect("login");
+    //         return;
+    //     }
+    //     $em = new EstimateManager();
+    //     $estimate = $em->getEstimateById($id);
+    //     $this->render("admin/estimate/update-estimate.html.twig", ["estimate" => $estimate]);
+    // }
     public function deleteEstimate(int $id): void
     {
         if (!isset($_SESSION["user"])) {
@@ -43,7 +54,7 @@ public function dashboard(): void
         $em->deleteEstimate($id);
         $this->redirect("estimates-list");
     }
-
+/*************************************************************************************************************/
     public function contactsList(): void
     {
         if (!isset($_SESSION["user"])) {
@@ -75,8 +86,7 @@ public function dashboard(): void
         $cm->deleteContact($id);
         $this->redirect(route:'contacts-list');
     }
-
-    
+/*************************************************************************************************************/
     public function realisationsList(): void
     {
         if (!isset($_SESSION["user"])) {
@@ -88,7 +98,24 @@ public function dashboard(): void
         $this->render("admin/realisation/realisations-list.html.twig", ["realisations" => $realisations]);
     }
 
-    
-    
+    public function showRealisation(int $id): void
+    {
+        if (!isset($_SESSION["user"])) {
+            $this->redirect("login");
+            return;
+        }
+        $rm = new RealisationManager();
+        $realisation = $rm->getRealisationById($id);
+        $this->render("admin/realisation/show-realisation.html.twig", ["realisation" => $realisation]);
+    }
 
+    public function createRealisation(): void
+    {
+        if (!isset($_SESSION["user"])) {
+            $this->redirect("login");
+            return;
+        }
+        $this->render("admin/realisation/create-realisation.html.twig", []);
+    }
+    
 }

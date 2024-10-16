@@ -2,7 +2,7 @@
 
 class Contact
 {
-    private ? int $id = null;
+    private ?int $id = null;
 
     public function __construct(private string $firstName, private string $lastName, private string $phoneNumber, private string $email, private string $city, private string $zipCode, private string $message, private string $createdAt)
     {

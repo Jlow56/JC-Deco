@@ -2,7 +2,7 @@
 
 class Home
 {
-    private ? int $id = null;
+    private ?int $id = null;
     private array $media = [];
 
 
