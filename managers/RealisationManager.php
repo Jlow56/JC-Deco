@@ -5,7 +5,7 @@ class RealisationManager extends AbstractManager
 
     public function findAllIfVisible(): array
     {
-        $mm = new MediaManager();
+        $rmm = new RealisationMediaManager();
 
         $query = $this->db->prepare('SELECT * FROM realisation WHERE visible = 1');
         $query->execute();
@@ -13,7 +13,7 @@ class RealisationManager extends AbstractManager
         $realisations = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findVisibleRealisation($item['id']);
+            $medias = $rmm->findVisibleRealisation($item['id']);
             $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"], $item["visible"]);
 
             $realisation->setId($item["id"]);
@@ -27,10 +27,10 @@ class RealisationManager extends AbstractManager
     /*************************************/
     //**         Admin tools*        **//
 
-    // Used for Admin-List
+    // Used for list-realisation
     public function findAll(): array
     {
-        $mm = new MediaManager();
+        $rmm = new RealisationMediaManager();
 
         $query = $this->db->prepare('SELECT * FROM realisation');
         $query->execute();
@@ -38,7 +38,7 @@ class RealisationManager extends AbstractManager
         $realisations = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findByRealisation($item['id']);
+            $medias = $rmm->findByRealisationId($item['id']);
             $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"], $item["visible"]);
 
             $realisation->setId($item["id"]);
@@ -49,17 +49,39 @@ class RealisationManager extends AbstractManager
         return $realisations;
     }
 
+    // Used for show-realisation and create-realisation
+    public function getRealisationById(int $id): Realisation
+    {
+        $rmm = new RealisationMediaManager();
+
+        $query = $this->db->prepare('SELECT * FROM realisation WHERE id = :id');
+        $query->execute(['id' => $id]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            throw new RuntimeException('Réalisation introuvable');
+        }
+
+        $medias = $rmm->findByRealisationId($result['id']);
+        $realisation = new Realisation($result["title1"], $result["title2"], $result["title3"], $result["content"], $result["visible"]);
+
+        $realisation->setId($result["id"]);
+        $realisation->setMedia($medias ?? []);
+
+        return $realisation;
+    }
+
     public function findLatest(): array
     {
-        $mm = new MediaManager();
+        $rmm = new RealisationMediaManager();
         $query = $this->db->prepare('SELECT * FROM realisation WHERE visible = 1 LIMIT 1 ');
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $realisations = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findByRealisation($item['id']);
-            $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"]);
+            $medias = $rmm->findByRealisationId($item['id']);
+            $realisation = new Realisation($item["title1"], $item["title2"], $item["title3"], $item["content"] ?? '', $item["visible"]);
 
             $realisation->setId($item["id"]);
             $realisation->setMedia($medias ?? []);
@@ -79,6 +101,7 @@ class RealisationManager extends AbstractManager
                 "title2" => $realisation->getTitle2(),
                 "title3" => $realisation->getTitle3(),
                 "content" => $realisation->getContent(),
+                "visible" => $realisation->getVisible(),
             ];
 
         try {
@@ -87,33 +110,40 @@ class RealisationManager extends AbstractManager
 
             foreach ($mediaIds as $mediaId) {
                 $mm = new MediaManager();
-                $mm->associateMediaWithRealisation($realisation->getId(), $mediaId);
+                $rmm = new RealisationMediaManager();
+                $mm->createMedia($mediaId);
+                $rmm->associateMediaWithRealisation($realisation->getId(), $mediaId);
             }
         } catch (PDOException $e) {
             throw new RuntimeException('Erreur lors de la création de la réalisation : ' . $e->getMessage());
         }
     }
 
-    public function updateRealisation(Realisation $realisation, array $mediaIds): void
+    public function updateRealisation(Realisation $realisation, array $oldNewMediaAssociations): void
     {
-        // Préparez la requête pour mettre à jour la réalisation
-        $query = $this->db->prepare('UPDATE realisation SET title1 = :title1, title2 = :title2, title3 = :title3, content = :content WHERE id = :id');
-        $parameters =
-            [
-                "title1" => $realisation->getTitle1(),
-                "title2" => $realisation->getTitle2(),
-                "title3" => $realisation->getTitle3(),
-                "content" => $realisation->getContent(),
-                "id" => $realisation->getId(),
-            ];
+        // Mise à jour de la réalisation elle-même
+        $query = $this->db->prepare('UPDATE realisation SET title1 = :title1, title2 = :title2, title3 = :title3, content = :content, visible = :visible WHERE id = :id');
+
+        $parameters = [
+            "title1" => $realisation->getTitle1(),
+            "title2" => $realisation->getTitle2(),
+            "title3" => $realisation->getTitle3(),
+            "content" => $realisation->getContent(),
+            "visible" => $realisation->getVisible(),
+            "id" => $realisation->getId(),
+        ];
 
         try {
-            // Exécutez la mise à jour de la réalisation
+            // Exécute la mise à jour de la réalisation
             $query->execute($parameters);
 
             // Mettez à jour les associations de médias pour la réalisation
-            $mm = new MediaManager();
-            $mm->updateMediaAssociationsForRealisation($realisation->getId(), $mediaIds);
+            $rmm = new RealisationMediaManager();
+
+            // Parcours les associations de médias et les met à jour
+            foreach ($oldNewMediaAssociations as $oldMediaId => $newMediaId) {
+                $rmm->updateRealisationMediaAssociation($realisation->getId(), $oldMediaId, $newMediaId);
+            }
         } catch (PDOException $e) {
             throw new RuntimeException('Erreur lors de la mise à jour de la réalisation avec l\'ID ' . $realisation->getId() . ': ' . $e->getMessage());
         }
@@ -124,10 +154,12 @@ class RealisationManager extends AbstractManager
     {
         try {
             // Delete from realisation_media
+            $rmm = new RealisationMediaManager();
+            $rmm->deleteRealisationMedia($id, []);
             $query = $this->db->prepare('DELETE FROM realisation_media WHERE realisation_id = :id');
             $query->execute(['id' => $id]);
 
-            // Delete the realisation itself
+            // Delete the realisation
             $query = $this->db->prepare('DELETE FROM realisation WHERE id = :id');
             $parameters = ['id' => $id];
             $query->execute($parameters);

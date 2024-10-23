@@ -1,41 +1,59 @@
 {% extends "admin/admin-base.html.twig" %}
 {% block title %}
-	Dashboard
+	dashboard
 	{{ parent() }}
 {% endblock %}
 
 {% block main %}
 	<main>
-			{# {% for admin in admins %}
-			<h2>Bonjour
-				{{admin.user_name}}
+		{% if session.user_name %}
+			<h2>Bonjour,
+				{{ session.user_name }}!
 			</h2>
-			{% endfor %} #}
-		<sectionb class="dashboard">
-			<div>
-				<div class="title">
-					<h3>tableau de bord</h3>
-				</div>
-				<div class="items">
-					<ul class="dashboard-item">
-						<li>
-							<a href="">DEVIS</a>
-						</li>
-						<li>
-							<a href="">	CONTACTS</a>
-						</li>
-						<li>
-							<a href="">Gèrer ma page Réalisations</a>
-						</li>
-						<li>
-							<a href="">Gèrer ma page Services</a>
-						</li>
-						<li>
-							<a href="">Déconnexion</a>
-						</li>
-					</ul>
-				</div>	
+		{% endif %}
+		<section class="dashboard">
+			<div class="title">
+				<h3>tableau de bord</h3>
 			</div>
+			<nav class="items">
+				<ul class="dashboard-item">
+					<li>
+						<a href="index.php?route=estimates-list">
+							<img src="assets\img\logo\demande-devis-64.png" alt="">Devis
+						</a>
+					</li>
+					<li>
+						<a href="index.php?route=contacts-list">
+							<img src="assets\img\logo\contacts-64.png" alt="">Contacts
+						</a>
+					</li>
+					<li>
+						<a href="index.php?route=realisations-list">
+							<img src="assets\img\logo\realisation-64.png" alt="">Gèrer mes Réalisations
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="assets\img\logo\service-64.png" alt="">Gèrer mes Services
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="assets\img\logo\Add-photos-64.png" alt="">Gèrer mes Photos
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img src="assets\img\logo\administrateur-homme-64.png" alt="">Profils administrateurs
+						</a>
+					</li>
+					<li>
+						<a href="index.php?route=logout">
+							<img src="assets\img\logo\deconnexion-64.png" alt="">Déconnexion
+						</a>
+					</li>
+				</ul>
+			</nav>
 		</section>
 	</main>
 {% endblock %}

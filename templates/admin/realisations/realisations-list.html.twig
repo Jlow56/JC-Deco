@@ -1,5 +1,4 @@
-{% extends "admin/base-admin.html.twig" %}
-
+{% extends "admin/admin-base.html.twig" %}
 {% block title %}
     Réalisations
     {{ parent() }}
@@ -8,9 +7,9 @@
 
     {% block main %}
         <main id="admin_reals_page">
-            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+            <a class="backBtn" href="index.php?route=dashboard"><i class="fa-solid fa-arrow-left"></i></a>
             <h2 class="reals">Réalisations</h2>
-            <p><a class="addBtn" href="index.php?route=create-real"><i class="fa-solid fa-circle-plus"></i>&nbsp;&nbsp;Ajouter une réalisation</a></p>
+            <p><a class="addBtn" href="index.php?route=create-realisation"><i class="fa-solid fa-circle-plus"></i>&nbsp;&nbsp;Ajouter une réalisation</a></p>
 
             <table class="reals_table">
                 <thead>
@@ -38,6 +37,6 @@
 
                 </tbody>
             </table>
-            <a class="backBtn" href="index.php?route=admin"><i class="fa-solid fa-arrow-left"></i></a>
+            <a class="backBtn" href="index.php?route=dashboard"><i class="fa-solid fa-arrow-left"></i></a>
         </main>
     {% endblock %}

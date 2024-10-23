@@ -1,19 +1,38 @@
-{% extends "admin/base-admin.html.twig" %}
-
+{% extends "admin/admin-base.html.twig" %}
 {% block title %}
-    Réalisation N°{{ realisation.id }}
-    {{ parent() }}
+	Réalisation N°{{ realisation.id }}
+	{{ parent() }}
 {% endblock %}
-    {% block main %}
-        <main id="realisation_show">
-            <a class="backBtn" href="index.php?route=list-reals"><i class="fa-solid fa-arrow-left"></i></a>
-            <h2 class="realisation">Réalisation N°{{ realisation.id }} <a class="edit_btns" href="index.php?route=delete-real&id={{ realisation.id }}"><i class="fa-solid fa-trash"></i></a></h2>
-            <p><span>Titre :</span> {{ realisation.title }}</p>
-            <p><span>Description :</span> {{ realisation.description }}</p>
-            <p><span>Image(s) à l'appui :</span></p>
-            {% for picture in realisation.pictures %}
-                <img class = "realImg " src="{{ picture.url }}" alt="{{ picture.alt }}" width="200px"/>
-            {% endfor %}
-            <a class="backBtn" href="index.php?route=list-messages"><i class="fa-solid fa-arrow-left"></i></a>
-        </main>
-    {% endblock %}
+{% block main %}
+	<main id="realisation_show">
+		<a class="backBtn" href="index.php?route=realisations-list">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+		<h2 class="realisation">Réalisation N°{{ realisation.id }}
+			<a class="edit_btns" href="index.php?route=delete-realid={{ realisation.id }}">
+				<i class="fa-solid fa-trash"></i>
+			</a>
+		</h2>
+		<p>
+			<span>Titre :</span>
+			{{ realisation.title1 }}</p>
+		<p>
+			<span>Sous-titre n°1 :</span>
+			{{ realisation.title2 }}</p>
+		<p>
+			<span>Sous-titre n°2 :</span>
+			{{ realisation.title3 }}</p>
+		<p>
+			<span>Description :</span>
+			{{ realisation.content }}</p>
+		<p>
+			<span>Image(s) associée(s) :</span>
+		</p>
+		{% for media in realisation.medias %}
+			<img class="realImg " src="{{ media.url }}" alt="{{media.alt }}" width="200px"/>
+		{% endfor %}
+		<a class="backBtn" href="index.php?route=list-messages">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</main>
+{% endblock %}

@@ -6,7 +6,7 @@ class Realisation
     private array $media = [];
 
 
-    public function __construct(private string $title1, private string $title2, private string $title3, private string $content, private int $visible = 1)
+    public function __construct(private string $title1, private string $title2, private string $title3, private string $content, private int $visible)
     {
 
     }
@@ -86,7 +86,7 @@ class Realisation
     {
         $this->content = $content;
     }
-    
+
     /**
      * @return int
      */
@@ -101,8 +101,6 @@ class Realisation
     {
         $this->visible = $visible;
     }
-
-    
 
     /**
      * @return string

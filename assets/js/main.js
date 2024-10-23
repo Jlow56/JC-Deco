@@ -136,3 +136,15 @@ const container = document.querySelector(".container");
 document.querySelector(".slider").addEventListener("input", (e) => {
   container.style.setProperty("--position", `${e.target.value}%`);
 });
+
+//*******************//
+//      *ADMIN*     //
+//******************//
+
+document.getElementById('login').addEventListener('submit', function(event) {
+  const password = document.getElementById('password').value;
+  if (password.length < 6) {
+      event.preventDefault();
+      document.getElementById('passwordError').textContent = "Le mot de passe doit comporter au moins 6 caractères.";
+  }
+});

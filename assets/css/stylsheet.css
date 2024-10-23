@@ -409,6 +409,11 @@ section.section_cta {
   align-items: center;
   padding-bottom: 4rem;
 }
+
+section.legal-notices h2, section.legal-notices h3 {
+  text-align: justify;
+  padding: 1.2rem;
+}
 /*******************************************************************************************************************************************/
 
 /****************************************************/
@@ -535,10 +540,31 @@ section.container {
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                                                  */
-/*                    home.html.twig                */
+/*                       ADMIN                      */
 /*                                                  */
 /****************************************************/
-section.legal-notices h2, section.legal-notices h3 {
-  text-align: justify;
-  padding: 1.2rem;
+
+/****************************************************/
+/*                   Dashboard                      */
+/****************************************************/
+section.dashboard {
+  background-color: beige ;
+  display:flex;
+  flex-direction: column;
+  gap: 2rem;
 }
+
+nav.items {
+  display: flex;
+  justify-content: center;
+  background-color: #E5CF9C ;
+  border-radius: 15px;
+}
+
+ul.dashboard-item{
+  background-color: #D8A559;
+  border-radius: 15px;
+}
+/*******************************************************************************************************************************************/
+
+

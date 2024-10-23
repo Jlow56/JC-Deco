@@ -60,14 +60,14 @@ class Router
         //***   ADMIN   ***//
         //****************//
         
-        // Login Logout
+        // Acces
         else if (isset($get["route"]) && $get["route"] === "login") 
         {
             $atc->login();
         } 
-        else if (isset($get["route"]) && $get["route"] === "login-check") 
+        else if (isset($get["route"]) && $get["route"] === "check-login") 
         {
-            $atc->loginCheck();
+            $atc->Checklogin();
         }
         else if (isset($get["route"]) && $get["route"] === "logout") 
         {
@@ -78,40 +78,52 @@ class Router
         {
             $ac->dashboard();
         }
+        /*************************************************/
         // Service
         else if (isset($get["route"]) && $get["route"] === "services-list") 
         {
             $ac->servicesList();
         } 
-        else if (isset($get["route"]) && $get["route"] === "admin-service") 
-        {
-            $ac->adminService();
-        } 
         else if (isset($get["route"]) && $get["route"] === "show-service") 
         {
             $ac->showService($get["id"]);
         } 
+        else if (isset($get["route"]) && $get["route"] === "create-service") 
+        {
+            $ac->createService();
+        } 
+        else if (isset($get["route"]) && $get["route"] === "update-service") 
+        {
+            $ac->updateService($get["id"]);
+        }
         else if (isset($get["route"]) && $get["route"] === "delete-service") 
         {
             $ac->deleteService($get["id"]);
         }
-        // Realisation
+        /*************************************************/
+        // Realisation 
+       
         else if (isset($get["route"]) && $get["route"] === "realisations-list") 
         {
             $ac->realisationsList();
         } 
-        else if (isset($get["route"]) && $get["route"] === "admin-realisation") 
+        else if (isset($get["route"]) && $get["route"] === "create-realisation") 
         {
-            $ac->adminRealisation();
+            $ac-> createRealisation();
         } 
         else if (isset($get["route"]) && $get["route"] === "show-realisation") 
         {
             $ac->showRealisation($get["id"]);
         } 
+        else if (isset($get["route"]) && $get["route"] === "update-realisation") 
+        {
+            $ac->updateRealisation($get["id"]);
+        }
         else if (isset($get["route"]) && $get["route"] === "delete-realisation") 
         {
             $ac->deleteRealisation($get["id"]);
         }   
+        /*************************************************/
         // Estimate
         else if (isset($get["route"]) && $get["route"] === "estimates-list") 
         {
@@ -129,6 +141,7 @@ class Router
         {
             $ac->updateEstimate($get["id"]);
         }
+        /*************************************************/
         // contacts
         else if (isset($get["route"]) && $get["route"] === "contacts-list") 
         {
@@ -138,7 +151,7 @@ class Router
         {
             $ac->showContact($get["id"]);
         } 
-        else if (isset($get["route"]) && $get["route"] === "delete-message") 
+        else if (isset($get["route"]) && $get["route"] === "delete-contact") 
         {
             $ac->deleteContact($get["id"]);
         }

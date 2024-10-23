@@ -87,7 +87,7 @@ class Service
         $this->content = $content;
     }
 
-    /**
+   /**
      * @return int
      */
     public function getVisible(): int
@@ -97,7 +97,7 @@ class Service
     /**
      * @param string $visible
      */
-    public function isVisible(int $visible): void
+    public function setVisible(int $visible): void
     {
         $this->visible = $visible;
     }

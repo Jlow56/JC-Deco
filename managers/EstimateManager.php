@@ -13,8 +13,7 @@ class EstimateManager extends AbstractManager
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $estimates = [];
 
-        foreach ($result as $item) 
-        {
+        foreach ($result as $item) {
             $estimate = new Estimate(
                 $item["last_name"],
                 $item["first_name"],
@@ -53,8 +52,7 @@ class EstimateManager extends AbstractManager
         $query->execute(["id" => $id]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        if ($result)
-        {
+        if ($result) {
             $estimate = new Estimate(
                 $result['last_name'],
                 $result['first_name'],
@@ -88,77 +86,72 @@ class EstimateManager extends AbstractManager
 
     public function createEstimate(Estimate $estimate): void
     {
-        $query = $this->db->prepare('INSERT INTO devis_form (id, last_name, first_name, adresse, city, postcode, phone, email, services_type, services, painting_surface_type, painting_surface_type_other, color, what_color, number_of_surface, status, surface_material, surface_material_other, pvc_surface_type, date, selected_date, photos, additional, created_at) 
-            VALUES (NULL, :last_name, :first_name, :adresse, :city, :postcode, :phone, :email, :services_type, :services, :painting_surface_type, :painting_surface_type_other, :color, :what_color, :number_of_surface, :status, :surface_material, :surface_material_other, :pvc_surface_type, :date, :selected_date, :photos, :additional, :created_at)
+        $query = $this->db->prepare('INSERT INTO devis_form (last_name, first_name, adresse, city, postcode, phone, email, services_type, services, painting_surface_type, painting_surface_type_other, color, what_color, number_of_surface, status, surface_material, surface_material_other, pvc_surface_type, date, selected_date, photos, additional, created_at) 
+            VALUES (:last_name, :first_name, :adresse, :city, :postcode, :phone, :email, :services_type, :services, :painting_surface_type, :painting_surface_type_other, :color, :what_color, :number_of_surface, :status, :surface_material, :surface_material_other, :pvc_surface_type, :date, :selected_date, :photos, :additional, :created_at)
         ');
 
-        $parameters = 
-        [
-            "last_name" => $estimate->getLastName(),
-            "first_name" => $estimate->getFirstName(),
-            "adresse" => $estimate->getAdresse(),
-            "city" => $estimate->getCity(),
-            "postcode" => $estimate->getPostcode(),
-            "phone" => $estimate->getPhone(),
-            "email" => $estimate->getEmail(),
-            "services_type" => $estimate->getServicesType(),
-            "services" => $estimate->getServices(),
-            "painting_surface_type" => $estimate->getPaintingSurfaceType(),
-            "painting_surface_type_other" => $estimate->getPaintingSurfaceTypeOther(),
-            "color" => $estimate->getColor(),
-            "what_color" => $estimate->getWhatColor(),
-            "number_of_surface" => $estimate->getNumberOfSurface(),
-            "status" => $estimate->getStatus(),
-            "surface_material" => $estimate->getSurfaceMaterial(),
-            "surface_material_other" => $estimate->getSurfaceMaterialOther(),
-            "pvc_surface_type" => $estimate->getPvcSurfaceType(),
-            "date" => $estimate->getDate(),
-            "selected_date" => $estimate->getSelectedDate(),
-            "photos" => $estimate->getPhotos(),
-            "additional" => $estimate->getAdditional(),
-            "created_at" => $estimate->getCreatedAt()
-        ];
+        $parameters =
+            [
+                "last_name" => $estimate->getLastName(),
+                "first_name" => $estimate->getFirstName(),
+                "adresse" => $estimate->getAdresse(),
+                "city" => $estimate->getCity(),
+                "postcode" => $estimate->getPostcode(),
+                "phone" => $estimate->getPhone(),
+                "email" => $estimate->getEmail(),
+                "services_type" => $estimate->getServicesType(),
+                "services" => $estimate->getServices(),
+                "painting_surface_type" => $estimate->getPaintingSurfaceType(),
+                "painting_surface_type_other" => $estimate->getPaintingSurfaceTypeOther() ?? null,
+                "color" => $estimate->getColor(),
+                "what_color" => $estimate->getWhatColor() ?? null,
+                "number_of_surface" => $estimate->getNumberOfSurface() ?? null,
+                "status" => $estimate->getStatus(),
+                "surface_material" => $estimate->getSurfaceMaterial(),
+                "surface_material_other" => $estimate->getSurfaceMaterialOther() ?? null,
+                "pvc_surface_type" => $estimate->getPvcSurfaceType(),
+                "date" => $estimate->getDate(),
+                "selected_date" => $estimate->getSelectedDate() ?? null,
+                "photos" => $estimate->getPhotos() ?? null,
+                "additional" => $estimate->getAdditional() ?? null,
+                "created_at" => $estimate->getCreatedAt()
+            ];
 
         $query->execute($parameters);
         $estimate->setId($this->db->lastInsertId());
     }
 
-   
-
     public function updateEstimate(Estimate $estimate): void
     {
-        $query = $this->db->prepare(query: 'UPDATE devis_form SET last_name = :last_name, first_name = :first_name, adresse = :adresse, city = :city, postcode = :postcode, phone = :phone, email = :email, services_type = :services_type, services = :services, painting_surface_type = :painting_surface_type,
-            painting_surface_type_other = :painting_surface_type_other, color = :color, what_color = :what_color, number_of_surface = :number_of_surface, status = :status, surface_material = :surface_material, surface_material_other = :surface_material_other, 
-            pvc_surface_type = :pvc_surface_type, date = :date, selected_date = :selected_date, photos = :photos, additional = :additional, created_at = :created_at WHERE id = :id
-        ');
-
-        $parameters = 
-        [
-            "id" => $estimate->getId(),
-            "last_name" => $estimate->getLastName(),
-            "first_name" => $estimate->getFirstName(),
-            "adresse" => $estimate->getAdresse(),
-            "city" => $estimate->getCity(),
-            "postcode" => $estimate->getPostcode(),
-            "phone" => $estimate->getPhone(),
-            "email" => $estimate->getEmail(),
-            "services_type" => $estimate->getServicesType(),
-            "services" => $estimate->getServices(),
-            "painting_surface_type" => $estimate->getPaintingSurfaceType(),
-            "painting_surface_type_other" => $estimate->getPaintingSurfaceTypeOther(),
-            "color" => $estimate->getColor(),
-            "what_color" => $estimate->getWhatColor(),
-            "number_of_surface" => $estimate->getNumberOfSurface(),
-            "status" => $estimate->getStatus(),
-            "surface_material" => $estimate->getSurfaceMaterial(),
-            "surface_material_other" => $estimate->getSurfaceMaterialOther(),
-            "pvc_surface_type" => $estimate->getPvcSurfaceType(),
-            "date" => $estimate->getDate(),
-            "selected_date" => $estimate->getSelectedDate(),
-            "photos" => $estimate->getPhotos(),
-            "additional" => $estimate->getAdditional(),
-            "created_at" => $estimate->getCreatedAt()
-        ];
+        $query = $this->db->prepare('UPDATE devis_form SET last_name = :last_name, first_name = :first_name, adresse = :adresse, city = :city, postcode = :postcode, phone = :phone, email = :email, services_type = :services_type, services = :services, painting_surface_type = :painting_surface_type,
+                painting_surface_type_other = :painting_surface_type_other, color = :color, what_color = :what_color, number_of_surface = :number_of_surface, status = :status, surface_material = :surface_material, surface_material_other = :surface_material_other, 
+                pvc_surface_type = :pvc_surface_type, date = :date, selected_date = :selected_date, photos = :photos, additional = :additional, created_at = :created_at WHERE id = :id');
+        $parameters = [
+                "id" => $estimate->getId(),
+                "last_name" => $estimate->getLastName(),
+                "first_name" => $estimate->getFirstName(),
+                "adresse" => $estimate->getAdresse(),
+                "city" => $estimate->getCity(),
+                "postcode" => $estimate->getPostcode(),
+                "phone" => $estimate->getPhone(),
+                "email" => $estimate->getEmail(),
+                "services_type" => $estimate->getServicesType(),
+                "services" => $estimate->getServices(),
+                "painting_surface_type" => $estimate->getPaintingSurfaceType(),
+                "painting_surface_type_other" => $estimate->getPaintingSurfaceTypeOther() ?? null,
+                "color" => $estimate->getColor(),
+                "what_color" => $estimate->getWhatColor() ?? null,
+                "number_of_surface" => $estimate->getNumberOfSurface() ?? null,
+                "status" => $estimate->getStatus(),
+                "surface_material" => $estimate->getSurfaceMaterial(),
+                "surface_material_other" => $estimate->getSurfaceMaterialOther() ?? null,
+                "pvc_surface_type" => $estimate->getPvcSurfaceType(),
+                "date" => $estimate->getDate(),
+                "selected_date" => $estimate->getSelectedDate() ?? null,
+                "photos" => $estimate->getPhotos() ?? null,
+                "additional" => $estimate->getAdditional() ?? null,
+                "created_at" => $estimate->getCreatedAt()
+            ];
         $query->execute($parameters);
     }
 

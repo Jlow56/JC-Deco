@@ -47,6 +47,27 @@ class ServiceManager extends AbstractManager
         return $services;
     }
 
+    public function getServiceById(int $id): Service
+    {
+        $mm = new MediaManager();
+
+        $query = $this->db->prepare('SELECT * FROM service WHERE id = :id');
+        $query->execute(['id' => $id]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            throw new RuntimeException('Service introuvable');
+        }
+
+        $medias = $mm->findByService($result["id"]);
+        $service = new Service($result["title1"], $result["title2"], $result["title3"], $result["content"], $result["visible"]);
+
+        $service->setId($result["id"]);
+        $service->setMedia($medias ?? []);
+
+        return $service;
+    }
+
     public function findLatest(): array
     {
         $mm = new MediaManager();

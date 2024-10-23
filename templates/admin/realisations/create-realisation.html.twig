@@ -1,36 +1,51 @@
-{% extends "admin/base-admin.html.twig" %}
-
+{% extends "admin/admin-base.html.twig" %}
 {% block title %}
-    Nouvelle réalisation
-    {{ parent() }}
+	Nouvelle réalisation
+	{{ parent() }}
 {% endblock %}
 
 {% block main %}
 
-    <main id="newReal_show">
-        <a class="backBtn" href="index.php?route=list-reals"><i class="fa-solid fa-arrow-left"></i></a>
-        <form class = "realAdminForm" action="index.php?route=check-real-creation" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}" />
+	<main class="create-realisation">
+		<a class="backBtn" href="index.php?route=list-reals">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+		<h2>Créer une nouvelle réalisation</h2>
+		<p>Remplissez le formulaire ci-dessous pour ajouter une nouvelle réalisation, il est conceillé d'avoir un élément text que ce soit un titre, un sous titre si vous ajouter une image
+		</p>
 
-            <label for="title">Titre*</label>
-            <input type="text" id="title" name="title" required="required">
+		<form class="realAdminForm" action="index.php?route=check-real-creation" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
 
-            <label for="description">Description (2047 caractères max)*</label>
-            <textarea id="description" name="description" maxlength="2047" required="required"></textarea>
+			<label for="title1">Titre</label>
+			<input type="text" id="title" name="title1">
 
-            <label for="pictures">Ajouter des images* :</label>
-            <input type="file" name="picture1" id="picture" accept="photo/*"/><br />
-            <input type="file" name="picture2" id="picture" accept="photo/*"/><br />
-            <input type="file" name="picture3" id="picture" accept="photo/*"/><br />
-            <input type="file" name="picture4" id="picture" accept="photo/*"/><br />
+			<label for="title2">Sous titre n°1</label>
+			<input type="text" id="title" name="title2">
+
+			<label for="title3">Sous titre n°2</label>
+			<input type="text" id="title" name="title3">
+
+			<label for="content">Description
+			</label>
+			<textarea id="description" name="description"></textarea>
+
+			<label for="pictures">Ajouter des images :</label>
+			<p>Pour les photos/images éssayez de les nommer le plus précisément possible (cela aide à l'accessbilité : les non/mal voyant(es) par exemple)</p>
+			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
+			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
+			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
+			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
 
 
-            <button type="submit" >Publier</button>
-            {%  if  message is defined %}
-                <p class="realFormOKMessage">{{ message }}</p>
-            {% endif %}
+			<button type="submit">Publier ma Réalisation</button>
+			{%  if  message is defined %}
+				<p class="realisationF-oK-message">{{ message }}</p>
+			{% endif %}
+		</form>
 
-        </form>
-        <a class="backBtn" href="index.php?route=list-reals"><i class="fa-solid fa-arrow-left"></i></a>
-    </main>
+		<a class="backBtn" href="index.php?route=list-reals">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</main>
 {% endblock %}

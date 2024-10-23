@@ -1,149 +1,149 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% block title %}{% endblock %}
-			| JEAN Christophe décorateur d'intérieur
-		</title>
-		<meta
-		name="descritpion" content="Peinture d'intérieur décoration d'intérieur rénovation peinture pvc pose de lames clipsées pose de sol pvc Vannes Lorient Sarzeau Pontivy Bretagne Morbihan Finistère">
-		{# CSS #}
-		<link
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		{% block title %}{% endblock %}
+		| JEAN Christophe décorateur d'intérieur
+	</title>
+	<meta
+	name="description" content="Peinture d'intérieur décoration d'intérieur rénovation peinture pvc pose de lames clipsées pose de sol pvc Vannes Lorient Sarzeau Pontivy Bretagne Morbihan Finistère">
+	{# CSS #}
+	<link
 		href="assets\css\stylsheet.css" rel="stylesheet">
-		{# FONTS #}
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-		
-		{% block link %}{% endblock %}
-	</head>
-	<body>
-		<header>
-			<div class="header_logo">
-				<img loading="lazy" class="logo" src="assets/img/logo/JC-peinture.png" alt="JC logo noir, blanc et jaune">
-			</div>
-			<button class="burgerMenu" aria-label="Ouvrir le menu de navigation">
-				<span>&#9776;</span>
-			</button>
-			<nav>
-				<ul class="menu">
-					<li class="menu_item">
-						<img loading="lazy" src="assets\img\logo\icons8-téléphone-50.png" alt="logo téléphone beige">
-						<a href="https://www.pagesjaunes.fr/pros/62308612">07.60.95.92.47</a>
-					</li>
-					<li class="menu_item">
-						<a href="index.php?route=home">Accueil</a>
-					</li>
-					<li class="menu_item">
-						<a href="index.php?route=services">Nos services</a>
-						<ul class="sub_menu">
-							<li>
-								<a href="#creation">Création d'un projet sur mesure</a>
-							</li>
-							<li>
-								<a href="#peinture-neuf">Peinture (Neuf)</a>
-							</li>
-							<li>
-								<a href="#renovation">Rénovation</a>
-							</li>
-							<li>
-								<a href="#peinture-airless">Peinture à l'Airless</a>
-							</li>
-							<li>
-								<a href="#pose">Pose de lames clipsées</a>
-							</li>
-						</ul>
-					</li>
-					<li class="menu_item">
-						<a href="index.php?route=realisations">Réalisations</a>
-					</li>
-					<li class="menu_item">
-						<a href="index.php?route=contact">Contact</a>
-					</li>
-					<li class="menu_item">
-						<a href="index.php?route=estimate">Demande de devis gratuit</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		{% block main %}{% endblock %}
-		<footer>
-			<section class="address">
-				<p>
-					Adresse :
-					<br>
-					30 r Espaliers de Limoges<br>
-					56000 Vannes
-				</p>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.801124118199!2d-2.753615724072067!3d47.649431385019454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13
-												.1!3m3!1m2!1s0x48101c2979463fcf%3A0x68089b5352ec87a5!2s30%20Rue%20des%20Espaliers%20de%20Limoges%2C%2056000%20Vannes!5e0!3m2!1sfr!2sfr!4v1728739957350!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</section>
-			<section class="social_media">
-				<p>Pour nous contacter c'est par ici :</p>
-				<a target="_blank" href="https://www.instagram.com/">
-					Instagram
-					<img loading="lazy" src="assets\img\logo\icons-instagram.svg" alt="logo bulle instagram beige">
-				</a>
-				<a target="_blank" href="https://www.facebook.com/">
-					Facebook
-					<img loading="lazy" src="assets\img\logo\icons-facebook.svg" alt="logo bulle beige facebook">
-				</a>
-				<a target="_blank" href="https://www.pagesjaunes.fr/pros/62308612">
-					07.60.95.92.47
+	{# FONTS #}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> {% block link %}{% endblock %}
+</head>
+<body>
+	<header>
+		<div class="header_logo">
+			<img loading="lazy" class="logo" src="assets/img/logo/JC-peinture.png" alt="JC logo noir, blanc et jaune">
+		</div>
+		<button class="burgerMenu" aria-label="Ouvrir le menu de navigation">
+			<span>&#9776;</span>
+		</button>
+		<nav>
+			<ul class="menu">
+				<li class="menu_item">
 					<img loading="lazy" src="assets\img\logo\icons8-téléphone-50.png" alt="logo téléphone beige">
-				</a>
-				<a target="_blank" href="">
-					Nous contacter par mail
-					<img loading="lazy" src="assets\img\logo\icons8-message-50.svg" alt="logo mail beige">
-				</a>
-				<a href="index.php?route=legal">
-					Mentions Légales
-				</a>
-			</section>
-			<section class="horraires">
-				<table class="horraires">
-					<caption>
-						Horraires
-					</caption>
-					<tbody>
-						<tr>
-							<td>Lundi</td>
-							<td>09h00 - 19h00</td>
-						</tr>
-						<tr>
-							<td>Mardi</td>
-							<td>09h00 - 19h00</td>
-						</tr>
-						<tr>
-							<td>Mercredi</td>
-							<td>09h00 - 19h00</td>
-						</tr>
-						<tr>
-							<td>Jeudi</td>
-							<td>09h00 - 19h00</td>
-						</tr>
-						<tr>
-							<td>Vendredi</td>
-							<td>09h00 - 19h00</td>
-						</tr>
-						<tr>
-							<td>Samedi</td>
-							<td>Fermé</td>
-						</tr>
-						<tr>
-							<td>Dimanche</td>
-							<td>Fermé</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
-		</footer>
-		{% block javascript %}{% endblock %}
-		<script type="text/javascript" src="assets/js/main.js"></script>
-	</body>
+					<a href="https://www.pagesjaunes.fr/pros/62308612">07.60.95.92.47</a>
+				</li>
+				<li class="menu_item">
+					<a href="index.php?route=home">Accueil</a>
+				</li>
+				<li class="menu_item">
+					<a href="index.php?route=services">Nos services</a>
+					<ul class="sub_menu">
+						<li>
+							<a href="#creation">Création d'un projet sur mesure</a>
+						</li>
+						<li>
+							<a href="#peinture-neuf">Peinture (Neuf)</a>
+						</li>
+						<li>
+							<a href="#renovation">Rénovation</a>
+						</li>
+						<li>
+							<a href="#peinture-airless">Peinture à l'Airless</a>
+						</li>
+						<li>
+							<a href="#pose">Pose de lames clipsées</a>
+						</li>
+					</ul>
+				</li>
+				<li class="menu_item">
+					<a href="index.php?route=realisations">Réalisations</a>
+				</li>
+				<li class="menu_item">
+					<a href="index.php?route=contact">Contact</a>
+				</li>
+				<li class="menu_item">
+					<a href="index.php?route=estimate">Demande de devis gratuit</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	{% block main %}
+		 
+	{% endblock %}
+	<footer>
+		<section class="address">
+			<p>
+				Adresse :
+				<br>
+				30 r Espaliers de Limoges<br>
+				56000 Vannes
+			</p>
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.801124118199!2d-2.753615724072067!3d47.649431385019454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13
+																												.1!3m3!1m2!1s0x48101c2979463fcf%3A0x68089b5352ec87a5!2s30%20Rue%20des%20Espaliers%20de%20Limoges%2C%2056000%20Vannes!5e0!3m2!1sfr!2sfr!4v1728739957350!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+		</section>
+		<section class="social_media">
+			<p>Pour nous contacter c'est par ici :</p>
+			<a target="_blank" href="https://www.instagram.com/">
+				Instagram
+				<img loading="lazy" src="assets\img\logo\icons-instagram.svg" alt="logo bulle instagram beige">
+			</a>
+			<a target="_blank" href="https://www.facebook.com/">
+				Facebook
+				<img loading="lazy" src="assets\img\logo\icons-facebook.svg" alt="logo bulle beige facebook">
+			</a>
+			<a target="_blank" href="https://www.pagesjaunes.fr/pros/62308612">
+				07.60.95.92.47
+				<img loading="lazy" src="assets\img\logo\icons8-téléphone-50.png" alt="logo téléphone beige">
+			</a>
+			<a target="_blank" href="">
+				Nous contacter par mail
+				<img loading="lazy" src="assets\img\logo\icons8-message-50.svg" alt="logo mail beige">
+			</a>
+			<a href="index.php?route=legal">
+				Mentions Légales
+			</a>
+		</section>
+		<section class="horraires">
+			<table class="horraires">
+				<caption>
+					Horraires
+				</caption>
+				<tbody>
+					<tr>
+						<td>Lundi</td>
+						<td>09h00 - 19h00</td>
+					</tr>
+					<tr>
+						<td>Mardi</td>
+						<td>09h00 - 19h00</td>
+					</tr>
+					<tr>
+						<td>Mercredi</td>
+						<td>09h00 - 19h00</td>
+					</tr>
+					<tr>
+						<td>Jeudi</td>
+						<td>09h00 - 19h00</td>
+					</tr>
+					<tr>
+						<td>Vendredi</td>
+						<td>09h00 - 19h00</td>
+					</tr>
+					<tr>
+						<td>Samedi</td>
+						<td>Fermé</td>
+					</tr>
+					<tr>
+						<td>Dimanche</td>
+						<td>Fermé</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</footer>
+	{% block javascript %}{% endblock %}
+	<script type="text/javascript" src="assets/js/main.js"></script>
+</body>
 </html>
