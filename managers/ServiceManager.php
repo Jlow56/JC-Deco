@@ -3,7 +3,7 @@ class ServiceManager extends AbstractManager
 {
     public function findAllIfVisible(): array
     {
-        $mm = new MediaManager();
+        $smm = new ServiceMediaManager();
 
         $query = $this->db->prepare('SELECT * FROM service WHERE visible = 1');
         $query->execute();
@@ -11,7 +11,7 @@ class ServiceManager extends AbstractManager
         $services = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findVisibleService($item["id"]);
+            $medias = $smm->findVisibleService($item["id"]);
             $service = new Service($item["title1"], $item["title2"], $item["title3"], $item["content"], $item["visible"]);
 
             $service->setId($item["id"]);
@@ -28,7 +28,7 @@ class ServiceManager extends AbstractManager
     // Used for Admin-List
     public function findAll(): array
     {
-        $mm = new MediaManager();
+        $smm = new ServiceMediaManager();
 
         $query = $this->db->prepare('SELECT * FROM service');
         $query->execute();
@@ -36,7 +36,7 @@ class ServiceManager extends AbstractManager
         $services = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findByService($item["id"]);
+            $medias = $smm->findByServiceId($item["id"]);
             $service = new Service($item["title1"], $item["title2"], $item["title3"], $item["content"], $item["visible"]);
 
             $service->setId($item["id"]);
@@ -49,7 +49,7 @@ class ServiceManager extends AbstractManager
 
     public function getServiceById(int $id): Service
     {
-        $mm = new MediaManager();
+        $smm = new ServiceMediaManager();
 
         $query = $this->db->prepare('SELECT * FROM service WHERE id = :id');
         $query->execute(['id' => $id]);
@@ -59,7 +59,7 @@ class ServiceManager extends AbstractManager
             throw new RuntimeException('Service introuvable');
         }
 
-        $medias = $mm->findByService($result["id"]);
+        $medias = $smm->findByServiceId($result["id"]);
         $service = new Service($result["title1"], $result["title2"], $result["title3"], $result["content"], $result["visible"]);
 
         $service->setId($result["id"]);
@@ -70,14 +70,14 @@ class ServiceManager extends AbstractManager
 
     public function findLatest(): array
     {
-        $mm = new MediaManager();
+        $smm = new ServiceMediaManager();
         $query = $this->db->prepare('SELECT * FROM service WHERE visible = 1 LIMIT 1 ');
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $services = [];
 
         foreach ($result as $item) {
-            $medias = $mm->findVisibleService($item["id"]);
+            $medias = $smm->findVisibleService($item["id"]);
             $service = new Service($item["title1"], $item["title2"], $item["title3"], $item["content"], $item["visible"]);
 
             $service->setId($item["id"]);
@@ -106,7 +106,9 @@ class ServiceManager extends AbstractManager
             // Associer les médias au service
             foreach ($mediaIds as $mediaId) {
                 $mm = new MediaManager();
-                $mm->associateMediaWithService($service->getId(), $mediaId);
+                $smm = new ServiceMediaManager();
+                $mm->createMedia($mediaId);
+                $smm->associateMediaWithService($service->getId(), $mediaId);
             }
         } catch (PDOException $e) {
             throw new RuntimeException('Erreur lors de la création du service : ' . $e->getMessage());
@@ -129,8 +131,8 @@ class ServiceManager extends AbstractManager
             $query->execute($parameters);
 
             // Mettre à jour les associations de médias
-            $mm = new MediaManager();
-            $mm->updateMediaAssociationsForService($service->getId(), $mediaIds);
+            $smm = new ServiceMediaManager();
+            $smm->updateServiceMediaAssociation($service->getId(), $mediaIds);
         } catch (PDOException $e) {
             throw new RuntimeException('Erreur lors de la mise à jour du service : ' . $e->getMessage());
         }

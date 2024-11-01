@@ -94,11 +94,11 @@ class Router
         } 
         else if (isset($get["route"]) && $get["route"] === "update-service") 
         {
-            $ac->updateService($get["id"]);
+            $ac->updateService((int)$get["id"]);
         }
         else if (isset($get["route"]) && $get["route"] === "delete-service") 
         {
-            $ac->deleteService($get["id"]);
+            $ac->deleteService((int)$get["id"]);
         }
         /*************************************************/
         // Realisation 
@@ -113,15 +113,15 @@ class Router
         } 
         else if (isset($get["route"]) && $get["route"] === "show-realisation") 
         {
-            $ac->showRealisation($get["id"]);
+            $ac->showRealisation((int)$get["id"]);
         } 
         else if (isset($get["route"]) && $get["route"] === "update-realisation") 
         {
-            $ac->updateRealisation($get["id"]);
+            $ac->updateRealisation((int)$get["id"]);
         }
         else if (isset($get["route"]) && $get["route"] === "delete-realisation") 
         {
-            $ac->deleteRealisation($get["id"]);
+            $ac->deleteRealisation((int)$get["id"]);
         }   
         /*************************************************/
         // Estimate
@@ -131,15 +131,15 @@ class Router
         }
         else if (isset($get["route"]) && $get["route"] === "show-estimate") 
         {
-            $ac->showEstimate($get["id"]);
+            $ac->showEstimate((int)$get["id"]);
         } 
         else if (isset($get["route"]) && $get["route"] === "delete-estimate") 
         {
-            $ac->deleteEstimate($get["id"]);
+            $ac->deleteEstimate((int)$get["id"]);
         }
         else if (isset($get["route"]) && $get["route"] === "update-estimate") 
         {
-            $ac->updateEstimate($get["id"]);
+            $ac->updateEstimate((int)$get["id"]);
         }
         /*************************************************/
         // contacts
@@ -149,11 +149,11 @@ class Router
         } 
         else if (isset($get["route"]) && $get["route"] === "show-contact") 
         {
-            $ac->showContact($get["id"]);
+            $ac->showContact((int)$get["id"]);
         } 
         else if (isset($get["route"]) && $get["route"] === "delete-contact") 
         {
-            $ac->deleteContact($get["id"]);
+            $ac->deleteContact((int)$get["id"]);
         }
         
         // Default

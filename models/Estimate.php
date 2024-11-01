@@ -5,7 +5,8 @@ class Estimate
     private ?int $id = null;
 
     public function __construct( private string $lastName, private string $firstName, private string $adresse, private string $city, private string $postcode, private string $phone, private string $email, private string $servicesType,private string $services, private string $paintingSurfaceType, private ?string $paintingSurfaceTypeOther,
-        private string $color, private ?string $whatColor, private ?string $numberOfSurface, private string $status, private string $surfaceMaterial, private ?string $surfaceMaterialOther, private string $pvcSurfaceType, private string $date, private ?string $selectedDate, private ?string $photos, private ?string $additional, private string $createdAt)
+        private string $color, private ?string $whatColor, private ?string $numberOfSurface, private string $status, private string $surfaceMaterial, private ?string $surfaceMaterialOther, private string $pvcSurfaceType, 
+        private string $date, private ?string $selectedDate, private ?string $photos, private ?string $additional, private string $createdAt)
     {
 
     }

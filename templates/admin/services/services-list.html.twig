@@ -1,0 +1,63 @@
+{% extends "admin/admin-base.html.twig" %}
+
+{% block title %}
+	Prestations
+	{{ parent() }}
+{% endblock %}
+
+
+{% block main %}
+	<main id="admin_services_page">
+		<a class="backBtn" href="index.php?route=dashboard">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+		<h2 class="reals">Services</h2>
+		<p>
+			<a class="addBtn" href="index.php?route=create-service">
+				<i class="fa-solid fa-circle-plus"></i>&nbsp;&nbsp;Ajouter une prestation</a>
+		</p>
+
+		<table class="services_table">
+			<thead>
+				<tr>
+					<th scope="col">Réalisation N°</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Sous-titre n°1</th>
+                    <th scope="col">Soustitre n°2</th>
+                    <th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%  for service in services %}
+					<tr>
+						<td>{{ service.id }}</td>
+						<td>
+							<ul class="service_edit_btns">
+
+								<li>
+									<a href="index.php?route=show-service={{ service.id }}">
+										<i class="fa-regular fa-eye"></i>
+									</a>
+								</li>
+								<li>
+									<a href="index.php?route=delete-service={{ service.id }}">
+										<i class="fa-solid fa-trash"></i>
+									</a>
+								</li>
+							</ul>
+						</td>
+						<td>{{ service.title1 }}</td>
+						<td>{{ service.title2 }}</td>
+						<td>{{ service.title3 }}</td>
+						<td>{{ service.content }}</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+		<a class="backBtn" href="index.php?route=dashboard">
+			<i class="fa-solid fa-arrow-left"></i>
+		</a>
+	</main>
+{% endblock %}

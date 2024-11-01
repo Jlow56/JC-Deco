@@ -58,6 +58,7 @@ class ContactManager extends AbstractManager
 
     public function createContact(Contact $contact): void
     {
+        $currentDateTime = date('Y-m-d H:i:s');
         $query = $this->db->prepare('INSERT INTO contact_form (first_name, last_name, phone_number, email, city, zip_code,
                 message, created_at) VALUES (:first_name, :last_name, :phone_number, :email, :city, :zip_code, :message, :created_at)');
         $parameters = [
@@ -68,7 +69,7 @@ class ContactManager extends AbstractManager
             'city' => $contact->getCity(),
             'zip_code' => $contact->getZipCode(),
             'message' => $contact->getMessage(),
-            'created_at' => date('Y-m-d H:i:s') 
+            'created_at' => $currentDateTime,
         ];
         $query->execute($parameters);
         $contact->setId($this->db->lastInsertId());

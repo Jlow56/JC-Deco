@@ -7,38 +7,38 @@
 
 {% block main %}
 	<main id="admin_pricing_page">
-		<a class="backBtn" href="index.php?route=admin">
+		<a class="backBtn" href="index.php?route=dashboard">
 			<i class="fa-solid fa-arrow-left"></i>
 		</a>
-		<h2 class="pricing">estimate</h2>
+		<h2 class="pricing">Devis</h2>
 
 		<table class="pricing_table">
 			<thead>
 				<tr>
 					<th scope="col">Devis N°</th>
-					<th scope="col">N° à recontacter </th>
+					<th scope="col">N° à recontacter</th>
 					<th scope="col">Prénom</th>
 					<th scope="col">Nom</th>
 					<th scope="col">Édition</th>
 				</tr>
 			</thead>
 			<tbody>
-				{%  for pricing in pricings %}
+				{%  for estimate in estimates %}
 					<tr>
-						<td>{{ pricing.id }}</td>
-						<td>{{ pricing.contact_mode }}</td>
-						<td>{{ pricing.firstname }}</td>
-						<td>{{ pricing.lastname }}</td>
+						<td>{{ estimate.id }}</td>
+						<td>{{ estimate.contact_mode }}</td>
+						<td>{{ estimate.firstname }}</td>
+						<td>{{ estimate.lastname }}</td>
 
 						<td>
 							<ul class="pricing_edit_btns">
 								<li>
-									<a href="index.php?route=show-pricing&id={{ pricing.id }}">
+									<a href="index.php?route=show-pricing&id={{estimate.id }}">
 										<i class="fa-regular fa-eye"></i>
 									</a>
 								</li>
 								<li>
-									<a href="index.php?route=delete-pricing&id={{ pricing.id }}">
+									<a href="index.php?route=delete-pricing&id={{ estimate.id }}">
 										<i class="fa-solid fa-trash"></i>
 									</a>
 								</li>
@@ -49,7 +49,7 @@
 
 			</tbody>
 		</table>
-		<a class="backBtn" href="index.php?route=admin">
+		<a class="backBtn" href="index.php?route=dashboard">
 			<i class="fa-solid fa-arrow-left"></i>
 		</a>
 	</main>

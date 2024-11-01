@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block main %}
-	<main>
+	<main class="estimate">
 		{% if session['error-message'] is defined %}
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				{{ session['error-message'] }}
@@ -14,115 +14,115 @@
 			</div>
 		{% endif %}
 
-		<h2>Faite votre demande de devis en ligne Gratuitement</h2>
-		<form class="estimateForm" action="index.php?route=estimate-register" method="post" enctype="multipart/form-data" onsubmit="return validateCheckboxGroups()">
+		<h2 class="custom-h2">Faite votre demande de devis en ligne Gratuitement</h2>
+		<p class="red">Les champs * sont obligatoires</p>
+		<form class="estimate-form" action="index.php?route=estimate-register" method="post" enctype="multipart/form-data" onsubmit="return validateCheckboxGroups()">
 			<input
 			type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
-
 			<!-- Vos coordonnées -->
-			<fieldset>
-				<legend>Vos coordonnées</legend>
-				<fieldset>
-					<label for="last_name">Nom :</label>
+			<fieldset class="estimate-fieldset">
+				<fieldset class="user">
+					<legend>Vos coordonnées</legend>
+					<label for="last_name">Nom*
+					</label>
 					<input type="text" id="last_name" name="last_name" required aria-required="true">
-				</fieldset>
 
-				<fieldset>
-					<label for="first_name">Prénom :</label>
+					<label for="first_name">Prénom*
+					</label>
 					<input type="text" id="first_name" name="first_name" required aria-required="true">
-				</fieldset>
 
-				<fieldset>
-					<label for="adresse">Adresse :</label>
+					<label for="adresse">Adresse*
+					</label>
 					<input type="text" id="adresse" name="adresse" required aria-required="true">
-					<label for="city">Ville :</label>
-					<input type="text" id="city" name="city" required aria-required="true"><br>
-					<label for="code_postal">Code Postal :</label>
-					<input type="number" id="code_postal" name="code_postal" required aria-required="true">
-				</fieldset>
+					<label for="city">Ville* :</label>
+					<input type="text" id="city" name="city" required aria-required="true">
+					<label for="postcode">Code Postal*
+					</label>
+					<input type="number" id="postcode" name="postcode" required aria-required="true">
 
-				<fieldset>
-					<label for="téléphone">Téléphone :</label>
-					<input type="tel" id="téléphone" name="téléphone" required aria-required="true">
-				</fieldset>
+					<label for="phone">Téléphone*
+					</label>
+					<input type="tel" id="phone" name="phone" required aria-required="true">
 
-				<fieldset>
-					<label for="email">E-mail :</label>
-					<input type="email" id="email" name="email" required>
+					<label for="email">E-mail*
+					</label>
+					<input type="email" id="email" name="email" required aria-required="true">
 				</fieldset>
 			</fieldset>
 
 			<!-- Projet -->
 			<fieldset>
-				<legend>Commençons par définir votre projet</legend>
 				<fieldset>
-					<label>Votre projet concerne des travaux de :</label><br>
-					<label><input type="checkbox" id="rénovation" name="services_type[]" value="Rénovation">Rénovation</label><br>
-					<label><input type="checkbox" id="nouveau" name="services_type[]" value="Du neuf">Du neuf (chantier en construction)</label><br>
+					<legend>Commençons par définir votre projet</legend>
+					<label>Votre projet concerne des travaux de* :</label>
+					<label><input type="checkbox" id="renovation" name="services_type[]" value="Rénovation">Rénovation</label>
+					<label><input type="checkbox" id="nouveau" name="services_type[]" value="Du neuf">Du neuf (chantier en construction)</label>
 					<label><input type="checkbox" id="both" name="services_type[]" value="Les deux">Les deux</label>
 				</fieldset>
 
 				<fieldset>
-					<label>Que souhaitez-vous :</label><br>
-					<label><input type="checkbox" id="decorative" name="services[]" value="Peinture décorative">Peinture décorative</label><br>
-					<label><input type="checkbox" id="basique" name="services[]" value="Peinture intérieur">Peinture intérieur (basique)</label><br>
+					<label>Que souhaitez-vous* :</label>
+					<label><input type="checkbox" id="decorative" name="services[]" value="Peinture décorative">Peinture décorative</label>
+					<label><input type="checkbox" id="basique" name="services[]" value="Peinture intérieur">Peinture intérieur (basique)</label>
 					<label><input type="checkbox" id="pvc" name="services[]" value="Pose de lames clipsée">Pose de lames clipsée (pvc)</label>
 				</fieldset>
 
 				<fieldset>
-					<label>Type de surface :</label><br>
-					<label><input type="checkbox" id="wall" name="painting_surface_type[]" value="Murs">Murs</label><br>
-					<label><input type="checkbox" id="ceiling" name="painting_surface_type[]" value="Plafonds">Plafonds</label><br>
-					<label><input type="checkbox" id="floor" name="painting_surface_type[]" value="Sols">Sols</label><br>
-					<label>Autre :</label><input type="text" id="painting_surface_type_other" name="painting_surface_type_other">
+					<label>Type de surface* :</label>
+					<label><input type="checkbox" id="wall" name="painting_surface_type[]" value="Murs">Murs</label>
+					<label><input type="checkbox" id="ceiling" name="painting_surface_type[]" value="Plafonds">Plafonds</label>
+					<label><input type="checkbox" id="floor" name="painting_surface_type[]" value="Sols">Sols</label>
+					<label>Autre(facultatif) :</label><input type="text" id="painting_surface_type_other" name="painting_surface_type_other">
 				</fieldset>
 			</fieldset>
 
 			<!-- Peinture -->
 			<fieldset>
-				<legend>Peinture</legend>
+
 				<fieldset>
-					<label>Que vous souhaitiez :</label><br>
-					<label><input type="checkbox" id="color" name="color[]" value="De la couleur">De la couleur</label><br>
-					<label><input type="checkbox" id="white" name="color[]" value="Du blanc">Du blanc</label><br>
+					<legend>Peinture</legend>
+					<label>Que souhaitez-vous comme peinture* :</label>
+					<label><input type="checkbox" id="color" name="color[]" value="De la couleur">De la couleur</label>
+					<label><input type="checkbox" id="white" name="color[]" value="Du blanc">Du blanc</label>
 					<label><input type="checkbox" id="dontknow" name="color[]" value="Je ne sais pas">Je ne sais pas</label>
 				</fieldset>
 
 				<fieldset>
-					<label>Avez-vous une idée des couleurs que vous voulez appliquer ? (facultatif)</label><br>
-					<input type="text" id="whatColor" name="what_color">
+					<label>Avez-vous une idée des couleurs que vous voulez appliquer ? (facultatif)</label>
+					<input type="text" id="what_color" name="what_color">
 				</fieldset>
 
 				<fieldset>
-					<label>Savez-vous combien de surface il y a à peindre ? (facultatif)</label><br>
-					<input type="text" id="numberOfSurface" name="numberOfSurface">
+					<label>Savez-vous combien de surface il y a à peindre ? (facultatif)</label>
+					<input type="text" id="surface_count" name="surface_count">
 				</fieldset>
 
 				<fieldset>
-					<label>Quel est l'état des surfaces :</label><br>
-					<label><input type="checkbox" id="veryGood" name="status[]" value="Très bon">Très bon</label><br>
-					<label><input type="checkbox" id="good" name="status[]" value="Bon">Bon (quelques défauts pas trop visibles)</label><br>
-					<label><input type="checkbox" id="mdium" name="status[]" value="Moyen">Moyen (défauts visibles)</label><br>
-					<label><input type="checkbox" id="bad" name="status[]" value="Mauvais">Mauvais (beaucoup de défauts)</label><br>
-					<label><input type="checkbox" id="veryBad" name="status[]" value="Très mauvais">Très mauvais (moisissure, humidité, trous, rebouchage)</label><br>
+					<label>Quel est l'état des surfaces* :</label>
+					<label><input type="checkbox" id="veryGood" name="status[]" value="Très bon">Très bon</label>
+					<label><input type="checkbox" id="good" name="status[]" value="Bon">Bon (quelques défauts pas trop visibles)</label>
+					<label><input type="checkbox" id="medium" name="status[]" value="Moyen">Moyen (défauts visibles)</label>
+					<label><input type="checkbox" id="bad" name="status[]" value="Mauvais">Mauvais (beaucoup de défauts)</label>
+					<label><input type="checkbox" id="veryBad" name="status[]" value="Très mauvais">Très mauvais (moisissure, humidité, trous, rebouchage)</label>
 					<label><input type="checkbox" id="idk" name="status[]" value="Je ne sais pas">Je ne sais pas</label>
 				</fieldset>
 			</fieldset>
 
 			<!-- Pose de lames clipsées -->
 			<fieldset>
-				<legend>Pose de lames clipsées</legend>
-				<fieldset>
-					<label>Quelle est la matière de la surface sur laquelle vous souhaitez poser du PVC ?</label><br>
-					<label><input type="checkbox" id="concrete" name="surface_material[]" value="Béton">Béton</label><br>
-					<label><input type="checkbox" id="floorTiles" name="surface_material[]" value="Carrelage">Carrelage</label><br>
-					<label><input type="checkbox" id="pvc2" name="surface_material[]" value="Pvc">Pvc</label><br>
-					<label>Autre :</label><input type="text" id="matériau_de_surface_autre" name="matériau_de_surface_autre">
+				<fieldset class="flex">
+					<legend>Pose de lames clipsées</legend>
+					<label>Quelle est la matière de la surface sur laquelle vous souhaitez poser du PVC ?*</label>
+					<label><input type="checkbox" id="concrete" name="surface_material[]" value="Béton">Béton</label>
+					<label><input type="checkbox" id="floorTiles" name="surface_material[]" value="Carrelage">Carrelage</label>
+					<label><input type="checkbox" id="pvc2" name="surface_material[]" value="Pvc">Pvc</label>
+					<label>Autre :</label>
+					<textarea class="align-center" id="surface_material_other" name="surface_material_other"></textarea>
 				</fieldset>
 
 				<fieldset>
-					<label>Quel est le type de surface :</label><br>
-					<label><input type="checkbox" id="wall_pvc" name="pvc_surface_type[]" value="Mûre">Mûres</label><br>
+					<label>Quel est le type de surface* :</label>
+					<label><input type="checkbox" id="wall_pvc" name="pvc_surface_type[]" value="Mûre">Murs</label>
 					<label><input type="checkbox" id="floor_pvc" name="pvc_surface_type[]" value="Sol">Sol's</label>
 				</fieldset>
 			</fieldset>
@@ -130,18 +130,33 @@
 			<!-- Date de fin de travaux -->
 			<fieldset>
 				<legend>Pour finir</legend>
-				<fieldset>
-					<label>Quand souhaitez-vous que les travaux soient finis ?</label><br>
-					<label><input type="checkbox" id="earlier" name="date[]" value="Le plus tôt possible">Le plus tôt possible</label><br>
-					<label><input type="checkbox" id="week" name="date[]" value="Dans une semaine à deux semaines">Dans une semaine à deux semaines</label><br>
-					<label><input type="checkbox" id="month" name="date[]" value="Dans un mois">Dans un mois</label><br>
-					<label><input type="checkbox" id="fewmonth" name="date[]" value="Dans 3 à 6 mois">Dans 3 à 6 mois</label><br>
-					<label><input type="checkbox" id="year" name="date[]" value="l'Année prochaine">L'année prochaine</label><br>
-					<label>Autre :</label><input type="date" id="date-autre" name="date-autre">
-				</fieldset>
+				<label>Quand souhaitez-vous que les travaux soient finis ? (facultatif)</label>
+				<label><input type="checkbox" id="earlier" name="date[]" value="Le plus tôt possible">Le plus tôt possible</label>
+				<label><input type="checkbox" id="week" name="date[]" value="Dans une semaine à deux semaines">Dans une semaine à deux semaines</label>
+				<label><input type="checkbox" id="month" name="date[]" value="Dans un mois">Dans un mois</label>
+				<label><input type="checkbox" id="fewmonth" name="date[]" value="Dans 3 à 6 mois">Dans 3 à 6 mois</label>
+				<label><input type="checkbox" id="year" name="date[]" value="l'Année prochaine">L'année prochaine</label>
+				<label>Autre (facultatif):</label><input type="date" id="selected_date" name="selected_date">
 			</fieldset>
 
-			<input type="submit" class="sbmit_estimate" value="Envoyer">
+			<!-- Champ pour les photos -->
+			<fieldset>
+				<legend>Photos (facultatif)</legend>
+				<label for="photos">Ajouter des photos :</label>
+				<input type="file" id="photos" name="photos[]" multiple>
+				<small>Vous pouvez télécharger plusieurs fichiers (formats acceptés : jpg, png, gif).</small>
+			</fieldset>
+
+			<!-- Champ pour informations supplémentaires -->
+			<fieldset class="f²lex">
+				<legend>Informations supplémentaires (facultatif)</legend>
+				<label for="additional">Ajouter des informations supplémentaires :</label>
+				<textarea class="align-center" id="additional" name="additional"></textarea>
+			</fieldset>
+
+			<section class="section_cta">
+				<button type="submit" class="cta">Envoyer</button>
+			</section>
 		</form>
 	</main>
 {% endblock %}

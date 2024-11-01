@@ -73,11 +73,11 @@ body {
 }
 
 main {
-  margin: auto;
+  margin: 3rem;
 }
 
 section, article {
-  padding: 0 2rem 0rem 2rem;
+  padding: 0 2rem 0.8rem 2rem;
 }
 
 a {
@@ -88,30 +88,52 @@ a {
 
 h1 {
   color: #0a0a0a;
-  font-family: "Montserrat", sans-serif;
-  padding-top: 2rem;
+  font-size: 1.7rem;
+  font-weight: bold;
 }
 
-h2 {
-  color: rgba(163, 99, 22, 0.669);
+h1, h2 {
+  text-align: center;
+}
+
+ h2.custom-h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.7rem;
 }
 
 h3, h4 {
   color: #92652a;
+  padding-bottom: 1rem;
+  font-weight: bold;
 }
 
-h1, h2, h3 {
-  text-align: center;
-}
+
 
 p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #0a0a0a;
-  padding: 1.2rem;
+  padding-bottom: 1rem;
+}
+
+p.red {
+  color: red;
 }
 
 ul, li {
   list-style: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.center {
+  text-align: center;
 }
 
 .media-center {
@@ -119,41 +141,18 @@ ul, li {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+  margin: 1rem;
+
 }
 
 img.border-radius {
   border-radius: 30px;
+  padding: 1rem;
+  background: #c79c7d;
 }
 
 .active-box-shadow {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
-}
-/***************************/
-/*        Formulaires      */
-/***************************/
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 1000px;
-  margin: auto;
-  color: rgb(108, 58, 7);
-}
-
-input, textarea {
-  padding: 15px;
-  border-radius: 3px;
-  border: none;
-}
-
-label {
-  margin-bottom: 10px;
-}
-
-input[type="submit"] {
-  width: 200px;
-  margin: auto;
-  margin-top: 30px;
-  font-size: 90%;
 }
 
 /*************************/
@@ -165,13 +164,16 @@ input[type="submit"] {
   background: linear-gradient(rgb(119, 61, 20), #563b09cf);
   color: white;
   border-radius: 50px;
-  padding: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-family: "Manrope", sans-serif !important;
 }
 
 .cta:hover {
-  background: linear-gradient(#ae7326, #7d3d18);
+  background: linear-gradient(#ae7326, #7d3d18); 
   text-decoration: none;
 }
+
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                                                  */
@@ -182,10 +184,9 @@ input[type="submit"] {
 /****************************************************/
 /*                    Header                        */
 /****************************************************/
-@media screen and (min-width: 901px) {
   header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #dead6d;
     font-weight: bold;
@@ -203,7 +204,7 @@ input[type="submit"] {
   header:hover {
     opacity: 1;
   }
-}
+
 
 header li {
   padding: 1.2rem;
@@ -233,6 +234,8 @@ li.menu_item a {
   text-decoration: none;
   font-size: 1rem;
   padding: 2rem;
+  display: flex;
+    align-items: center;
 }
 
 li.menu_item a:hover {
@@ -326,7 +329,7 @@ footer section {
   align-items: center;
   justify-content: center;
   align-content: center;
-  padding-bottom: 1.5rem;
+  padding: 1.5rem;
 }
 
 footer a {
@@ -356,10 +359,17 @@ section.social_media {
   align-content: center;
   justify-items: start;
 }
+
+.bold {
+  font-weight: bold;
+}
   
 /*************************/
 /*       Horraires      */
 /***********************/
+.bold.center {
+  text-align: center;
+} 
 
 table {
   background-color: #f5f5f5;
@@ -378,24 +388,30 @@ caption {
 
 td, th {
   padding: 0.8rem;
+  margin: 1rem;
   border: 1px solid #0a0a0a;
   font-size: 1rem;
 }
 
-body > footer > section.horraires > table > tbody > tr:nth-child(1) > td:nth-child(1){
+body > footer > section.horaires > table > tbody > tr:nth-child(1) > td:nth-child(1){
   border-top-left-radius: 15px;
+  padding-top: 1rem;
 }
 
-body > footer > section.horraires > table > tbody > tr:nth-child(1) > td:nth-child(2){
+body > footer > section.horaires > table > tbody > tr:nth-child(1) > td:nth-child(2){
   border-top-right-radius: 15px;
+  padding-top: 1rem;
+
 }
 
-body > footer > section.horraires > table > tbody > tr:nth-child(7) > td:nth-child(1){
+body > footer > section.horaires > table > tbody > tr:nth-child(7) > td:nth-child(1){
   border-bottom-left-radius: 15px;
+  padding-bottom:1rem 
 }
 
-body > footer > section.horraires > table > tbody > tr:nth-child(7) > td:nth-child(2){
+body > footer > section.horaires > table > tbody > tr:nth-child(7) > td:nth-child(2){
   border-bottom-right-radius: 15px;
+  padding-bottom:1rem ;
 }
 /*******************************************************************************************************************************************/
 /****************************************************/
@@ -407,13 +423,20 @@ section.section_cta {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 4rem;
+  padding: 2rem;
+}
+
+.home h2 {
+  color: rgba(163, 99, 22, 0.669);
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 section.legal-notices h2, section.legal-notices h3 {
   text-align: justify;
   padding: 1.2rem;
 }
+
 /*******************************************************************************************************************************************/
 
 /****************************************************/
@@ -421,12 +444,45 @@ section.legal-notices h2, section.legal-notices h3 {
 /*                   services.html.twig             */
 /*                                                  */
 /****************************************************/
+main.service {
+  margin: 3rem;
+  line-height: 1.7rem;
+  padding: 1rem;
+}
 
+.service article {
+  padding: 0.5rem;
+}
+
+.service section{
+  padding: 1rem;
+}
+
+.service p {
+  padding: 0;
+  font-size: 1.1rem;
+} 
+
+.service li {
+  font-size: 1.1rem;
+  list-style: inside;
+  text-align: left;
+  line-height: 2rem;
+}
+
+.service a {
+  font-size: 1.1rem;
+}
+
+.serevice ul li {
+  font-size: 1.1rem;
+  padding-bottom: 1rem;
+}
 /*******************************************************************************************************************************************/
 
 /****************************************************/
 /*                                                  */
-/*                   realisations.html.twig         */
+/*            realisations.html.twig                */
 /*                                                  */
 /****************************************************/
 
@@ -436,6 +492,13 @@ section.center_slider {
   align-items: center;
 }
 
+.realisations h4 {
+  color: rgba(163, 99, 22, 0.669)
+}
+
+#content > article:nth-child(8) > p {
+text-align: center;
+}
 /****************************************************/
 /*             SLIDER AVANT - APRES                 */
 /****************************************************/
@@ -452,7 +515,7 @@ section.container {
   display: flex;
   position: relative;
   width: 100%;
-  max-width: 600px; 
+  max-width: 1000px; 
   height:600px; 
   aspect-ratio: 16/9;
 }
@@ -516,27 +579,138 @@ section.container {
 /*                                                  */
 /****************************************************/
 
-.form-nom-email {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
 
-.form-column {
-  flex: 1;
+
+/*        Formulaires      */
+/***************************/
+main.estimate {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
 }
+
+form.estimate-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #dead6a;
+  border-radius: 15px;
+  align-items: center;
+  box-shadow:  0 0 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.estimate-form legend {
+  font-weight: bold;
+  color: #0a0a0a;
+}
+.estimate-form fieldset {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background-color: #dead6a;
+  border-radius: 15px;
+  width: 80%;
+  border: 1px solid white;
+  margin: 1rem;
+}
+
+.estimate-form label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.estimate-form input {
+  border: none;
+  display: flex;
+  border-radius: 5px;
+  font-size: 1.1rem;
+}
+
+.estimate-form input[type="date" i] {
+  height: 1.8rem;
+  cursor: text;
+  margin: 0.7rem;
+}
+
+.estimate-form fieldset input[type="text"],  input[type="number"], input[type="email"],input[type="tel"] {
+  width: 15rem;
+  height: 1.6rem;
+} 
+
+.estimate-form input[type="file" ] {
+  padding: 0.7rem;
+}
+
+.estimate-form textarea {
+  align-self: center;
+  display: flex;
+  height: 10rem;
+  width: 30rem;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  }
+
+.user {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+}
+
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                                                  */
 /*                contact.html.twig                 */
 /*                                                  */
 /****************************************************/
+main.contact {
+  margin: 2rem;
+}
 
+/*        Formulaires      */
+/***************************/
+form.contact-form  {
+  display: flex;
+  color: #0a0a0a;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+}
 
+.contact-form fieldset {
+display: flex;
+flex-direction: column;
+padding: 1rem;
+background-color: #dead6a;
+border-radius: 5px;
+align-items: center;
+width: auto;
+box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+}
 
+.contact-form input {
+height: 1.7rem;
+width: 50%;
+border: none;
+border-radius: 5px;
+margin-bottom: 1rem;
+}
+
+.contact-form textarea {
+height: 10rem;
+width: 30rem;
+border: none;
+border-radius: 5px;
+}
+
+.contact-button {
+  padding: 2rem 0 1rem 0;
+}
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                                                  */
@@ -545,26 +719,196 @@ section.container {
 /****************************************************/
 
 /****************************************************/
+/*                   **Login**                      */
+/****************************************************/
+#login {
+  display: flex;
+  background-color: #dead6a;
+  height: 20rem;
+  width: 30rem;
+  border-radius: 15px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+main#loginForm {
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#loginForm h2 {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+fieldset{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login label{
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+/****************************************************/
 /*                   Dashboard                      */
 /****************************************************/
 section.dashboard {
-  background-color: beige ;
-  display:flex;
+  background-color: #E5CF9C;
+  display: flex;
+  align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  width: auto;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+  padding-bottom: 3rem;
+}
+
+div.title {
+  padding-top: 1rem;}
+
+.title h3 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #0a0a0a;
 }
 
 nav.items {
-  display: flex;
-  justify-content: center;
-  background-color: #E5CF9C ;
-  border-radius: 15px;
+  background-color: #D8A559;
+  width: 40rem;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 ul.dashboard-item{
-  background-color: #D8A559;
-  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 30rem;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+ul.dashboard-item li {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+ul.dashboard-item li a {
+  color: #0a0a0a;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+ul.dashboard-item li a:hover {
+  color: #f5f5f5;
+  text-decoration: underline;
+}
+
+main.dashboard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 /*******************************************************************************************************************************************/
+/****************************************************/
+/*                   Realisation                    */
+/****************************************************/
+/* realisation-list.html.twig */
+.admin-realisation {
+  margin : 2rem auto;
+  margin : 2rem auto;
+  width: 90%;
+}
+.admin-realisation .backBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  color: #bf9000;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.admin-realisation p {
+  margin : auto;
+  text-align: center;
+}
+.admin-realisation .addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  color: #bf9000;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+.admin-realisation h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-realisation .reals_table {
+  width: 90%;
+  border-collapse: collapse;
+  margin : 2rem auto;
+}
+.admin-realisation .reals_table th,
+.admin-realisation .reals_table td {
+  border: 1px solid rgba(191, 144, 0, 0.85);
+  padding: 1rem;
+  text-align: left;
+}
+td .real_edit_btns {
+  text-align: center;
+  margin : 0
+}
+td .real_edit_btns a i {
+  text-decoration: none;
+  color : #bf9000;
+  text-align: center;
+}
+td .real_edit_btns a:first-of-type i {
+  margin-bottom : 1rem
+}
+
+main.realisations h2 {
+  font-size: 1.7rem;
+  color: #0a0a0a;
+}
+
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                     Service                      */
+/****************************************************/
 
 
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                   Estimate                       */
+/****************************************************/
+
+/*******************************************************************************************************************************************/
+/****************************************************/
+/*                     Contact                      */
+/****************************************************/

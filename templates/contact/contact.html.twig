@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Contact
+	{{ parent() }}
+{% endblock %}
+
+{% block main %}
+	<main class="contact">
+		<h2 class="custom-h2">Parlons de votre projet</h2>
+		<p id="contactFormOKMessage"></p>
+		<p class="center red">Les champs * sont obligatoires</p>
+		<form class="contact-form" action="index.php?route=contact-register" method="post" enctype="multipart/form-data" onsubmit="return ">
+			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
+			<fieldset>
+
+				<label for="firstName">Prénom*</label>
+				<input type="text" name="firstName" id="firstName" required aria-required="true">
+
+				<label for="lastName">Nom*</label>
+				<input type="text" name="lastName" id="lastName" required aria-required="true">
+
+				<label for="phoneNumber">Téléphone*</label>
+				<input type="tel" name="phoneNumber" id="phoneNumber" required aria-required="true">
+
+				<label for="email">Email*</label>
+				<input type="email" name="email" id="email" required aria-required="true">
+
+				<label for="city">Ville*</label>
+				<input type="text" name="city" id="city" required aria-required="true">
+
+				<label for="zipCode">Code postal*</label>
+				<input type="number" name="zipCode" id="zipCode" required aria-required="true">
+
+				<label for="message">Votre message*</label>
+				<textarea id="message" name="message" rows="4" required aria-required="true"></textarea>
+			</fieldset>
+			{# <fieldset>
+				<label for="contact_mode">Comment souhaitez-vous être recontacté(e)* ?</label>
+				<select id="contact_mode" name="contact_mode" required aria-required="true">
+					<option value=""></option>
+					<option value="telephone">Téléphone</option>
+					<option value="email">Email</option>
+				</select>
+			</fieldset> #}
+			<div class="contact-button">
+				<button type="submit" class="cta">
+					ENVOYER
+				</button>
+			</div>
+
+		</form>
+	</main>
+{% endblock %}

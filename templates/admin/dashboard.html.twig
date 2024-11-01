@@ -5,26 +5,24 @@
 {% endblock %}
 
 {% block main %}
-	<main>
+	<main class="dashboard">
 		{% if session.user_name %}
-			<h2>Bonjour,
-				{{ session.user_name }}!
-			</h2>
+			<h2>Bonjour,{{ session.user_name }}</h2>
 		{% endif %}
 		<section class="dashboard">
 			<div class="title">
-				<h3>tableau de bord</h3>
+				<h3>Tableau de bord</h3>
 			</div>
 			<nav class="items">
 				<ul class="dashboard-item">
 					<li>
-						<a href="index.php?route=estimates-list">
-							<img src="assets\img\logo\demande-devis-64.png" alt="">Devis
+						<a href="index.php?route=home-list">
+							<img src="assets\img\logo\accueil-64.png" alt="">Gèrer ma page d'accueil
 						</a>
 					</li>
 					<li>
-						<a href="index.php?route=contacts-list">
-							<img src="assets\img\logo\contacts-64.png" alt="">Contacts
+						<a href="index.php?route=estimates-list">
+							<img src="assets\img\logo\demande-devis-64.png" alt="">Devis
 						</a>
 					</li>
 					<li>
@@ -33,10 +31,16 @@
 						</a>
 					</li>
 					<li>
-						<a href="">
+						<a href="index.php?route=contacts-list">
+							<img src="assets\img\logo\contacts-64.png" alt="">Contacts
+						</a>
+					</li>
+					<li>
+						<a href="index.php?route=services-list">
 							<img src="assets\img\logo\service-64.png" alt="">Gèrer mes Services
 						</a>
 					</li>
+					
 					<li>
 						<a href="">
 							<img src="assets\img\logo\Add-photos-64.png" alt="">Gèrer mes Photos

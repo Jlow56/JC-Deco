@@ -69,14 +69,14 @@ class AdminController extends AbstractController
                 $estimate->setPaintingSurfaceTypeOther($_POST['painting_surface_type_other'] ?? null);
                 $estimate->setColor($_POST['color']);
                 $estimate->setWhatColor($_POST['what_color'] ?? null);
-                $estimate->setNumberOfSurface($_POST['number_of_surface'] ?? null);
+                $estimate->setSurface_count($_POST['surface_count'] ?? null);
                 $estimate->setStatus($_POST['status']);
                 $estimate->setSurfaceMaterial($_POST['surface_material']);
                 $estimate->setSurfaceMaterialOther($_POST['surface_material_other'] ?? null);
                 $estimate->setPvcSurfaceType($_POST['pvc_surface_type']);
                 $estimate->setDate($_POST['date']);
                 $estimate->setSelectedDate($_POST['selected_date'] ?? null);
-                $estimate->setPhotos($_POST['photos'] ?? null);
+                $estimate->setpicture($_POST['picture'] ?? null);
                 $estimate->setAdditional($_POST['additional'] ?? null);
 
                 // Mettre à jour l'estimation dans la base de données
@@ -238,52 +238,42 @@ class AdminController extends AbstractController
     }
 
     public function handleRealisationCreation()
-{
-    if (!isset($_SESSION["user"])) 
     {
-        $this->redirect("login");
-        return;
-    }
+        if (!isset($_SESSION["user"])) {
+            $this->redirect("login");
+            return;
+        }
 
-    // Récupérer les données de la réalisation depuis le formulaire
-    $realisation = new Realisation(
-        $_POST['title1'] ?? '',
-        $_POST['title2'] ?? '',
-        $_POST['title3'] ?? '',
-        $_POST['description'] ?? '',
-        $_POST['visible'] ?? 1
-    );
-    $mediaIds = [];
+        $realisation = new Realisation(
+            $_POST['title1'] ?? '',
+            $_POST['title2'] ?? '',
+            $_POST['title3'] ?? '',
+            $_POST['description'] ?? '',
+            $_POST['visible'] ?? 1
+        );
+        $mediaIds = [];
 
-    // Créer une instance de Uploader
-    $uploader = new Uploader();
+        $uploader = new Uploader();
 
-    // Traitement des fichiers uploadés
-    if (!empty($_FILES['mediaFiles']['name'][0])) 
-    {
-        foreach ($_FILES['mediaFiles']['tmp_name'] as $key => $tmp_name) 
-        {
-            if ($_FILES['mediaFiles']['error'][$key] === UPLOAD_ERR_OK) 
-            {
-                $media = $uploader->uploadMedias($_FILES, 'mediaFiles');
+        // Traitement des fichiers uploadés
+        if (!empty($_FILES['mediaFiles']['name'][0])) {
+            foreach ($_FILES['mediaFiles']['tmp_name'] as $key => $tmp_name) {
+                if ($_FILES['mediaFiles']['error'][$key] === UPLOAD_ERR_OK) {
+                    $media = $uploader->uploadMedias($_FILES, 'mediaFiles');
 
-                if ($media !== null) 
-                {
-                    // Ajouter l'ID du média dans le tableau des associations
-                    $mediaIds[] = $media->getId();
-                } 
-                else 
-                {
-                    $_SESSION['error'] = "Erreur lors du téléchargement de certains fichiers.";
+                    if ($media !== null) {
+                        $mediaIds[] = $media->getId();
+                    } else {
+                        $_SESSION['error'] = "Erreur lors du téléchargement de certains fichiers.";
+                    }
                 }
             }
         }
-    }
 
-    // Enregistrer la réalisation avec les médias associés
-    $realisationManager = new RealisationManager();
-    $realisationManager->creatRealisation($realisation, $mediaIds);
-}
+        // Enregistrer la réalisation avec les médias associés
+        $realisationManager = new RealisationManager();
+        $realisationManager->creatRealisation($realisation, $mediaIds);
+    }
 
     public function updateRealisation(int $id): void
     {
@@ -360,7 +350,7 @@ class AdminController extends AbstractController
         }
         $sm = new ServiceManager();
         $services = $sm->findAll();
-        $this->render("admin/service/services-list.html.twig", ["services" => $services]);
+        $this->render("admin/services/services-list.html.twig", ["services" => $services]);
     }
 
     public function showService(int $id): void
