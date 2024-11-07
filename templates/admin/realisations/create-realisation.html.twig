@@ -7,9 +7,12 @@
 {% block main %}
 
 	<main class="create-realisation">
-		<a class="backBtn" href="index.php?route=list-reals">
-			<i class="fa-solid fa-arrow-left"></i>
+	<div class="btn-back-dashboard">
+		<a class="back-btn" href="index.php?route=list-reals">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
+			retour sur la page des réalisations
 		</a>
+	</div>
 		<h2>Créer une nouvelle réalisation</h2>
 		<p>Remplissez le formulaire ci-dessous pour ajouter une nouvelle réalisation, il est conceillé d'avoir un élément text que ce soit un titre, un sous titre si vous ajouter une image
 		</p>
@@ -44,8 +47,8 @@
 			{% endif %}
 		</form>
 
-		<a class="backBtn" href="index.php?route=list-reals">
-			<i class="fa-solid fa-arrow-left"></i>
+		<a class="back-btn" href="index.php?route=list-reals">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
 		</a>
 	</main>
 {% endblock %}

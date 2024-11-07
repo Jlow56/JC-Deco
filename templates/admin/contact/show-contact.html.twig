@@ -6,12 +6,12 @@
 
 {% block main %}
 	<main id="message_show">
-		<a class="backBtn" href="index.php?route=list-messages">
-			<i class="fa-solid fa-arrow-left"></i>
+		<a class="back-btn" href="index.php?route=list-messages">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
 		</a>
 		<h2 class="message">Message N°{{ message.id }}
 			<a class="edit_btns" href="index.php?route=delete-message&id={{ message.id }}">
-				<i class="fa-solid fa-trash"></i>
+				<img src="assets\img\logo\icons8-effacer-64.png" alt="boutton pour supprimer le devis">
 			</a>
 		</h2>
 
@@ -31,8 +31,8 @@
 			<span>Message :</span>
 			{{ message.content }}</p>
 
-		<a class="backBtn" href="index.php?route=list-messages">
-			<i class="fa-solid fa-arrow-left"></i>
+		<a class="back-btn" href="index.php?route=list-messages">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
 		</a>
 
 	</main>

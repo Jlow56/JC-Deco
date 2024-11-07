@@ -7,47 +7,53 @@
 
 {% block main %}
 	<main id="admin_contact_page">
-		<a class="backBtn" href="index.php?route=dashboard">
-			<i class="fa-solid fa-arrow-left"></i>
-		</a>
-		<h2 class="contact">Demandes de contacts</h2>
+		<div class="btn-back-dashboard">
+			<a class="back-btn" href="index.php?route=dashboard">
+				<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
+				<p>retour au tableau de bord</p>
+			</a>
+		</div>
+	</a>
+	<h2 class="contact">Demandes de contacts</h2>
 
-		<table class="contact_table">
-			<thead>
+	<table class="contact_table">
+		<thead>
+			<tr>
+				<th scope="col">Contact N°</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Edition</th>
+			</tr>
+		</thead>
+		<tbody>
+			{%  for contact in contacts %}
 				<tr>
-					<th scope="col">Contact N°</th>
-					<th scope="col">Prénom</th>
-					<th scope="col">Nom</th>
-					<th scope="col">Edition</th>
-				</tr>
-			</thead>
-			<tbody>
-				{%  for contact in contacts %}
-					<tr>
-						<td>{{ contact.id }}</td>
-						<td>{{ contact.firstname }}</td>
-						<td>{{ contact.lastname }}</td>
+					<td>{{ contact.id }}</td>
+					<td>{{ contact.firstname }}</td>
+					<td>{{ contact.lastname }}</td>
 
-						<td>
-							<ul class="contact_edit_btns">
-								<li>
-									<a href="index.php?route=show-contact&id={{ contact.id }}">
-										<i class="fa-regular fa-eye"></i>
-									</a>
-								</li>
-								<li>
-									<a href="index.php?route=delete-contact&id={{ contact.id }}">
-										<i class="fa-solid fa-trash"></i>
-									</a>
-								</li>
-							</ul>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		<a class="backBtn" href="index.php?route=dashboard">
-			<i class="fa-solid fa-arrow-left"></i>
+					<td>
+						<ul class="contact_edit_btns">
+							<li>
+								<a href="index.php?route=show-contact&id={{ contact.id }}">
+									<img src="assets\img\logo\icons8-voir-le-fichier-64.png" alt="logo voir le devis">
+								</a>
+							</li>
+							<li>
+								<a href="index.php?route=delete-contact&id={{ contact.id }}">
+									<img src="assets\img\logo\icons8-effacer-64.png" alt="boutton pour supprimer le devis">
+								</a>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="btn-back-dashboard">
+		<a class="back-btn" href="index.php?route=dashboard">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
+			<p>retour au tableau de bord</p>
 		</a>
-	</main>
-{% endblock %}
+	</div>
+</a></main>{% endblock %}

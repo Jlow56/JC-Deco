@@ -4,43 +4,79 @@
     {{ parent() }}
 {% endblock %}
 
+{% block main %}
+<main class="admin-realisation">
+    <div class="btn-back-dashboard">
+        <a class="back-btn" href="index.php?route=dashboard">
+            <img src="assets/img/logo/icons8-go-back-64.png" alt="bouton back retour au tableau de bord">
+            retour au tableau de bord
+        </a>
+    </div>
+    <h2 class="reals">Réalisations</h2>
+    <a class="add-content" href="index.php?route=create-realisation">
+        <img src="assets/img/logo/icons8-plus-64.png" alt="">
+        Ajouter une réalisation
+    </a>
 
-    {% block main %}
-        <main class="admin-realisation">
-            <a class="backBtn" href="index.php?route=dashboard"><i class="fa-solid fa-arrow-left"></i></a>
-            <h2 class="reals">Réalisations</h2>
-            <p><a class="addBtn" href="index.php?route=create-realisation"><i class="fa-solid fa-circle-plus"></i>&nbsp;&nbsp;Ajouter une réalisation</a></p>
+    <table class="realisation-table">
+        <thead>
+            <tr>
+                <th scope="col">Réalisation N°</th>
+                <th scope="col">Editer/Voir</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Sous-titre n°1</th>
+                <th scope="col">Sous-titre n°2</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Visible</th>
+                <th scope="col">Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for realisation in realisations %}
+            <tr>
+                <td>{{ realisation.id }}</td>
+                <td class="edit-view">
+                    <a class="view" href="index.php?route=show-realisation&id={{ realisation.id }}">
+                        <img src="assets/img/logo/voir-un-fichier-texte-48.png" alt="logo voir la réalisation">
+                    </a>
+                    <a class="edit" href="index.php?route=edit-realisation&id={{ realisation.id }}">
+                        <img src="assets/img/logo/modifier-un-fichier-texte-48.png" alt="logo modifier la réalisation">
+                    </a>
+                </td>
+                
+                <td>{{ realisation.title1 is not empty ? realisation.title1 : '' }}</td>
+                <td>{{ realisation.title2 is not empty ? realisation.title2 : '' }}</td>
+                <td>{{ realisation.title3 is not empty ? realisation.title3 : '' }}</td>
+                <td>{{ realisation.content }}</td>
 
-            <table class="realisation-table">
-                <thead>
-                <tr>
-                    <th scope="col">Réalisation N°</th>
-                    <th scope="col">Edition</th>
-                    <th scope="col">Titre</th>
-                    <th scope="col">Sous-titre n°1</th>
-                    <th scope="col">Soustitre n°2</th>
-                    <th scope="col">Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                {%  for realisation in realisations %}
-                    <tr>
-                        <td>{{ realisation.id }}</td>
-                        <td>
-                            <ul class="real_edit_btns">
-                                <li><a class="edit_btns" href="index.php?route=show-realisationg&id={{ realisation.id }}"><i class="fa-regular fa-eye"></i></a></li>
-                                <li><a class="edit_btns" href="index.php?route=delete-realisationg&id={{ realisation.id }}"><i class="fa-solid fa-trash"></i></a></li>
-                            </ul>
-                        </td>
-                        <td>{{ realisation.title1 }}</td>
-                        <td>{{ realisation.title2 }}</td>
-                        <td>{{ realisation.title3 }}</td>
-                        <td>{{ realisation.content}}</td>
-                    </tr>
-                {% endfor %}
+                <td>
+                    {% if realisation.media is defined and realisation.media|length > 0 %}
+                        {% for media in realisation.media %}
+                            <img src="{{ 'assets/img/Realisation/' ~ media.url }}">
+                        {% endfor %}
+					{% else %}
+						<p>Aucun média lié à cette article</p>
+                    {% endif %}
+                </td>
 
-                </tbody>
-            </table>
-            <a class="backBtn" href="index.php?route=dashboard"><i class="fa-solid fa-arrow-left"></i></a>
-        </main>
-    {% endblock %}
+                <td>{{ realisation.visible ? 'Oui' : 'Non' }}</td>
+
+                <td>
+                    <a href="index.php?route=delete-realisation&id={{ realisation.id }}">
+                        <img src="assets/img/logo/supprimer-un-fichier-texte-48.png" alt="bouton pour supprimer le devis">
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="btn-back-dashboard">
+        <a class="back-btn" href="index.php?route=dashboard">
+            <img src="assets/img/logo/icons8-go-back-64.png" alt="bouton back retour au tableau de bord">
+            <p>retour au tableau de bord</p>
+        </a>
+    </div>
+</main>
+{% endblock %}

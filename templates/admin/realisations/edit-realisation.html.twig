@@ -20,9 +20,36 @@
 		</div>
 		
 		<article class="realisation">	
-			<h2>Titre :{{ realisation.title1 is not empty ? realisation.title1 : 'pas de titre' }}</h2>
+		<form class="realAdminForm" action="index.php?route=update-realisation" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
+			
+			<fieldset>
+				<legend>Modifier le titre principale</legend>
+				
+				<label for="title1">
+					Titre :
+					<input type="text" name="title1" value="{{ realisation.title1 is not empty ? realisation.title1 : 'vide' }}">
+				</label>
+			</fieldset>
+			
 		
-			<p>Sous-titre n°1 :</p>
+			<fieldset>
+				<legend>Modifier le sous-titre n°1</legend>
+				
+				<label for="title2">
+					Sous-titre n°1 :
+					<input type="text" name="title1" value="{{ realisation.title2 is not empty ? realisation.title2 : 'vide' }}">
+				</label>
+			</fieldset>
+			
+			<fieldset>
+			
+			</fieldset>
+			<label for="title2">
+				
+				<input type="text" name="title2" value="{{ realisation.title2 is not empty ? realisation.title2 : '' }}">
+			</label>
+			
 			<h3>{{ realisation.title2 }}</h3>
 		
 			<p>Sous-titre n°2 :</p>

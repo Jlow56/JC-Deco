@@ -107,13 +107,17 @@ class Router
         {
             $ac->realisationsList();
         } 
-        else if (isset($get["route"]) && $get["route"] === "create-realisation") 
-        {
-            $ac-> createRealisation();
-        } 
         else if (isset($get["route"]) && $get["route"] === "show-realisation") 
         {
             $ac->showRealisation((int)$get["id"]);
+        } 
+        else if (isset($get["route"]) && $get["route"] === "edit-realisation") 
+        {
+            $ac->editRealisation((int)$get["id"]);
+        } 
+        else if (isset($get["route"]) && $get["route"] === "create-realisation") 
+        {
+            $ac-> createRealisation();
         } 
         else if (isset($get["route"]) && $get["route"] === "update-realisation") 
         {

@@ -10,22 +10,16 @@
         {% for service in services %}
             {% if service.content is not empty %}
                 
-                {% if service.title1 is not empty and service.title2 is not empty and service.title3 is empty %}
+                {% if service.title1 is not empty %}
                     <h2 class="custom-h2">{{ service.title1 }}</h2>
-                    <article>
-                        <h3 class="center">{{ service.title2 }}</h3>
-                        <p>{{ service.content }}</p>
-                    </article>
-
-                {% elseif service.title1 is empty and service.title2 is not empty and service.title3 is empty %}
-                    <article>
-                        <h3>{{ service.title2 }}</h3>
-                        <p>{{ service.content|raw }}</p>
-                    </article>
+                {% endif %}
                 
-                {% elseif service.title1 is empty and service.title2 is not empty and service.title3 is not empty %}
-                    <article>
+                <article>
+                    {% if service.title2 is not empty %}
                         <h3 class="center">{{ service.title2|raw }}</h3>
+                    {% endif %}
+
+                    {% if service.medias is defined and service.medias is not empty %}
                         {% for media in service.medias %}
                             <div class="media-center">
                                 <figure>
@@ -33,21 +27,16 @@
                                 </figure>
                             </div>
                         {% endfor %}
+                    {% endif %}
+
+                    {% if service.title3 is not empty %}
                         <h4>{{ service.title3 }}</h4>
-                        <p>{{ service.content }}</p>
-                    </article>
+                    {% endif %}
                     
-                {% elseif service.title1 is empty and service.title2 is empty and service.title3 is not empty %}
-                    <article>
-                        <h4>{{ service.title3 }}</h4>
-                        <p>{{ service.content|raw }}</p>
-                    </article>
-                {% endif %}
+                    <p>{{ service.content|raw }}</p>
+                </article>
+                
             {% endif %}
         {% endfor %}
     </main>
-{% endblock %}
-
-{% block javascript %}
-
 {% endblock %}

@@ -234,7 +234,18 @@ class AdminController extends AbstractController
             $this->redirect("login");
             return;
         }
-        $this->render("admin/realisation/create-realisation.html.twig", []);
+        $this->render("admin/realisations/create-realisation.html.twig", []);
+    }
+
+    public function editRealisation(int $id): void
+    {
+        if (!isset($_SESSION["user"])) {
+            $this->redirect("login");
+            return;
+        }
+        $rm = new RealisationManager();
+        $realisation = $rm->getRealisationById($id);
+        $this->render("admin/realisations/edit-realisation.html.twig", ["realisation" => $realisation]);
     }
 
     public function handleRealisationCreation()

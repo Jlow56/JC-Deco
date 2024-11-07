@@ -7,12 +7,12 @@
 
 {% block main %}
 	<main id="pricing_show">
-		<a class="backBtn" href="index.php?route=list-pricings">
-			<i class="fa-solid fa-arrow-left"></i>
+		<a class="back-btn" href="index.php?route=list-pricings">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
 		</a>
 		<h2 class="pricing">estimate N°{{ pricing.id }}
 			<a class="edit_btns" href="index.php?route=delete-pricing&id={{ pricing.id }}">
-				<i class="fa-solid fa-trash"></i>
+				<img src="assets\img\logo\icons8-effacer-64.png" alt="boutton pour supprimer le devis">
 			</a>
 		</h2>
 
@@ -54,8 +54,8 @@
 		{% if pricing.photo_path is defined and pricing.photo_path is not null %}
 			<img src="{{ pricing.photo_path }}" alt="image"/>
 		{% endif %}
-		<a class="backBtn" href="index.php?route=list-pricings">
-			<i class="fa-solid fa-arrow-left"></i>
+		<a class="back-btn" href="index.php?route=list-pricings">
+			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
 		</a>
 	</main>
 {% endblock %}

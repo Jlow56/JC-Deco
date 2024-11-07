@@ -59,6 +59,31 @@ table {
 /*                    GÉNÉRAL                      */
 /*                                                  */
 /****************************************************/
+
+/* **************************/
+/*      DARK/LIGHT MODE     */
+/****************************/
+
+/* dark-mode colors */
+/* .dark-mode-black {
+  background-color: #000;
+}
+.dark-mode-golden {
+  background-color: #bf9000;
+}
+.dark-mode-white-text {
+  color: #fff;
+} */
+
+/* light-mode colors */
+/* .light-mode {
+  background-color: #fff;
+}
+.light-mode-black-text {
+  color: #000;
+} */
+
+
 body {
   width: 100%;
   height: 100%;
@@ -67,13 +92,16 @@ body {
   line-height: 1.6;
   font-family: "Manrope", sans-serif !important;
   font-size: 1.2rem;
-  background-color: beige;
+  background-color: #f5f5f5;
   color: #0a0a0a;
   box-sizing: border-box;
 }
 
 main {
-  margin: 3rem;
+  padding: 3rem 15rem 3rem 15rem;
+  border-style: solid;
+  border-color: #bf9000;
+  border-width: 0 8.2rem 0 8.2rem;
 }
 
 section, article {
@@ -81,7 +109,7 @@ section, article {
 }
 
 a {
-  color: #0a0a0a;
+  color: #bf9000;
   text-decoration: none;
   cursor: pointer;
 }
@@ -108,11 +136,8 @@ h3, h4 {
   font-weight: bold;
 }
 
-
-
 p {
   font-size: 1.1rem;
-  color: #0a0a0a;
   padding-bottom: 1rem;
 }
 
@@ -147,8 +172,6 @@ ul, li {
 
 img.border-radius {
   border-radius: 30px;
-  padding: 1rem;
-  background: #c79c7d;
 }
 
 .active-box-shadow {
@@ -184,26 +207,26 @@ img.border-radius {
 /****************************************************/
 /*                    Header                        */
 /****************************************************/
-  header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #dead6d;
-    font-weight: bold;
-    height: 8rem !important;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #bf9000;
-    opacity: 0.9;
-    padding: 0 2rem;
-    box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, .5);
-    
-  }
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 8rem !important;
+  width: 100%;
+  background-color: #0a0a0a;
+  color: #bf9000;
+  font-weight: bold;
+  opacity: 0.95;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, .5);
+}
 
-  header:hover {
-    opacity: 1;
-  }
+
+header:hover {
+  opacity: 1;
+}
 
 
 header li {
@@ -230,7 +253,7 @@ li.menu_item {
 }
 
 li.menu_item a {
-  color: #0a0a0a;
+  color: #d9a737;
   text-decoration: none;
   font-size: 1rem;
   padding: 2rem;
@@ -317,9 +340,10 @@ ul.sub_menu li a:hover {
 /*                    Footer                        */
 /****************************************************/
 footer {
-  background-color: #dead6d;
+  background-color: #0a0a0a;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  color: #bf9000;
 }
 
 footer section {
@@ -374,10 +398,10 @@ section.social_media {
 table {
   background-color: #f5f5f5;
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
   border-collapse: separate;
   border-spacing: 0; 
-  border-radius: 15px; 
+  border-radius:10px; 
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, .2);
   
 }
@@ -389,28 +413,34 @@ caption {
 td, th {
   padding: 0.8rem;
   margin: 1rem;
-  border: 1px solid #0a0a0a;
+  border: 1px solid #bf9000;
   font-size: 1rem;
+  align-content: center;
+}
+
+th {
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 body > footer > section.horaires > table > tbody > tr:nth-child(1) > td:nth-child(1){
-  border-top-left-radius: 15px;
+  border-top-left-radius: 10px;
   padding-top: 1rem;
 }
 
 body > footer > section.horaires > table > tbody > tr:nth-child(1) > td:nth-child(2){
-  border-top-right-radius: 15px;
+  border-top-right-radius: 10px;
   padding-top: 1rem;
 
 }
 
 body > footer > section.horaires > table > tbody > tr:nth-child(7) > td:nth-child(1){
-  border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 10px;
   padding-bottom:1rem 
 }
 
 body > footer > section.horaires > table > tbody > tr:nth-child(7) > td:nth-child(2){
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 10px;
   padding-bottom:1rem ;
 }
 /*******************************************************************************************************************************************/
@@ -426,8 +456,14 @@ section.section_cta {
   padding: 2rem;
 }
 
+.home h1 {
+  color: #bf9000;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .home h2 {
-  color: rgba(163, 99, 22, 0.669);
+  color: #bf9000;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -717,6 +753,34 @@ border-radius: 5px;
 /*                       ADMIN                      */
 /*                                                  */
 /****************************************************/
+div.btn-back-dashboard {
+  display: flex;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  color: #0a0a0a;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  color: #bf9000;
+  text-decoration: underline;
+} 
+
+.add-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+  /* color: #bf9000; */
+  font-size: 1.1rem;
+  text-decoration: none;
+}
 
 /****************************************************/
 /*                   **Login**                      */
@@ -767,7 +831,7 @@ input {
 /*                   Dashboard                      */
 /****************************************************/
 section.dashboard {
-  background-color: #E5CF9C;
+  background-color: #d9a737;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -786,7 +850,7 @@ div.title {
 }
 
 nav.items {
-  background-color: #D8A559;
+  background-color: #9ea2a8;
   width: 40rem;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
@@ -836,49 +900,28 @@ main.dashboard {
 /*                   Realisation                    */
 /****************************************************/
 /* realisation-list.html.twig */
-.admin-realisation {
-  margin : 2rem auto;
-  margin : 2rem auto;
-  width: 90%;
+main.admin-realisation {
+  padding: 2rem;
+  border-width: 0;
+  background-color: #bf9000;
 }
-.admin-realisation .backBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-  color: #bf9000;
-  font-size: 1.6rem;
-  text-decoration: none;
+
+main.admin-realisation td> img {
+  height: 150px;
+  width: 150px;
 }
 .admin-realisation p {
   margin : auto;
   text-align: center;
 }
-.admin-realisation .addBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1rem 0;
-  color: #bf9000;
-  font-size: 1.6rem;
-  text-decoration: none;
-}
-.admin-realisation h2 {
+
+main.admin-realisation h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  color: #0a0a0a;
+  font-weight: bold;
+  font-size: 1.4rem;
 }
 
-.admin-realisation .reals_table {
-  width: 90%;
-  border-collapse: collapse;
-  margin : 2rem auto;
-}
-.admin-realisation .reals_table th,
-.admin-realisation .reals_table td {
-  border: 1px solid rgba(191, 144, 0, 0.85);
-  padding: 1rem;
-  text-align: left;
-}
 td .real_edit_btns {
   text-align: center;
   margin : 0
@@ -892,15 +935,43 @@ td .real_edit_btns a:first-of-type i {
   margin-bottom : 1rem
 }
 
-main.realisations h2 {
-  font-size: 1.7rem;
-  color: #0a0a0a;
+table.realisation-table th,td  {
+  border: 1px solid #0a0a0a;
 }
 
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                     Service                      */
 /****************************************************/
+main.admin-service {
+  padding: 2rem;
+  border-width: 0;
+  background-color: #bf9000;
+}
+
+main.admin-service td> img {
+  height: 150px;
+  width: 150px;
+}
+
+main.admin-service h2 {
+  text-align: center;
+  color: #0a0a0a;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+
+main.admin-service p {
+  margin : auto;
+  text-align: center;
+}
+
+
+
+table.service-table> th,td  {
+  border: 1px solid #0a0a0a;
+}
 
 
 /*******************************************************************************************************************************************/
