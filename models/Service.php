@@ -95,7 +95,7 @@ class Service
         return $this->visible;
     }
     /**
-     * @param string $visible
+     * @param int $visible
      */
     public function setVisible(int $visible): void
     {
@@ -110,7 +110,7 @@ class Service
         return $this->medias;
     }
     /**
-     * @param string $medias
+     * @param array $medias
      */
     public function setMedia(array $medias): void
     {

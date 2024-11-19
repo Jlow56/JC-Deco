@@ -12,86 +12,156 @@ class FormsController extends AbstractController
     public function estimateRegister(): void
     {
         $currentDateTime = date('Y-m-d H:i:s');
+
         // Vérification des champs obligatoires
-        if (!isset($_POST["last_name"], $_POST["first_name"], $_POST["adresse"], $_POST["postcode"], $_POST["phone"], $_POST["email"], $_POST["services_type"], $_POST["services"], 
-            $_POST["painting_surface_type"], $_POST["color"], $_POST["status"], $_POST["surface_material"], $_POST["pvc_surface_type"]) || empty($_POST["last_name"]) || empty($_POST["first_name"]) 
-            || empty($_POST["adresse"]) || empty($_POST["postcode"]) || empty($_POST["phone"]) || empty($_POST["email"]) || empty($_POST["services_type"]) || empty($_POST["services"]) 
-            || empty($_POST["painting_surface_type"]) || empty($_POST["color"]) || empty($_POST["status"]) || empty($_POST["surface_material"]) || empty($_POST["pvc_surface_type"]))
-        {
-            $error = "Veuillez cocher au moin une case sur les champs obligatoires.";
+        if (
+            !isset(
+            $_POST["last_name"],
+            $_POST["first_name"],
+            $_POST["adresse"],
+            $_POST["postcode"],
+            $_POST["phone"],
+            $_POST["email"],
+            $_POST["services_type"],
+            $_POST["services"],
+            $_POST["painting_surface_type"],
+            $_POST["color"],
+            $_POST["status"],
+            $_POST["surface_material"],
+            $_POST["pvc_surface_type"]
+        ) || empty($_POST["last_name"]) || empty($_POST["first_name"])
+            || empty($_POST["adresse"]) || empty($_POST["postcode"]) || empty($_POST["phone"]) || empty($_POST["email"]) || empty($_POST["services_type"]) || empty($_POST["services"])
+            || empty($_POST["painting_surface_type"]) || empty($_POST["color"]) || empty($_POST["status"]) || empty($_POST["surface_material"]) || empty($_POST["pvc_surface_type"])
+        ) {
+            $error = "Veuillez cocher au moins une case dans les champs obligatoires.";
             $this->render('estimate\estimate.html.twig', ['message' => $error]);
-            return; 
+            return;
         }
 
-        if (isset($_POST["last_name"], $_POST["first_name"], $_POST["adresse"], $_POST["postcode"], $_POST["phone"], $_POST["email"], $_POST["services_type"], $_POST["services"], 
-            $_POST["painting_surface_type"], $_POST["color"], $_POST["status"], $_POST["surface_material"], $_POST["pvc_surface_type"])) 
-        {
-            $tokenManager = new CSRFTokenManager();
-            if (isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"])) 
-            {
-                $em = new EstimateManager();
-                // Récupération et nettoyage des données
-                $last_name = htmlspecialchars($_POST["last_name"]);
-                $first_name = htmlspecialchars($_POST["first_name"]);
-                $adresse = htmlspecialchars($_POST["adresse"]);
-                $city = htmlspecialchars($_POST["city"]);
-                $postcode = htmlspecialchars($_POST["postcode"]);
-                $phone = htmlspecialchars($_POST["phone"]);
-                $email = htmlspecialchars($_POST["email"]);
-                $services_type = htmlspecialchars($_POST["services_type"]);
-                $services = htmlspecialchars($_POST["services"]);
-                $painting_surface_type = htmlspecialchars($_POST["painting_surface_type"]);
-                $created_at = $currentDateTime;
-                
-                // Champs optionnels
-                $painting_surface_type_other = isset($_POST["painting_surface_type_other"]) ? htmlspecialchars($_POST["painting_surface_type_other"]) : null;
-                $color = htmlspecialchars($_POST["color"]);
-                $what_color = isset($_POST["what_color"]) ? htmlspecialchars($_POST["what_color"]) : null;
-                $surface_count = isset($_POST["surface_count"]) ? htmlspecialchars($_POST["surface_count"]) : null;
-                $status = htmlspecialchars($_POST["status"]);
-                $surface_material = isset($_POST["surface_material"]) ? htmlspecialchars($_POST["surface_material"]) : null;
-                $surface_material_other = isset($_POST["surface_material_other"]) ? htmlspecialchars($_POST["surface_material_other"]) : null;
-                $pvc_surface_type = htmlspecialchars($_POST["pvc_surface_type"]);
-                $date = isset($_POST["date"]) ? htmlspecialchars($_POST["date"]) : null;
-                $selected_date = isset($_POST["selected_date"]) ? htmlspecialchars($_POST["selected_date"]) : null;
-                $additional = isset($_POST["additional"]) ? htmlspecialchars($_POST["additional"]) : null;
-                $created_at = date("Y-m-d H:i:s");
-            
-                // Gestion des fichiers picture
-                $picture = null;
+        $tokenManager = new CSRFTokenManager();
+        if (isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"])) {
+            $em = new EstimateManager();
 
-                if (isset($_FILES['picture']) && !empty($_FILES["picture"]["name"])) 
-                {
-                    $uploader = new Uploader();
-                    $picture = $uploader->upload($_FILES, "picture");
-                    if ($picture !== null) 
-                    {
-                        $picture = $picture->getUrl();
-                    }
+            // Récupération et nettoyage des données
+            $last_name = htmlspecialchars($_POST["last_name"]);
+            $first_name = htmlspecialchars($_POST["first_name"]);
+            $adresse = htmlspecialchars($_POST["adresse"]);
+            $city = htmlspecialchars($_POST["city"]);
+            $postcode = htmlspecialchars($_POST["postcode"]);
+            $phone = htmlspecialchars($_POST["phone"]);
+            $email = htmlspecialchars($_POST["email"]);
+
+            // Conversion des tableaux en chaînes si nécessaire
+            $services_type = is_array($_POST['services_type']) ? implode(', ', array_map('htmlspecialchars', $_POST['services_type'])) : htmlspecialchars($_POST['services_type']);
+            $services = is_array($_POST['services']) ? implode(', ', array_map('htmlspecialchars', $_POST['services'])) : htmlspecialchars($_POST['services']);
+            $painting_surface_type = is_array($_POST['painting_surface_type']) ? implode(', ', array_map('htmlspecialchars', $_POST['painting_surface_type'])) : htmlspecialchars($_POST['painting_surface_type']);
+            $color = is_array($_POST['color']) ? implode(', ', array_map('htmlspecialchars', $_POST['color'])) : htmlspecialchars($_POST['color']);
+            $status = is_array($_POST['status']) ? implode(', ', array_map('htmlspecialchars', $_POST['status'])) : htmlspecialchars($_POST['status']);
+            $pvc_surface_type = is_array($_POST['pvc_surface_type']) ? implode(', ', array_map('htmlspecialchars', $_POST['pvc_surface_type'])) : htmlspecialchars($_POST['pvc_surface_type']);
+            $created_at = $currentDateTime;
+
+            // Champs optionnels
+            $what_color = isset($_POST["what_color"]) ? htmlspecialchars($_POST["what_color"]) : null;
+            $surface_count = isset($_POST["surface_count"]) ? htmlspecialchars($_POST["surface_count"]) : null;
+            $surface_material = isset($_POST["surface_material"]) ? (is_array($_POST["surface_material"]) ? implode(', ', array_map('htmlspecialchars', $_POST["surface_material"])) : htmlspecialchars($_POST["surface_material"])) : null;
+            $surface_material_other = isset($_POST["surface_material_other"]) ? htmlspecialchars($_POST["surface_material_other"]) : null;
+            $date = isset($_POST["date"]) && is_array($_POST["date"]) ? implode(', ', array_map('htmlspecialchars', $_POST["date"])) : null;
+            $selected_date = isset($_POST["selected_date"]) ? htmlspecialchars($_POST["selected_date"]) : null;
+            $additional = isset($_POST["additional"]) ? htmlspecialchars($_POST["additional"]) : null;
+            // Gestion des fichiers picture
+            $picture = null;
+            if (isset($_FILES['picture']) && !empty($_FILES["picture"]["name"])) {
+                $get = $_GET;
+                $uploader = new Uploader($get);
+                $picture = $uploader->upload($_FILES, "picture");
+                if ($picture !== null) {
+                    $picture = $picture->getUrl();
                 }
-                $estimate = new Estimate($last_name, $first_name,$adresse,$city,$postcode,$phone, $email,$services_type,$services,
-                $painting_surface_type,$painting_surface_type_other,$color,$what_color,$surface_count,$status,$surface_material,
-                $surface_material_other,$pvc_surface_type,$date,$selected_date,$picture,$additional, $created_at);
-                
-                unset($_SESSION["error-message"]);
-                
-                $em->createEstimate($estimate);
-                $this->newEstimate();
-                
-                $successMessage = "Votre demande a bien été transmise. Nous revenons vers vous dans les plus brefs délais.";
-                $this->render('estimate\estimate.html.twig', ['message' => $successMessage]);
-                // $this->sendEmail();
-
-            }else{
-                $_SESSION["error-message"] = "Token CSRF invalide ou expiré. Veuillez rafraîchir la page et réessayer.";
-                $this->redirect("estimate");           
             }
-        }else{
-            $_SESSION["error-message"] = "Merci de compléter les champs obligatoires.";
-            $this->redirect("estimate");         
+
+            // Création de l'objet Estimate
+            $estimate = new Estimate(
+                $last_name,
+                $first_name,
+                $adresse,
+                $city,
+                $postcode,
+                $phone,
+                $email,
+                $services_type,
+                $services,
+                $painting_surface_type,
+                null, // Optionnel, ajuster si nécessaire
+                $color,
+                $what_color,
+                $surface_count,
+                $status,
+                $surface_material,
+                $surface_material_other,
+                $pvc_surface_type,
+                $date,
+                $selected_date,
+                $picture,
+                $additional,
+                $created_at
+            );
+
+            // Enregistrement de l'estimation
+            unset($_SESSION["error-message"]);
+            $em->createEstimate($estimate);
+
+            // Message de succès
+            $successMessage = "Votre demande a bien été transmise. Nous revenons vers vous dans les plus brefs délais.";
+            $this->render('estimate\estimate.html.twig', ['message' => $successMessage]);
+        } else {
+            $_SESSION["error-message"] = "Token CSRF invalide ou expiré. Veuillez rafraîchir la page et réessayer.";
+            $this->redirect("estimate");
         }
     }
 
+
+    // Méthode pour valider les champs obligatoires
+    private function validateRequiredFields(array $fields): bool
+    {
+        foreach ($fields as $field) {
+            if (empty($_POST[$field])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    // Méthode pour obtenir un champ optionnel
+    private function getOptionalField(string $fieldName): ?string
+    {
+        $value = $_POST[$fieldName] ?? null;
+
+        if (is_array($value)) {
+            // Convertir le tableau en une chaîne, si plusieurs valeurs sont envoyées pour un même champ
+            return implode(', ', array_map('htmlspecialchars', $value));
+        }
+
+        return $value !== null ? htmlspecialchars($value) : null;
+    }
+
+    // Méthode pour gérer l'upload de fichier
+    private function handleFileUpload(string $fileKey): ?string
+    {
+        if (isset($_FILES[$fileKey]) && !empty($_FILES[$fileKey]["name"])) {
+            $uploader = new Uploader();
+            $file = $uploader->upload($_FILES, $fileKey);
+            return $file ? $file->getUrl() : null;
+        }
+        return null;
+    }
+
+    // Méthode pour nettoyer l'entrée, prenant en charge les tableaux et les chaînes de caractères
+    private function sanitizeInput($input)
+    {
+        if (is_array($input)) {
+            return array_map('htmlspecialchars', $input);
+        }
+        return htmlspecialchars($input);
+    }
     /****************************************************/
     //************************//
     // **      Contact      **//

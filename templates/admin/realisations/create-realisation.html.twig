@@ -1,54 +1,73 @@
 {% extends "admin/admin-base.html.twig" %}
 {% block title %}
-	Nouvelle réalisation
+	Créer une réalisation
 	{{ parent() }}
 {% endblock %}
 
 {% block main %}
 
 	<main class="create-realisation">
-	<div class="btn-back-dashboard">
-		<a class="back-btn" href="index.php?route=list-reals">
-			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
-			retour sur la page des réalisations
-		</a>
-	</div>
-		<h2>Créer une nouvelle réalisation</h2>
-		<p>Remplissez le formulaire ci-dessous pour ajouter une nouvelle réalisation, il est conceillé d'avoir un élément text que ce soit un titre, un sous titre si vous ajouter une image
-		</p>
+		<div class="btn-back">
+			<a class="back-btn" href="index.php?route=realisations-list">
+				<img src="assets/img/logo/icons8-arrière-48.png" alt="bouton back retour au tableau de bord">
+				retour au tableau de bord
+			</a>
+		</div>
+		<section>
+			<h2>Créer une nouvelle réalisation</h2>
+			<p>Remplissez le formulaire ci-dessous pour ajouter une nouvelle réalisation. Il est conseillé d'avoir un élément textuel, que ce soit un titre ou un sous-titre si vous ajoutez une image.</p>
+			<p>* champs boligatoir</p>
+		</section>
 
-		<form class="realAdminForm" action="index.php?route=check-real-creation" method="post" enctype="multipart/form-data">
+		<form class="creat-realisation" action="index.php?route=check-real-creation" method="post" enctype="multipart/form-data" id="realisationForm">
 			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
 
-			<label for="title1">Titre</label>
-			<input type="text" id="title" name="title1">
+			<fieldset>
+				<label for="title1">Titre</label>
+				<input type="text" id="title1" name="title1">
+			</fieldset>
 
-			<label for="title2">Sous titre n°1</label>
-			<input type="text" id="title" name="title2">
+			<fieldset>
+				<label for="title2">Sous titre n°1</label>
+				<input type="text" id="title2" name="title2">
+			</fieldset>
 
-			<label for="title3">Sous titre n°2</label>
-			<input type="text" id="title" name="title3">
+			<fieldset>
+				<label for="title3">Sous titre n°2</label>
+				<input type="text" id="title3" name="title3">
+			</fieldset>
 
-			<label for="content">Description
-			</label>
-			<textarea id="description" name="description"></textarea>
+			<fieldset>
+				<label for="content">Description</label>
+				<textarea id="content" name="content"></textarea>
+			</fieldset>
 
-			<label for="pictures">Ajouter des images :</label>
-			<p>Pour les photos/images éssayez de les nommer le plus précisément possible (cela aide à l'accessbilité : les non/mal voyant(es) par exemple)</p>
-			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
-			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
-			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
-			<input type="file" name="mediaFiles[]" id="mediaFiles" accept="image/*" multiple/><br/>
+			<fieldset>
+				<label for="picture">Ajouter des images :</label>
+				<p>Pour les picture/images, essayez de les nommer le plus précisément possible (cela aide à l'accessibilité, pour les non-voyants par exemple).</p>
+				<input type="file" name="mediaFiles[]" id="mediaFile1" accept="image/*" multiple aria-label="Sélectionner des images"/>
+				<input type="file" name="mediaFiles[]" id="mediaFile2" accept="image/*" multiple aria-label="Sélectionner des images"/>
+			</fieldset>
 
+			<fieldset>
+				<legend>Souhaitez-vous que votre article soit visible ? *</legend>
+				<label for="visibleOui">
+					<input type="radio" name="visible" value="1" id="visibleOui" {{ realisation.visible == 1 ? 'checked' : '' }} aria-required="true" required>
+					Oui
+				</label>
+				<label for="visibleNon">
+					<input type="radio" name="visible" value="0" id="visibleNon" {{ realisation.visible == 0 ? 'checked' : '' }} aria-required="true" required>
+					Non
+				</label>
+			</fieldset>
 
-			<button type="submit">Publier ma Réalisation</button>
-			{%  if  message is defined %}
+			<section class="section_cta">
+				<button type="submit" class="cta">Publier ma Réalisation</button>
+			</section>
+
+			{% if message is defined %}
 				<p class="realisationF-oK-message">{{ message }}</p>
 			{% endif %}
 		</form>
-
-		<a class="back-btn" href="index.php?route=list-reals">
-			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
-		</a>
 	</main>
 {% endblock %}

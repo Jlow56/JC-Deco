@@ -4,6 +4,7 @@ class RealisationMediaManager extends AbstractManager
     //****************************//
     //**    Realisation Media   **//            
     //****************************//
+
     public function findVisibleRealisation(int $realisationId): array
     {
         $query = $this->db->prepare('SELECT media.* FROM media JOIN realisation_media ON media.id = realisation_media.media_id WHERE realisation_media.realisation_id = :realisation_id AND media.visible = 1');
@@ -46,15 +47,16 @@ class RealisationMediaManager extends AbstractManager
     public function associateMediaWithRealisation(int $realisationId, int $mediaId): void
     {
         $query = $this->db->prepare('INSERT INTO realisation_media (realisation_id, media_id) VALUES (:realisation_id, :media_id)');
-        $parameters =
-            [
-                "realisation_id" => $realisationId,
-                "media_id" => $mediaId,
-            ];
+        $parameters = [
+            "realisation_id" => $realisationId,
+            "media_id" => $mediaId,
+        ];
 
         try {
             $query->execute($parameters);
         } catch (PDOException $e) {
+            // Affichage de l'erreur dans la console ou le log des erreurs
+            error_log('Erreur lors de l\'association du média à la réalisation : ' . $e->getMessage());
             throw new RuntimeException('Erreur lors de l\'association du média à la réalisation : ' . $e->getMessage());
         }
     }
@@ -62,7 +64,6 @@ class RealisationMediaManager extends AbstractManager
     public function updateRealisationMediaAssociation(int $realisationId, int $oldMediaId, int $newMediaId): void
     {
         $this->db->beginTransaction();
-
         try {
             $query = $this->db->prepare('UPDATE realisation_media SET media_id = :new_media_id WHERE realisation_id = :realisation_id AND media_id = :old_media_id');
 
@@ -81,7 +82,7 @@ class RealisationMediaManager extends AbstractManager
 
     public function deleteRealisationMedia(int $realisationId, array $mediaIds): void
     {
-        $this->db->beginTransaction(); 
+        $this->db->beginTransaction();
 
         try {
             $query = $this->db->prepare('DELETE FROM realisation_media WHERE realisation_id = :realisation_id');
@@ -92,11 +93,9 @@ class RealisationMediaManager extends AbstractManager
                 $deleteQuery->execute(['id' => $mediaId]);
             }
 
-            $this->db->commit(); 
-        } 
-        catch (PDOException $e)
-        {
-            $this->db->rollBack(); 
+            $this->db->commit();
+        } catch (PDOException $e) {
+            $this->db->rollBack();
             throw new RuntimeException('Erreur lors de la suppression des médias de la réalisation : ' . $e->getMessage());
         }
     }

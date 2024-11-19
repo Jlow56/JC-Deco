@@ -4,6 +4,7 @@ class MediaManager extends AbstractManager
     //****************************//
     //**         Général        **//            
     //****************************//
+ 
     public function findAllMedia(): ?array
     {
         $query = $this->db->prepare('SELECT * FROM media');
@@ -97,6 +98,7 @@ class MediaManager extends AbstractManager
     //****************************//
     //**        Home Media      **//            
     //****************************//
+   
     public function findByHome(int $homeId): ?array
     {
         $query = $this->db->prepare('SELECT media.* FROM media JOIN home_media ON media.id = home_media.media_id WHERE home_media.home_id = :home_id');

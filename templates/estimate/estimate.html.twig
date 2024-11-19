@@ -23,29 +23,25 @@
 			<fieldset class="estimate-fieldset">
 				<fieldset class="user">
 					<legend>Vos coordonnées</legend>
-					<label for="last_name">Nom*
-					</label>
+					<label for="last_name">Nom*</label>
 					<input type="text" id="last_name" name="last_name" required aria-required="true">
 
-					<label for="first_name">Prénom*
-					</label>
+					<label for="first_name">Prénom*</label>
 					<input type="text" id="first_name" name="first_name" required aria-required="true">
 
-					<label for="adresse">Adresse*
-					</label>
+					<label for="adresse">Adresse*</label>
 					<input type="text" id="adresse" name="adresse" required aria-required="true">
+
 					<label for="city">Ville* :</label>
 					<input type="text" id="city" name="city" required aria-required="true">
-					<label for="postcode">Code Postal*
-					</label>
+
+					<label for="postcode">Code Postal*</label>
 					<input type="number" id="postcode" name="postcode" required aria-required="true">
 
-					<label for="phone">Téléphone*
-					</label>
+					<label for="phone">Téléphone*</label>
 					<input type="tel" id="phone" name="phone" required aria-required="true">
 
-					<label for="email">E-mail*
-					</label>
+					<label for="email">E-mail*</label>
 					<input type="email" id="email" name="email" required aria-required="true">
 				</fieldset>
 			</fieldset>
@@ -131,24 +127,24 @@
 			<fieldset>
 				<legend>Pour finir</legend>
 				<label>Quand souhaitez-vous que les travaux soient finis ? (facultatif)</label>
-				<label><input type="checkbox" id="earlier" name="date[]" value="Le plus tôt possible">Le plus tôt possible</label>
-				<label><input type="checkbox" id="week" name="date[]" value="Dans une semaine à deux semaines">Dans une semaine à deux semaines</label>
-				<label><input type="checkbox" id="month" name="date[]" value="Dans un mois">Dans un mois</label>
-				<label><input type="checkbox" id="fewmonth" name="date[]" value="Dans 3 à 6 mois">Dans 3 à 6 mois</label>
-				<label><input type="checkbox" id="year" name="date[]" value="l'Année prochaine">L'année prochaine</label>
+				<label><input type="radio" id="earlier" name="date[]" value="Le plus tôt possible">Le plus tôt possible</label>
+				<label><input type="radio" id="week" name="date[]" value="Dans une semaine à deux semaines">Dans une semaine à deux semaines</label>
+				<label><input type="radio" id="month" name="date[]" value="Dans un mois">Dans un mois</label>
+				<label><input type="radio" id="fewmonth" name="date[]" value="Dans 3 à 6 mois">Dans 3 à 6 mois</label>
+				<label><input type="radio" id="year" name="date[]" value="l'Année prochaine">L'année prochaine</label>
 				<label>Autre (facultatif):</label><input type="date" id="selected_date" name="selected_date">
 			</fieldset>
 
-			<!-- Champ pour les photos -->
+			<!-- Champ pour les picture -->
 			<fieldset>
 				<legend>Photos (facultatif)</legend>
-				<label for="photos">Ajouter des photos :</label>
-				<input type="file" id="photos" name="photos[]" multiple>
+				<label for="picture">Ajouter des picture :</label>
+				<input type="file" id="picture" name="picture[]" multiple>
 				<small>Vous pouvez télécharger plusieurs fichiers (formats acceptés : jpg, png, gif).</small>
 			</fieldset>
 
 			<!-- Champ pour informations supplémentaires -->
-			<fieldset class="f²lex">
+			<fieldset class="flex">
 				<legend>Informations supplémentaires (facultatif)</legend>
 				<label for="additional">Ajouter des informations supplémentaires :</label>
 				<textarea class="align-center" id="additional" name="additional"></textarea>

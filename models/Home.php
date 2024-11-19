@@ -95,7 +95,7 @@ class Home
         return $this->media;
     }
     /**
-     * @param string $media
+     * @param array $media
      */
     public function setMedia(array $media): void
     {

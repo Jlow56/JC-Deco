@@ -4,10 +4,31 @@ class Estimate
 {
     private ?int $id = null;
 
-    public function __construct( private string $lastName, private string $firstName, private string $adresse, private string $city, private string $postcode, private string $phone, private string $email, private string $servicesType,private string $services, private string $paintingSurfaceType, private ?string $paintingSurfaceTypeOther,
-        private string $color, private ?string $whatColor, private ?string $numberOfSurface, private string $status, private string $surfaceMaterial, private ?string $surfaceMaterialOther, private string $pvcSurfaceType, 
-        private string $date, private ?string $selectedDate, private ?string $photos, private ?string $additional, private string $createdAt)
-    {
+    public function __construct(
+        private string $lastName,
+        private string $firstName,
+        private string $adresse,
+        private string $city,
+        private string $postcode,
+        private string $phone,
+        private string $email,
+        private string $servicesType,
+        private string $services,
+        private string $paintingSurfaceType,
+        private ?string $paintingSurfaceTypeOther,
+        private string $color,
+        private ?string $whatColor,
+        private ?string $surfaceCount,
+        private string $status,
+        private string $surfaceMaterial,
+        private ?string $surfaceMaterialOther,
+        private string $pvcSurfaceType,
+        private ?string $date,
+        private ?string $selectedDate,
+        private ?string $picture,
+        private ?string $additional,
+        private string $createdAt
+    ) {
 
     }
 
@@ -152,14 +173,14 @@ class Estimate
         $this->whatColor = $whatColor;
     }
 
-    public function getNumberOfSurface(): ?string
+    public function getSurfaceCount(): ?string
     {
-        return $this->numberOfSurface;
+        return $this->surfaceCount;
     }
 
-    public function setNumberOfSurface(?string $numberOfSurface): void
+    public function setSurfaceCount(?string $surfaceCount): void
     {
-        $this->numberOfSurface = $numberOfSurface;
+        $this->surfaceCount = $surfaceCount;
     }
 
     public function getStatus(): string
@@ -202,12 +223,12 @@ class Estimate
         $this->pvcSurfaceType = $pvcSurfaceType;
     }
 
-    public function getDate(): string
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(string $date): void
+    public function setDate(?string $date): void
     {
         $this->date = $date;
     }
@@ -222,14 +243,14 @@ class Estimate
         $this->selectedDate = $selectedDate;
     }
 
-    public function getPhotos(): ?string
+    public function getPicture(): ?string
     {
-        return $this->photos;
+        return $this->picture;
     }
 
-    public function setPhotos(?string $photos): void
+    public function setPicture(?string $picture): void
     {
-        $this->photos = $photos;
+        $this->picture = $picture;
     }
 
     public function getAdditional(): ?string

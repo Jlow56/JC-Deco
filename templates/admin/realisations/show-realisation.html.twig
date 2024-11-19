@@ -1,49 +1,42 @@
 {% extends "admin/admin-base.html.twig" %}
 {% block title %}
-	Réalisation N°{{ realisation.id }}
+	Voir les Réalisation N°{{ realisation.id }}
 	{{ parent() }}
 {% endblock %}
 {% block main %}
 	<main class="edit-realisation">
 		<div class="btn-back-dashboard">
 			<a class="back-btn" href="index.php?route=realisations-list">
-				<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton retour au tableau de bord">
-				retourner à la liste des réalisations
+				<img src="assets/img/logo/icons8-arrière-48.png" alt="bouton back retour au tableau de bord">
+				retour au réalisations
 			</a>
 		</div>
-		
-		<div class="delete-article">
-			<h2 class="realisation">Réalisation N°{{ realisation.id }}</h2>
-			<a class="delet-btn" href="index.php?route=delete-realisation={{ realisation.id }}"> Supprimer la réalisation
-				<img src="assets\img\logo\icons8-effacer-64.png" alt="boutton pour supprimer la réalisation">
+
+		<article class="realisation">
+			<h1>{{ realisation.title1 is not empty ? realisation.title1 : '' }}</h1>
+
+			<h2>{{ realisation.title2 }}</h2>
+
+			<h3>{{ realisation.title3 }}</h3>
+
+			<p></p>{{ realisation.content }}</p>
+
+		<p>Image(s) associée(s)</p>
+		{% if realisation.media is defined and realisation.media|length > 0 %}
+			{% for media in realisation.media %}
+				<img src="{{ 'assets/img/Realisation/' ~ media.url }}">
+			{% endfor %}
+		{% else %}
+			<p>Aucun média lié à cette article</p>
+		{% endif %}
+
+	</article>
+
+	<section class="delete-article">
+			<a class="delete-article" href="index.php?route=delete-realisation&id={{ realisation.id }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réalisation ?');">
+				Supprimer la réalisation N°{{ realisation.id }}
+				<img class="delete" src="assets/img/logo/supprimer-un-fichier-texte-48.png" alt="logo supprimer le devis">
 			</a>
-		</div>
-		
-		<article class="realisation">	
-			<h2>Titre :{{ realisation.title1 is not empty ? realisation.title1 : 'pas de titre' }}</h2>
-		
-			<p>Sous-titre n°1 :</p>
-			<h3>{{ realisation.title2 }}</h3>
-		
-			<p>Sous-titre n°2 :</p>
-			<h4>{{ realisation.title3 }}</h4>
+		</section>
 	
-			<p>Contenu :</p>			
-			{{ realisation.content }}</p>
-	
-			<p>Image(s) associée(s)</p> 
-			{% if realisation.media is defined and realisation.media|length > 0 %}
-				{% for media in realisation.media %}
-					<img src="{{ 'assets/img/Realisation/' ~ media.url }}">
-				{% endfor %}
-			{% else %}
-				<p>Aucun média lié à cette article</p>
-            {% endif %}
-
-		</article>
-
-		<a class="back-btn" href="index.php?route=list-messages">
-			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
-		</a>
-	</main>
-{% endblock %}
+</main>{% endblock %}

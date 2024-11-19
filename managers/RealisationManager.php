@@ -92,9 +92,9 @@ class RealisationManager extends AbstractManager
     }
 
     // Create a new realisation and associate media
-    public function creatRealisation(Realisation $realisation, array $mediaIds): void
+    public function createRealisation(Realisation $realisation, array $mediaIds): void
     {
-        $query = $this->db->prepare('INSERT INTO realisation (title1, title2, title3, content, visible) VALUES (:title1, :title2, :title3, :content, 1)');
+        $query = $this->db->prepare('INSERT INTO realisation (id, title1, title2, title3, content, visible) VALUES (NULL, :title1, :title2, :title3, :content, 1)');
         $parameters =
             [
                 "title1" => $realisation->getTitle1(),

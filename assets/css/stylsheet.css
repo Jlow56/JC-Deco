@@ -115,9 +115,26 @@ a {
 }
 
 h1 {
-  color: #0a0a0a;
-  font-size: 1.7rem;
+  color: #bf9000;
+  font-size: 2rem;
   font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.7rem;
+  color: #bf9000; 
+}
+
+h3 {
+  color: #d9a737;
+  padding-bottom: 1rem;
+  font-weight: bold;
+}
+
+h4 {
+  color: #c37810;
 }
 
 h1, h2 {
@@ -130,11 +147,7 @@ h1, h2 {
   font-size: 1.7rem;
 }
 
-h3, h4 {
-  color: #92652a;
-  padding-bottom: 1rem;
-  font-weight: bold;
-}
+
 
 p {
   font-size: 1.1rem;
@@ -410,7 +423,7 @@ caption {
   padding: 1rem;
 }
 
-td, th {
+table.horaires td, th {
   padding: 0.8rem;
   margin: 1rem;
   border: 1px solid #bf9000;
@@ -506,8 +519,14 @@ main.service {
   line-height: 2rem;
 }
 
-.service a {
+main.services a {
   font-size: 1.1rem;
+  color: #c37810;
+}
+main.services a:hover {
+  color: #c37810;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 .serevice ul li {
@@ -768,7 +787,7 @@ div.btn-back-dashboard {
 }
 
 .back-btn:hover {
-  color: #bf9000;
+  color: blue;
   text-decoration: underline;
 } 
 
@@ -777,9 +796,15 @@ div.btn-back-dashboard {
   align-items: center;
   justify-content: center;
   margin: 1rem 0;
-  /* color: #bf9000; */
+  color: #0a0a0a;
   font-size: 1.1rem;
   text-decoration: none;
+}
+
+table.admin-table td, th {
+  border: 1px solid #0a0a0a;
+  font-size: 1rem;
+  align-content: center;
 }
 
 /****************************************************/
@@ -809,7 +834,7 @@ main#loginForm {
   font-weight: bold;
 }
 
-fieldset{
+main.login-form>fieldset{
   display: flex;
     flex-direction: column;
     justify-content: center;
@@ -830,6 +855,13 @@ input {
 /****************************************************/
 /*                   Dashboard                      */
 /****************************************************/
+
+main.dashboard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 section.dashboard {
   background-color: #d9a737;
   display: flex;
@@ -890,16 +922,27 @@ ul.dashboard-item li a:hover {
   text-decoration: underline;
 }
 
-main.dashboard {
+a.edit, a.view {
   display: flex;
+  flex-direction: row;
+  /* align-content: center; */
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
+  font-weight: bold;
+  text-decoration: underline;
 }
+
+a.edit:hover, a.view:hover {
+  color: blue;
+}
+
+
 /*******************************************************************************************************************************************/
 /****************************************************/
 /*                   Realisation                    */
 /****************************************************/
 /* realisation-list.html.twig */
+
 main.admin-realisation {
   padding: 2rem;
   border-width: 0;
@@ -909,10 +952,7 @@ main.admin-realisation {
 main.admin-realisation td> img {
   height: 150px;
   width: 150px;
-}
-.admin-realisation p {
-  margin : auto;
-  text-align: center;
+  padding: 0.5rem;
 }
 
 main.admin-realisation h2 {
@@ -921,6 +961,17 @@ main.admin-realisation h2 {
   font-weight: bold;
   font-size: 1.4rem;
 }
+
+a.add-content:hover, a.back-btn:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+.admin-realisation p {
+  margin : auto;
+  text-align: center;
+}
+
 
 td .real_edit_btns {
   text-align: center;
@@ -937,6 +988,45 @@ td .real_edit_btns a:first-of-type i {
 
 table.realisation-table th,td  {
   border: 1px solid #0a0a0a;
+}
+
+/* edit-realisation.html.twig */
+textarea.content {
+  height: 22.5rem;
+  width: 100%;
+  background-color: rgb(221, 221, 221);
+  font-family: monospace;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  
+}
+
+form.admin-edit-form>fieldset {
+  padding: 1rem;
+}
+
+form.admin-edit-form>fieldset legend {
+  text-decoration: underline;
+}
+
+form.admin-edit-form>fieldset input[type="text"] {
+  width: 30rem;
+}
+
+
+a.delete-article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: fit-content;
+  color: red;
+}
+
+a.delete-article:hover {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 /*******************************************************************************************************************************************/
@@ -969,8 +1059,9 @@ main.admin-service p {
 
 
 
-table.service-table> th,td  {
+table.service-table th, td  {
   border: 1px solid #0a0a0a;
+  text-align: center;
 }
 
 

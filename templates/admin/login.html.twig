@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-	<main id="loginForm">
+	<main class="login-form">
 		{% if session['error-message'] is defined %}
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
 				{{ session['error-message'] }}

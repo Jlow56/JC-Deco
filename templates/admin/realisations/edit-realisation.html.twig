@@ -6,71 +6,99 @@
 {% block main %}
 	<main class="edit-realisation">
 		<div class="btn-back-dashboard">
-			<a class="back-btn" href="index.php?route=realisations-list">
-				<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton retour au tableau de bord">
-				retourner à la liste des réalisations
+			<a class="back-btn" href="index.php?route=dashboard">
+				<img src="assets/img/logo/icons8-arrière-48.png" alt="bouton back retour au tableau de bord">
+				retour au tableau de bord
 			</a>
 		</div>
-		
-		<div class="delete-article">
-			<h2 class="realisation">Réalisation N°{{ realisation.id }}</h2>
-			<a class="delet-btn" href="index.php?route=delete-realisation={{ realisation.id }}"> Supprimer la réalisation
-				<img src="assets\img\logo\icons8-effacer-64.png" alt="boutton pour supprimer la réalisation">
+
+		<h2 class="custom-h2">Réalisation N°{{ realisation.id }}</h2>
+
+		<section class="realisation">
+			<form class="admin-edit-form" action="index.php?route=update-realisation&id={{ realisation.id }}" method="POST" enctype="multipart/form-data">
+				<p class="red">*Champs obligatoires</p>
+				<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
+
+				<fieldset>
+					<legend>Ajouter/Modifier le titre principal</legend>
+					<label for="title1">
+						Titre principal :
+						<input type="text" id="title1" name="title1" value="{{ realisation.title1 is not empty ? realisation.title1 : '' }}">
+					</label>
+				</fieldset>
+
+				<fieldset>
+					<legend>Ajouter/Modifier le sous-titre n°1</legend>
+					<label for="title2">
+						Sous-titre n°1 :
+						<input type="text" id="title2" name="title2" value="{{ realisation.title2 is not empty ? realisation.title2 : '' }}">
+					</label>
+				</fieldset>
+
+				<fieldset>
+					<legend>Ajouter/Modifier le sous-titre n°2</legend>
+					<label for="title3">
+						Sous-titre n°2 :
+						<input type="text" id="title3" name="title3" value="{{ realisation.title3 is not empty ? realisation.title3 : '' }}">
+					</label>
+				</fieldset>
+
+				<fieldset>
+					<legend>Ajouter/Modifier le texte associé</legend>
+					<label for="content">
+						Contenu :
+					</label>
+					<textarea class="content" id="content" name="content">{{ realisation.content is not empty ? realisation.content : '' }}</textarea>
+				</fieldset>
+
+
+				<fieldset>
+					<legend>Ajouter ou modifier une picture (facultatif)</legend>
+
+					<p>Image(s) associée(s)</p>
+					{% if realisation.media is defined and realisation.media|length > 0 %}
+						{% for media in realisation.media %}
+							<img src="{{ 'assets/img/Realisation/' ~ media.url }}" alt="Image associée">
+						{% endfor %}
+					{% else %}
+						<p>Aucun média lié à cet article</p>
+					{% endif %}
+
+					<label for="picture">Ajouter des picture :</label>
+					<input type="file" id="picture" name="picture[]" multiple accept=".jpg,.jpeg,.png,.gif">
+					<p>
+						<small>Vous pouvez télécharger plusieurs fichiers (formats acceptés : jpg, png, gif).</small>
+					</p>
+				</fieldset>
+
+				<fieldset>
+					<legend>Souhaitez-vous que votre article soit visible? *</legend>
+					<label for="oui">
+						<input type="radio" name="visible" value="1" {{ realisation.visible == 1 ? 'checked' : '' }}>
+						Oui
+					</label>
+					<label for="non">
+						<input type="radio" name="visible" value="0" {{ realisation.visible == 0 ? 'checked' : '' }}>
+						Non
+					</label>
+				</fieldset>
+
+				<section class="section_cta">
+					<button type="submit" class="cta">Mettre à jour ma Réalisation</button>
+				</section>
+
+				{%  if  message is defined %}
+					<p class="realisationF-oK-message">{{ message }}</p>
+				{% endif %}
+			</form>
+
+		</section>
+
+		<section class="delete-article">
+			<a class="delete-article" href="index.php?route=delete-realisation&id={{ realisation.id }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réalisation ?');">
+				Supprimer la réalisation N°{{ realisation.id }}
+				<img class="delete" src="assets/img/logo/supprimer-un-fichier-texte-48.png" alt="logo supprimer le devis">
 			</a>
-		</div>
-		
-		<article class="realisation">	
-		<form class="realAdminForm" action="index.php?route=update-realisation" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="csrf-token" id="csrf-token" value="{{ sessionToken }}"/>
-			
-			<fieldset>
-				<legend>Modifier le titre principale</legend>
-				
-				<label for="title1">
-					Titre :
-					<input type="text" name="title1" value="{{ realisation.title1 is not empty ? realisation.title1 : 'vide' }}">
-				</label>
-			</fieldset>
-			
-		
-			<fieldset>
-				<legend>Modifier le sous-titre n°1</legend>
-				
-				<label for="title2">
-					Sous-titre n°1 :
-					<input type="text" name="title1" value="{{ realisation.title2 is not empty ? realisation.title2 : 'vide' }}">
-				</label>
-			</fieldset>
-			
-			<fieldset>
-			
-			</fieldset>
-			<label for="title2">
-				
-				<input type="text" name="title2" value="{{ realisation.title2 is not empty ? realisation.title2 : '' }}">
-			</label>
-			
-			<h3>{{ realisation.title2 }}</h3>
-		
-			<p>Sous-titre n°2 :</p>
-			<h4>{{ realisation.title3 }}</h4>
-	
-			<p>Contenu :</p>			
-			{{ realisation.content }}</p>
-	
-			<p>Image(s) associée(s)</p> 
-			{% if realisation.media is defined and realisation.media|length > 0 %}
-				{% for media in realisation.media %}
-					<img src="{{ 'assets/img/Realisation/' ~ media.url }}">
-				{% endfor %}
-			{% else %}
-				<p>Aucun média lié à cette article</p>
-            {% endif %}
-
-		</article>
-
-		<a class="back-btn" href="index.php?route=list-messages">
-			<img src="assets\img\logo\icons8-go-back-64.png" alt="boutton back retour au tableau de bord">
-		</a>
+		</section>
 	</main>
 {% endblock %}

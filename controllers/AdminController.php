@@ -69,7 +69,7 @@ class AdminController extends AbstractController
                 $estimate->setPaintingSurfaceTypeOther($_POST['painting_surface_type_other'] ?? null);
                 $estimate->setColor($_POST['color']);
                 $estimate->setWhatColor($_POST['what_color'] ?? null);
-                $estimate->setSurface_count($_POST['surface_count'] ?? null);
+                $estimate->setSurfaceCount($_POST['surface_count'] ?? null);
                 $estimate->setStatus($_POST['status']);
                 $estimate->setSurfaceMaterial($_POST['surface_material']);
                 $estimate->setSurfaceMaterialOther($_POST['surface_material_other'] ?? null);
@@ -250,40 +250,65 @@ class AdminController extends AbstractController
 
     public function handleRealisationCreation()
     {
+        // Vérification de l'authentification de l'utilisateur
         if (!isset($_SESSION["user"])) {
             $this->redirect("login");
             return;
         }
 
-        $realisation = new Realisation(
-            $_POST['title1'] ?? '',
-            $_POST['title2'] ?? '',
-            $_POST['title3'] ?? '',
-            $_POST['description'] ?? '',
-            $_POST['visible'] ?? 1
-        );
-        $mediaIds = [];
+        $tokenManager = new CSRFTokenManager();
+        if (isset($_POST["csrf-token"]) && $tokenManager->validateCSRFToken($_POST["csrf-token"])) {
 
-        $uploader = new Uploader();
+            // Récupération et validation des champs obligatoires
+            $title1 = !empty($_POST['title1']) ? $_POST['title1'] : null;
+            $title2 = !empty($_POST['title2']) ? $_POST['title2'] : null;
+            $title3 = !empty($_POST['title3']) ? $_POST['title3'] : null;
+            $content = !empty($_POST['content']) ? $_POST['content'] : null;
+            $visible = isset($_POST['visible']) ? (int) $_POST['visible'] : 0; // ou une valeur par défaut
 
-        // Traitement des fichiers uploadés
-        if (!empty($_FILES['mediaFiles']['name'][0])) {
-            foreach ($_FILES['mediaFiles']['tmp_name'] as $key => $tmp_name) {
-                if ($_FILES['mediaFiles']['error'][$key] === UPLOAD_ERR_OK) {
-                    $media = $uploader->uploadMedias($_FILES, 'mediaFiles');
+            // Gestion des fichiers média
+            
+            $medias = [];
+            $uploader = new Uploader();
+            $mediaManager = new MediaManager();
 
-                    if ($media !== null) {
-                        $mediaIds[] = $media->getId();
-                    } else {
-                        $_SESSION['error'] = "Erreur lors du téléchargement de certains fichiers.";
+            // Traitement des fichiers d'image
+            for ($i = 1; $i <= 2; $i++) {
+                if (!empty($_FILES["picture$i"])) {
+                    $pic = $uploader->uploadPictures($_FILES, "picture$i");
+                    if ($pic !== null) {
+                        $url = $pic->getUrl();
+                        $alt = $pic->getAlt();
+                        $newMedia = new Media($url, $alt, $visible);
+                        $mediaManager->createMedia($newMedia);
+                        $medias[] = $newMedia;
                     }
                 }
             }
-        }
 
-        // Enregistrer la réalisation avec les médias associés
-        $realisationManager = new RealisationManager();
-        $realisationManager->creatRealisation($realisation, $mediaIds);
+            // Création de l'objet Realisation
+            $rm = new RealisationManager();
+            $realisation = new Realisation($title1, $title2, $title3, $content, $visible);
+            $rm->createRealisation($realisation);
+
+            // Association des médias avec la réalisation
+            if (!empty($medias)) {
+                $rmm = new RealisationMediaManager();
+                foreach ($medias as $media) {
+                    $rmm->associateMediaWithRealisation($realisation, $media);
+                }
+            }
+
+            // Message de succès et redirection
+            $message = "Votre réalisation a été ajoutée avec succès.";
+            $this->render("admin/realisations/realisations-list.html.twig", ['message' => $message]);
+            $this->redirect("realisations-list");
+
+        } else {
+            // Gestion de l'erreur CSRF
+            $_SESSION["error-message"] = "CSRF token invalide";
+            $this->redirect("login");
+        }
     }
 
     public function updateRealisation(int $id): void
@@ -325,7 +350,6 @@ class AdminController extends AbstractController
             }
             return;
         }
-
         // Afficher le formulaire de mise à jour
         $this->render("admin/realisation/update-realisation.html.twig", ["realisation" => $realisation]);
     }

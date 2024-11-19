@@ -1,32 +1,41 @@
 <?php
-class CSRFTokenManager {
-    // Génère un jeton CSRF et le stocke dans la session
-    public function generateCSRFToken() : string
-    {
-        // Génère un token aléatoire
-        $token = bin2hex(random_bytes(32));
+class CSRFTokenManager extends AbstractController
+{
+    private const TOKEN_EXPIRATION_TIME = 600; // 10 minutes
 
-        // Stocke le token dans la session avec un timestamp pour gérer l'expiration
+    // Génère un jeton CSRF et le stocke dans la session
+    public function generateCSRFToken(): string
+    {
+        // Vérifie que la session est démarrée
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+
+        $token = bin2hex(random_bytes(32)); // Génération sécurisée
         $_SESSION['csrf-token'] = $token;
-        $_SESSION['csrf-token-time'] = time(); // Stocke le temps de génération du token
+        $_SESSION['csrf-token-time'] = time(); // Stocke l'heure de génération
 
         return $token;
     }
 
     // Valide un jeton CSRF
-    public function validateCSRFToken($token) : bool
+    public function validateCSRFToken(?string $token): bool
     {
-        // Vérifie si le jeton existe dans la session et s'il correspond
-        if (isset($_SESSION['csrf-token']) && hash_equals($_SESSION['csrf-token'], $token))
-        {
-            // Vérifie si le token a expiré (par exemple, 10 minutes de validité)
-            if (time() - $_SESSION['csrf-token-time'] > 600) 
-            { // 600 secondes = 10 minutes
-                unset($_SESSION['csrf-token']); // Supprime le token expiré
-                return false; // Le token a expiré
-            }
-            return true; // Le token est valide et non expiré
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
         }
-        return false; // Le token est invalide
+
+        if (isset($_SESSION['csrf-token'], $_SESSION['csrf-token-time']) && hash_equals($_SESSION['csrf-token'], $token)) {
+            // Vérifie la validité dans le temps
+            if (time() - $_SESSION['csrf-token-time'] <= self::TOKEN_EXPIRATION_TIME) {
+                return true; // Token valide
+            }
+            // Nettoyage des tokens expirés
+            unset($_SESSION['csrf-token'], $_SESSION['csrf-token-time']);
+        }
+        // Action en cas de token invalide ou expiré
+        $_SESSION['timeOut'] = "Le token n'est plus valide, veuillez vous reconnecter.";
+        $this->redirect("login");
+        return false; // Ne sera pas atteint si la redirection est exécutée
     }
 }

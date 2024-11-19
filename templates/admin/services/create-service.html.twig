@@ -16,11 +16,11 @@
 			<textarea id="intro" name="intro" maxlength="1024" required="required"></textarea>
 			<label for="description">Description (2047 caractères max)</label>
 			<textarea id="description" name="description" maxlength="2047" required="required"></textarea>
-			<label for="pictures">Ajouter des images :</label>
-			<input type="file" name="picture1" id="picture" accept="photo/*"/><br/>
-			<input type="file" name="picture2" id="picture" accept="photo/*"/><br/>
-			<input type="file" name="picture3" id="picture" accept="photo/*"/><br/>
-			<input type="file" name="picture4" id="picture" accept="photo/*"/><br/>
+			<label for="picture">Ajouter des images :</label>
+			<input type="file" name="picture1" id="picture" accept="picture/*"/><br/>
+			<input type="file" name="picture2" id="picture" accept="picture/*"/><br/>
+			<input type="file" name="picture3" id="picture" accept="picture/*"/><br/>
+			<input type="file" name="picture4" id="picture" accept="picture/*"/><br/>
 			<button type="submit">Poster</button>
 			{%  if  message is defined %}
 				<p class="serviceFormOKMessage">{{ message }}</p>
