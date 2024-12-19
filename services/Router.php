@@ -13,6 +13,7 @@ class Router
         //******************//
         //***   Public  ***//
         //****************//
+        
         // Home
         if (!isset($get["route"])) 
         {

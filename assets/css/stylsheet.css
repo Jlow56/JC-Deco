@@ -147,8 +147,6 @@ h1, h2 {
   font-size: 1.7rem;
 }
 
-
-
 p {
   font-size: 1.1rem;
   padding-bottom: 1rem;
@@ -197,17 +195,22 @@ img.border-radius {
 .cta {
   display: inline-block;
   align-items: center;
-  background: linear-gradient(rgb(119, 61, 20), #563b09cf);
+  background: linear-gradient(#bf9000, #a6780f);
   color: white;
-  border-radius: 50px;
+  border-radius: 0.5rem;
   padding: 0.8rem;
   font-size: 1rem;
   font-family: "Manrope", sans-serif !important;
+  border-color: #9ea2a8;
 }
 
 .cta:hover {
-  background: linear-gradient(#ae7326, #7d3d18); 
+  background: linear-gradient(#a6780f, #bf9000); 
   text-decoration: none;
+}
+
+.visually-hidden {
+  display: none;
 }
 
 /*******************************************************************************************************************************************/
@@ -648,13 +651,14 @@ main.estimate {
 form.estimate-form {
   display: flex;
   flex-direction: column;
-  background-color: #dead6a;
+  background-color: #BF9000;
   border-radius: 15px;
   align-items: center;
   box-shadow:  0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .estimate-form legend {
+  text-align: center;
   font-weight: bold;
   color: #0a0a0a;
 }
@@ -664,7 +668,7 @@ form.estimate-form {
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 1rem;
-  background-color: #dead6a;
+  background-color: #BF9000;
   border-radius: 15px;
   width: 80%;
   border: 1px solid white;
@@ -723,9 +727,6 @@ form.estimate-form {
 /*                contact.html.twig                 */
 /*                                                  */
 /****************************************************/
-main.contact {
-  margin: 2rem;
-}
 
 /*        Formulaires      */
 /***************************/
@@ -741,11 +742,12 @@ form.contact-form  {
 display: flex;
 flex-direction: column;
 padding: 1rem;
-background-color: #dead6a;
+background-color: #0a0a0a;
 border-radius: 5px;
 align-items: center;
 width: auto;
 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+color: #bf9000;
 }
 
 .contact-form input {
@@ -812,7 +814,8 @@ table.admin-table td, th {
 /****************************************************/
 #login {
   display: flex;
-  background-color: #dead6a;
+  background-color: #0a0a0a ;
+  color: #BF9000;
   height: 20rem;
   width: 30rem;
   border-radius: 15px;
@@ -822,11 +825,13 @@ table.admin-table td, th {
   align-items: center;
 }
 
-main#loginForm {
-  margin: 3rem;
+main.login-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  /* align-content: center; */
+  
 }
 
 #loginForm h2 {
